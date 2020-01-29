@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Time Table View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="TimeTableViewController" customModule="TimeTable" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E64-3i-kHT">
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableCell" id="3Ek-Xr-34H" customClass="LessonCell" customModule="TimeTable" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="74.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Ek-Xr-34H" id="TtD-Tc-Wwh">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQw-bZ-1lJ">
+                                                    <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-tc-0CS">
+                                                    <rect key="frame" x="8" y="45.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zEy-tc-0CS" secondAttribute="trailing" constant="20" symbolic="YES" id="3dW-Sw-37G"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uQw-bZ-1lJ" secondAttribute="trailing" constant="20" symbolic="YES" id="5J5-js-hqa"/>
+                                                <constraint firstAttribute="bottom" secondItem="zEy-tc-0CS" secondAttribute="bottom" constant="8" id="6zD-uI-B2o"/>
+                                                <constraint firstItem="zEy-tc-0CS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uQw-bZ-1lJ" secondAttribute="bottom" constant="16" id="7OH-45-D37"/>
+                                                <constraint firstItem="uQw-bZ-1lJ" firstAttribute="leading" secondItem="TtD-Tc-Wwh" secondAttribute="leading" constant="8" id="N4f-Mt-3Bn"/>
+                                                <constraint firstItem="uQw-bZ-1lJ" firstAttribute="top" secondItem="TtD-Tc-Wwh" secondAttribute="top" constant="8" id="UWQ-ql-Dwi"/>
+                                                <constraint firstItem="zEy-tc-0CS" firstAttribute="leading" secondItem="TtD-Tc-Wwh" secondAttribute="leading" constant="8" id="ppf-MW-wq2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lessonEndTimeLabel" destination="zEy-tc-0CS" id="WtO-ln-ORc"/>
+                                            <outlet property="lessonStartTimeLabel" destination="uQw-bZ-1lJ" id="Ao3-Y4-oaF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="pwe-p8-6LQ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="kuT-aH-WXb"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="E64-3i-kHT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8TN-tb-7oR"/>
+                            <constraint firstItem="E64-3i-kHT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="Avg-kZ-177"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="E64-3i-kHT" secondAttribute="bottom" id="bqI-iO-KIW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="E64-3i-kHT" secondAttribute="trailing" id="qVi-Rk-EkM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="timeTableView" destination="E64-3i-kHT" id="5Br-qh-vDq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.25" y="106.69014084507042"/>
+        </scene>
+    </scenes>
+</document>

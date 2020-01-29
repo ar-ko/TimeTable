@@ -7,23 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */; };
+		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
+		BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */; };
 		BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8423E19002008FF119 /* AppDelegate.swift */; };
 		BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8623E19002008FF119 /* SceneDelegate.swift */; };
-		BBE2AC8923E19002008FF119 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8823E19002008FF119 /* ViewController.swift */; };
+		BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8823E19002008FF119 /* TimeTableViewController.swift */; };
 		BBE2AC8C23E19002008FF119 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBE2AC8A23E19002008FF119 /* Main.storyboard */; };
 		BBE2AC8E23E19003008FF119 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBE2AC8D23E19003008FF119 /* Assets.xcassets */; };
 		BBE2AC9123E19003008FF119 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBE2AC8F23E19003008FF119 /* LaunchScreen.storyboard */; };
+		BBE2ACA323E1A8ED008FF119 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2ACA223E1A8ED008FF119 /* LessonCell.swift */; };
+		BBE2ACA523E1AA40008FF119 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2ACA423E1AA40008FF119 /* Lesson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimeTableResponse.swift; sourceTree = "<group>"; };
+		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableNetworkService.swift; sourceTree = "<group>"; };
 		BBE2AC8123E19002008FF119 /* TimeTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBE2AC8423E19002008FF119 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBE2AC8623E19002008FF119 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BBE2AC8823E19002008FF119 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BBE2AC8823E19002008FF119 /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		BBE2AC8B23E19002008FF119 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BBE2AC8D23E19003008FF119 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBE2AC9023E19003008FF119 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBE2AC9223E19003008FF119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBE2ACA223E1A8ED008FF119 /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
+		BBE2ACA423E1AA40008FF119 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +47,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BBC902ED23E1B80B0021CA1C /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				BBC902EE23E1B81D0021CA1C /* NetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		BBC902F023E1BA390021CA1C /* TimeTableNetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */,
+			);
+			path = TimeTableNetworkService;
+			sourceTree = "<group>";
+		};
 		BBE2AC7823E19002008FF119 = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +82,92 @@
 		BBE2AC8323E19002008FF119 /* TimeTable */ = {
 			isa = PBXGroup;
 			children = (
-				BBE2AC8423E19002008FF119 /* AppDelegate.swift */,
-				BBE2AC8623E19002008FF119 /* SceneDelegate.swift */,
-				BBE2AC8823E19002008FF119 /* ViewController.swift */,
-				BBE2AC8A23E19002008FF119 /* Main.storyboard */,
-				BBE2AC8D23E19003008FF119 /* Assets.xcassets */,
-				BBE2AC8F23E19003008FF119 /* LaunchScreen.storyboard */,
-				BBE2AC9223E19003008FF119 /* Info.plist */,
+				BBE2AC9823E19014008FF119 /* Application */,
+				BBE2AC9D23E1917D008FF119 /* TimeTable */,
+				BBE2ACA123E19823008FF119 /* SupportingFiles */,
 			);
 			path = TimeTable;
+			sourceTree = "<group>";
+		};
+		BBE2AC9823E19014008FF119 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2AC9B23E1916E008FF119 /* Model */,
+				BBE2AC9A23E19168008FF119 /* View */,
+				BBE2AC9923E19160008FF119 /* Controller */,
+				BBC902ED23E1B80B0021CA1C /* NetworkService */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		BBE2AC9923E19160008FF119 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2AC8623E19002008FF119 /* SceneDelegate.swift */,
+				BBE2AC8423E19002008FF119 /* AppDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BBE2AC9A23E19168008FF119 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2AC8F23E19003008FF119 /* LaunchScreen.storyboard */,
+				BBE2AC8A23E19002008FF119 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BBE2AC9B23E1916E008FF119 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BBE2AC9D23E1917D008FF119 /* TimeTable */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2ACA023E19190008FF119 /* Model */,
+				BBE2AC9F23E1918B008FF119 /* View */,
+				BBE2AC9E23E19185008FF119 /* Controller */,
+				BBC902F023E1BA390021CA1C /* TimeTableNetworkService */,
+			);
+			path = TimeTable;
+			sourceTree = "<group>";
+		};
+		BBE2AC9E23E19185008FF119 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2AC8823E19002008FF119 /* TimeTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BBE2AC9F23E1918B008FF119 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2ACA223E1A8ED008FF119 /* LessonCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BBE2ACA023E19190008FF119 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2ACA423E1AA40008FF119 /* Lesson.swift */,
+				BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BBE2ACA123E19823008FF119 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2AC8D23E19003008FF119 /* Assets.xcassets */,
+				BBE2AC9223E19003008FF119 /* Info.plist */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +241,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBE2AC8923E19002008FF119 /* ViewController.swift in Sources */,
+				BBE2ACA523E1AA40008FF119 /* Lesson.swift in Sources */,
+				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
 				BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */,
+				BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */,
+				BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */,
 				BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */,
+				BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */,
+				BBE2ACA323E1A8ED008FF119 /* LessonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +394,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C97NTYG8P8;
-				INFOPLIST_FILE = TimeTable/Info.plist;
+				INFOPLIST_FILE = TimeTable/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +412,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C97NTYG8P8;
-				INFOPLIST_FILE = TimeTable/Info.plist;
+				INFOPLIST_FILE = TimeTable/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
