@@ -10,5 +10,12 @@ import Foundation
 
 
 struct GetTimeTableResponse {
+    let timeTable: [[Lesson]]
     
+    init(json: TimeTableJSON) {
+        
+        //print(json)
+
+        self.timeTable = [[Lesson]]()
+    }
 }

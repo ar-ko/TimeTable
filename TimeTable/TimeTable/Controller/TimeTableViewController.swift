@@ -12,10 +12,14 @@ import UIKit
 class TimeTableViewController: UIViewController {
 
     @IBOutlet weak var timeTableView: UITableView!
-    
+    var timeTable = [[Lesson]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        TimeTableNetworkService.getTimeTable { (response) in
+            self.timeTable = response.timeTable
+        }
     }
 }
 
