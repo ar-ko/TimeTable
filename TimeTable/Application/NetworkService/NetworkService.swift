@@ -19,10 +19,15 @@ class NetworkService {
         let session = URLSession.shared
         
         session.dataTask(with: url) { (data, response, error) in
-        guard let data = data else { return }
-            DispatchQueue.main.async {
-                completion(data)
-        }
+            do{
+                guard let data = data else { throw NetworkError.noInternetConnection }
+                DispatchQueue.main.async {
+                    completion(data)
+                }
+            } catch {
+                print(error)
+                completion(Data())
+            }
         }.resume()
     }
     

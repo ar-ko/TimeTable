@@ -18,13 +18,13 @@ class TimeTableNetworkService {
         guard let url = URL(string: "https://sheets.googleapis.com/v4/spreadsheets/1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw?ranges=%D0%BF%D1%80%D0%BE%D1%84%D1%8B!B11:E175&fields=sheets(merges,data(rowData(values(formattedValue,note,effectiveFormat(backgroundColor,textFormat(foregroundColor))))))&key=AIzaSyBg-JW7nhA-be4jnfy-UKFVXcfefkjofVw") else { return }
         
         NetworkService.shared.getData(url: url) { (json) in
-            do {
+            /*do {
                 let timeTableJSON = try JSONDecoder().decode(TimeTableJSON.self, from: json)
                 let response = try GetTimeTableResponse(json: timeTableJSON)
                 completion(response)
             } catch {
                 print(error)
-            }
+            }*/
         }
         
     }
