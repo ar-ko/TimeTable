@@ -18,6 +18,7 @@ class TimeTableViewController: UIViewController {
         super.viewDidLoad()
         
         TimeTableNetworkService.getTimeTable { (response) in
+            guard let response = response else { return }
             self.timeTable = response.timeTable
         }
     }

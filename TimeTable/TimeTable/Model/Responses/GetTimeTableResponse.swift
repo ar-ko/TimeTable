@@ -14,7 +14,7 @@ struct GetTimeTableResponse {
     
     init(json: TimeTableJSON) {
         
-        //print(json)
+        print(json)
 
         self.timeTable = [[Lesson]]()
     }

@@ -15,18 +15,22 @@ class NetworkService {
     static let shared = NetworkService()
     
     
-    public func getData(url: URL, completion: @escaping (Data) -> ()) {
+    public func getData(url: URL, completion: @escaping (Any?) -> ()) {
         let session = URLSession.shared
         
         session.dataTask(with: url) { (data, response, error) in
-            do{
+            do {
                 guard let data = data else { throw NetworkError.noInternetConnection }
+                
+                do { let timeTableJSON = try JSONDecoder().decode(TimeTableJSON.self, from: data)
+                
                 DispatchQueue.main.async {
-                    completion(data)
+                    completion(timeTableJSON)
                 }
+            }
             } catch {
-                print(error)
-                completion(Data())
+                print("ERROR: \(error)")
+                completion(nil)
             }
         }.resume()
     }
