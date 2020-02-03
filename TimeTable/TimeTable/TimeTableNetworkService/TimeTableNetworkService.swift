@@ -21,7 +21,6 @@ class TimeTableNetworkService {
             guard let json = json as? TimeTableJSON else { return }
             let response = GetTimeTableResponse(json: json)
             completion(response)
-            
         }
     }
     
