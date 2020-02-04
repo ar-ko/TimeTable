@@ -8,6 +8,8 @@
 
 import UIKit
 
+let group = Group(name: "Экономика и управление", curse: "1", semestrDate: "27.01.20-04.04.20", practiceDate: nil, sheetId: "%D0%BF%D1%80%D0%BE%D1%84%D1%8B", startColumn: "B", startRow: 11, endColumn: "E", endRow: 175)
+
 
 class TimeTableViewController: UIViewController {
 
@@ -17,7 +19,7 @@ class TimeTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TimeTableNetworkService.getTimeTable { (response) in
+        TimeTableNetworkService.getTimeTable(group: group) { (response) in
             guard let response = response else { return }
             self.timeTable = response.timeTable
         }

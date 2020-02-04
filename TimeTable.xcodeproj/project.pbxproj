@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB05139B23E82C6F00048C8E /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05139A23E82C6F00048C8E /* Group.swift */; };
+		BB05139D23E82CCE00048C8E /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05139C23E82CCE00048C8E /* ApiKey.swift */; };
+		BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */; };
 		BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */; };
 		BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* TimeTableJSON.swift */; };
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB05139A23E82C6F00048C8E /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		BB05139C23E82CCE00048C8E /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
+		BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSONParser.swift; sourceTree = "<group>"; };
 		BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimeTableResponse.swift; sourceTree = "<group>"; };
 		BB7255DE23E3295600911B70 /* TimeTableJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSON.swift; sourceTree = "<group>"; };
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -55,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */,
+				BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -171,6 +178,7 @@
 				BB0E410123E2988700AB6CDC /* Responses */,
 				BBE2ACA423E1AA40008FF119 /* Lesson.swift */,
 				BB7255DE23E3295600911B70 /* TimeTableJSON.swift */,
+				BB05139A23E82C6F00048C8E /* Group.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 			children = (
 				BBE2AC8D23E19003008FF119 /* Assets.xcassets */,
 				BBE2AC9223E19003008FF119 /* Info.plist */,
+				BB05139C23E82CCE00048C8E /* ApiKey.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -255,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB05139B23E82C6F00048C8E /* Group.swift in Sources */,
 				BBE2ACA523E1AA40008FF119 /* Lesson.swift in Sources */,
 				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
 				BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */,
@@ -262,8 +272,10 @@
 				BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */,
 				BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */,
 				BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */,
+				BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */,
 				BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */,
 				BBE2ACA323E1A8ED008FF119 /* LessonCell.swift in Sources */,
+				BB05139D23E82CCE00048C8E /* ApiKey.swift in Sources */,
 				BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

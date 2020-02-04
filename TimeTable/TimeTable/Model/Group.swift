@@ -23,9 +23,9 @@ struct Group {
     let startColumn: String
     let startRow: Int
     let endColumn: String
-    let endRow: String
+    let endRow: Int
     
-    init(name: String, curse: String, semestrDate: String, practiceDate: String?, sheetId: String, startColumn: String, startRow: Int, endColumn: String, endRow: String) {
+    init(name: String, curse: String, semestrDate: String, practiceDate: String?, sheetId: String, startColumn: String, startRow: Int, endColumn: String, endRow: Int) {
         self.name = name
         self.curse = curse
         self.semestrDate = semestrDate

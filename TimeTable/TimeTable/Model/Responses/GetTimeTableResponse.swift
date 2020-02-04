@@ -10,12 +10,13 @@ import Foundation
 
 
 struct GetTimeTableResponse {
-    let timeTable: [[Lesson]]
+    var timeTable: [[Lesson]]!
     
-    init(json: TimeTableJSON) {
+    init(of json: TimeTableJSON, for group: Group) {
         
-        print(json)
-
-        self.timeTable = [[Lesson]]()
+        let timeTable = JSONParser(of: json, for: group)
+        
+        self.timeTable =  timeTable
     }
+    
 }
