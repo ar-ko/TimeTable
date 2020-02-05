@@ -13,8 +13,12 @@ struct GetTimeTableResponse {
     var timeTable: [[Lesson]]!
     
     init(of json: TimeTableJSON, for group: Group) {
+        let startColumnIndex = letterToIndex(letter: group.startColumn)
+        let startRowIndex = group.startRow - 1
         
-        let timeTable = JSONParser(of: json, for: group)
+        let daysSeparator = getDaysSeparator(json: json, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
+        
+        let timeTable = JSONParser(json: json, daysSeparator: daysSeparator, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
         
         self.timeTable =  timeTable
     }

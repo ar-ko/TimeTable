@@ -12,16 +12,16 @@ import Foundation
 struct Lesson {
     let startTime: Date
     let endTime: Date
-    let title: String
-    let teacherName: String
-    let type: LessonType
-    let form: LessonForm
-    let subgroup: Subgroup
-    let cabinet: String
-    let campus: String
-    let note: String
-    let otherCabinet: Bool
-    let otherCampus: Bool
+    let title: String?
+    let teacherName: String?
+    let type: LessonType?
+    let form: LessonForm?
+    let subgroup: Subgroup?
+    let cabinet: String?
+    let campus: String?
+    let note: String?
+    let otherCabinet: Bool?
+    let otherCampus: Bool?
 }
 
 enum LessonForm {case standart, online, canceled}

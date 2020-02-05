@@ -22,6 +22,7 @@ class TimeTableViewController: UIViewController {
         TimeTableNetworkService.getTimeTable(group: group) { (response) in
             guard let response = response else { return }
             self.timeTable = response.timeTable
+            self.timeTableView.reloadData()
         }
     }
 }
@@ -32,12 +33,17 @@ extension TimeTableViewController: UITableViewDelegate {}
 extension TimeTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LessonCell
+        
+        if !self.timeTable.isEmpty {
+        let lessons = self.timeTable[0][indexPath.row]
+        cell.configure(with: lessons)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        //print(timeTable[0].count)
+        return timeTable.isEmpty ? 0:timeTable[0].count
     }
 }
