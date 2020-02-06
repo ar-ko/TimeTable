@@ -28,13 +28,22 @@ class LessonCell: UITableViewCell {
         self.lessonTitleLabel.text = lesson.title
         self.lessonTeacherNameLabel.text = lesson.teacherName
         
+        var lessonType: String
+        
         switch lesson.type {
-        case .laboratory: self.lessonTypeLabel.text = "Лабораторная"
-        case .lecture: self.lessonTypeLabel.text = "Лекция"
-        case .practice: self.lessonTypeLabel.text = "Практика"
-        default: self.lessonTypeLabel.text = ""
+        case .laboratory: lessonType = "Лабораторная"
+        case .lecture: lessonType = "Лекция"
+        case .practice: lessonType = "Практика"
+        default: lessonType = ""
         }
         
+        switch lesson.subgroup {
+        case .first: lessonType += ", 1-я подгруппа"
+        case .second: lessonType += ", 2-я подгруппа"
+        default: lessonType += ""
+        }
+        
+        self.lessonTypeLabel.text = lessonType
         self.lessonLocationLabel.text = "\(lesson.cabinet ?? "")\n\(lesson.campus ?? "")"
     }
 }
