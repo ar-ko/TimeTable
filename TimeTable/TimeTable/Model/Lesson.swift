@@ -20,8 +20,8 @@ struct Lesson {
     let cabinet: String?
     let campus: String?
     let note: String?
-    let otherCabinet: Bool?
-    let otherCampus: Bool?
+    let otherCabinet: Bool
+    let otherCampus: Bool
 }
 
 enum LessonForm {case standart, online, canceled}

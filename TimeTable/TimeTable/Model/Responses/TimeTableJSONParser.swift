@@ -55,9 +55,9 @@ extension GetTimeTableResponse {
                 var whiteWeekLessonType: LessonType?
                 var whiteWeekLessonForm: LessonForm?
                 var whiteWeekCampus: String?
-                var whiteWeekOtherCampus: Bool?
+                var whiteWeekOtherCampus = false
                 var whiteWeekCabinet: String?
-                var whiteWeekOtherCabinet: Bool?
+                var whiteWeekOtherCabinet = false
                 var whiteWeekNote: String?
                 
                 var blueWeekLessonTitle: String?
@@ -66,9 +66,9 @@ extension GetTimeTableResponse {
                 var blueWeekLessonType: LessonType?
                 var blueWeekLessonForm: LessonForm?
                 var blueWeekCampus: String?
-                var blueWeekOtherCampus: Bool?
+                var blueWeekOtherCampus = false
                 var blueWeekCabinet: String?
-                var blueWeekOtherCabinet: Bool?
+                var blueWeekOtherCabinet = false
                 var blueWeekNote: String?
                 
                 for (rowIndex, rowData) in data.rowData.enumerated(){
@@ -200,7 +200,7 @@ extension GetTimeTableResponse {
                         }
                         
                         if blueWeekLessonTitle != nil {
-                        let blueWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: blueWeekLessonTitle, teacherName: blueWeekTeacherName, type: blueWeekLessonType, form: blueWeekLessonForm, subgroup: blueWeekSubgroup, cabinet: blueWeekCabinet, campus: blueWeekCampus, note: blueWeekNote, otherCabinet: blueWeekOtherCabinet, otherCampus: blueWeekOtherCampus)
+                            let blueWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: blueWeekLessonTitle, teacherName: blueWeekTeacherName, type: blueWeekLessonType, form: blueWeekLessonForm, subgroup: blueWeekSubgroup, cabinet: blueWeekCabinet, campus: blueWeekCampus, note: blueWeekNote, otherCabinet: blueWeekOtherCabinet, otherCampus: blueWeekOtherCampus)
                             
                             blueWeakDay.append(blueWeekLesson)
                         }
@@ -216,9 +216,9 @@ extension GetTimeTableResponse {
                         whiteWeekLessonForm = nil
                         whiteWeekLessonType = nil
                         whiteWeekCampus = nil
-                        whiteWeekOtherCampus = nil
+                        whiteWeekOtherCampus = false
                         whiteWeekCabinet = nil
-                        whiteWeekOtherCabinet = nil
+                        whiteWeekOtherCabinet = false
                         whiteWeekNote = nil
                         
                         blueWeekLessonTitle = nil
@@ -227,9 +227,9 @@ extension GetTimeTableResponse {
                         blueWeekLessonForm = nil
                         blueWeekLessonType = nil
                         blueWeekCampus = nil
-                        blueWeekOtherCampus = nil
+                        blueWeekOtherCampus = false
                         blueWeekCabinet = nil
-                        blueWeekOtherCabinet = nil
+                        blueWeekOtherCabinet = false
                         blueWeekNote = nil
                         
                     }
