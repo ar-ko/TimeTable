@@ -10,18 +10,22 @@ import UIKit
 
 
 class LessonCell: UITableViewCell {
-    
     @IBOutlet weak var lessonStartTimeLabel: UILabel!
     @IBOutlet weak var lessonEndTimeLabel: UILabel!
+    
+    @IBOutlet weak var mainInformationStackView: UIStackView!
     @IBOutlet weak var lessonTitleLabel: UILabel!
     @IBOutlet weak var lessonTeacherNameLabel: UILabel!
+    
     @IBOutlet weak var lessonTypeLabel: UILabel!
+    @IBOutlet weak var lessonTypeHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var lessonLocationLabel: UILabel!
+    
     @IBOutlet weak var lessonCanceledView: UIView!
     @IBOutlet weak var otherLocationView: UIView!
     
     @IBOutlet weak var lessonNoteLabel: UILabel!
-    @IBOutlet weak var lessonNoteBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var lessonNoteHeightConstraint: NSLayoutConstraint!
     
     
@@ -49,18 +53,33 @@ class LessonCell: UITableViewCell {
         default: lessonType += ""
         }
         
-        self.lessonTypeLabel.text = lessonType
-        self.lessonLocationLabel.text = "\(lesson.cabinet ?? "")\n\(lesson.campus ?? "")"
-        print("\(lesson.cabinet ?? "")\n\(lesson.campus ?? "")\n")
+        if lessonType == "" {
+            self.mainInformationStackView.setCustomSpacing(0, after: self.lessonTypeLabel)
+            self.lessonTypeHeightConstraint.constant = 0
+            self.lessonTypeLabel.text = nil
+            
+        }
+        else {
+            self.lessonTypeLabel.text = lessonType
+            self.mainInformationStackView.setCustomSpacing(8, after: self.lessonTypeLabel)
+            self.lessonTypeHeightConstraint.constant = 16
+        }
         
-        self.lessonNoteBottomConstraint.constant = 0
-        self.lessonNoteHeightConstraint.constant = 0
+        self.lessonLocationLabel.text = "\(lesson.cabinet ?? "")\n\(lesson.campus ?? "")"
+        //self.lessonLocationLabel.text = "230\n(УК1)\n\n316\n(УК1)\n\n406\n(УК5)"
+        //print("Cabinet: \(lesson.cabinet ?? "")\nCampus: \(lesson.campus ?? "")\n")
         
         if lesson.note != nil {
             self.lessonNoteLabel.text = lesson.note!
             
-            self.lessonNoteBottomConstraint.constant = 8
-            self.lessonNoteHeightConstraint.constant = 18
+            self.mainInformationStackView.setCustomSpacing(8, after: self.lessonNoteLabel)
+            self.lessonNoteHeightConstraint.constant = 16
+        }
+        else {
+            self.lessonNoteLabel.text = nil
+            
+            self.mainInformationStackView.setCustomSpacing(0, after: self.lessonNoteLabel)
+            self.lessonNoteHeightConstraint.constant = 0
         }
         
         self.otherLocationView.backgroundColor = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
@@ -75,13 +94,16 @@ class LessonCell: UITableViewCell {
             self.lessonCanceledView.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             self.otherLocationView.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             self.lessonTypeLabel.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            self.lessonTitleLabel.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         case .online:
-            self.lessonCanceledView.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+            self.lessonCanceledView.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
             self.otherLocationView.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
             self.lessonTypeLabel.textColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+            self.lessonTitleLabel.textColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
         default:
             self.lessonCanceledView.backgroundColor = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
             self.lessonTypeLabel.textColor = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
+            self.lessonTitleLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             break
         }
     }

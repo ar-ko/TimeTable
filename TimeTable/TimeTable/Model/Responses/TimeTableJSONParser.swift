@@ -72,7 +72,7 @@ extension GetTimeTableResponse {
                 var blueWeekNote: String?
                 
                 for (rowIndex, rowData) in data.rowData.enumerated(){
-
+                    
                     if daysSeparator.contains(rowIndex) {
                         
                         whiteWeakTimetable.append(whiteWeakDay)
@@ -85,129 +85,127 @@ extension GetTimeTableResponse {
                         continue
                     }
                     
-                    //if rowData.values != nil {
-                        for (columnIndex, value) in rowData.values.enumerated() { //!
-                            
-                            switch (rowIndex - correctionIndex) % 4 {
-                            case 0:
-                                switch columnIndex % 4 {
-                                case 0: lessonStartTime = value.formattedValue
-                                case 1: if value.formattedValue != nil {
-                                    if cellIsMerged(in: json, columnIndex: rangeIndexes.startColumnIndex + columnIndex,
-                                                    rowIndex: rangeIndexes.startRowIndex + rowIndex){
-                                        whiteWeekSubgroup = .general
-                                    }
-                                    else {
-                                        whiteWeekSubgroup = .first
-                                    }
-                                    whiteWeekLessonTitle = value.formattedValue
-                                    whiteWeekLessonForm = getLessonForm(effectiveFormat: value.effectiveFormat!)
-                                    whiteWeekNote = value.note
-                                    }
-                                case 2: if value.formattedValue != nil {
-                                    whiteWeekLessonTitle = value.formattedValue
-                                    whiteWeekSubgroup = .second
-                                    whiteWeekNote = value.note
-                                    whiteWeekLessonForm = getLessonForm(effectiveFormat: value.effectiveFormat!)
-                                    }
-                                case 3: if value.formattedValue != nil {
-                                    whiteWeekCabinet = value.formattedValue
-                                    
-                                    whiteWeekOtherCabinet = locationIsBroken(effectiveFormat: value.effectiveFormat!)
-                                    }
-                                default: print ("cell out of range")
+                    for (columnIndex, value) in rowData.values.enumerated() {
+                        switch (rowIndex - correctionIndex) % 4 {
+                        case 0:
+                            switch columnIndex % 4 {
+                            case 0: lessonStartTime = value.formattedValue
+                            case 1: if value.formattedValue != nil {
+                                if cellIsMerged(in: json, columnIndex: rangeIndexes.startColumnIndex + columnIndex,
+                                                rowIndex: rangeIndexes.startRowIndex + rowIndex){
+                                    whiteWeekSubgroup = .general
                                 }
+                                else {
+                                    whiteWeekSubgroup = .first
+                                }
+                                whiteWeekLessonTitle = value.formattedValue
+                                whiteWeekLessonForm = getLessonForm(effectiveFormat: value.effectiveFormat!)
+                                whiteWeekNote = value.note
+                                }
+                            case 2: if value.formattedValue != nil {
+                                whiteWeekLessonTitle = value.formattedValue
+                                whiteWeekSubgroup = .second
+                                whiteWeekNote = value.note
+                                whiteWeekLessonForm = getLessonForm(effectiveFormat: value.effectiveFormat!)
+                                }
+                            case 3: if value.formattedValue != nil {
+                                whiteWeekCabinet = value.formattedValue
                                 
-                            case 1:
-                                switch columnIndex % 4 {
-                                case 0: lessonStartTime = lessonStartTime == nil ? value.formattedValue: lessonStartTime
-                                case 1: whiteWeekTeacherName = value.formattedValue
-                                case 2: whiteWeekTeacherName = whiteWeekTeacherName == nil ? value.formattedValue: whiteWeekTeacherName
-                                case 3: if value.formattedValue != nil {
-                                    whiteWeekCampus = value.formattedValue
-                                    
-                                    whiteWeekOtherCampus = locationIsBroken(effectiveFormat: value.effectiveFormat!)
-                                    }
-                                default: print ("cell out of range")
+                                whiteWeekOtherCabinet = locationIsBroken(effectiveFormat: value.effectiveFormat!)
                                 }
-                                
-                            case 2:
-                                switch columnIndex % 4 {
-                                case 0: lessonStartTime = lessonStartTime == nil ? value.formattedValue: lessonStartTime
-                                case 1:if value.formattedValue != nil {
-                                    if cellIsMerged(in: json, columnIndex: rangeIndexes.startColumnIndex + columnIndex, rowIndex: rangeIndexes.startRowIndex + rowIndex){
-                                        blueWeekSubgroup = .general
-                                    }
-                                    else {
-                                        blueWeekSubgroup = .first
-                                    }
-                                    blueWeekLessonTitle = value.formattedValue
-                                    blueWeekNote = value.note
-                                    blueWeekLessonForm = getLessonForm(effectiveFormat: value.effectiveFormat!)
-                                    }
-                                case 2: if value.formattedValue != nil {
-                                    blueWeekLessonTitle = value.formattedValue
-                                    blueWeekSubgroup = .second
-                                    blueWeekNote = value.note
-                                    blueWeekLessonForm = getLessonForm(effectiveFormat: value.effectiveFormat!)
-                                    }
-                                    
-                                case 3: if value.formattedValue != nil {
-                                    blueWeekCabinet = value.formattedValue
-                                    
-                                    blueWeekOtherCabinet = locationIsBroken(effectiveFormat: value.effectiveFormat!)
-                                    }
-                                default: print ("cell out of range")
-                                }
-                            case 3:
-                                switch columnIndex % 4 {
-                                case 0: lessonStartTime = lessonStartTime == nil ? value.formattedValue: lessonStartTime
-                                case 1: blueWeekTeacherName = value.formattedValue
-                                case 2: blueWeekTeacherName = blueWeekTeacherName == nil ? value.formattedValue: blueWeekTeacherName
-                                case 3: if value.formattedValue != nil {
-                                    blueWeekCampus = value.formattedValue
-                                    
-                                    blueWeekOtherCampus = locationIsBroken(effectiveFormat: value.effectiveFormat!)
-                                    }
-                                default: print ("cell out of range")
-                                }
-                            default: print ("rowNumber out of range")
+                            default: print ("cell out of range")
                             }
+                        case 1:
+                            switch columnIndex % 4 {
+                            case 0: lessonStartTime = lessonStartTime == nil ? value.formattedValue: lessonStartTime
+                            case 1: whiteWeekTeacherName = value.formattedValue
+                            case 2: whiteWeekTeacherName = whiteWeekTeacherName == nil ? value.formattedValue: whiteWeekTeacherName
+                            case 3: if value.formattedValue != nil {
+                                whiteWeekCampus = value.formattedValue
+                                
+                                whiteWeekOtherCampus = locationIsBroken(effectiveFormat: value.effectiveFormat!)
+                                }
+                            default: print ("cell out of range")
+                            }
+                        case 2:
+                            switch columnIndex % 4 {
+                            case 0: lessonStartTime = lessonStartTime == nil ? value.formattedValue: lessonStartTime
+                            case 1:if value.formattedValue != nil {
+                                if cellIsMerged(in: json, columnIndex: rangeIndexes.startColumnIndex + columnIndex, rowIndex: rangeIndexes.startRowIndex + rowIndex){
+                                    blueWeekSubgroup = .general
+                                }
+                                else {
+                                    blueWeekSubgroup = .first
+                                }
+                                blueWeekLessonTitle = value.formattedValue
+                                blueWeekNote = value.note
+                                blueWeekLessonForm = getLessonForm(effectiveFormat: value.effectiveFormat!)
+                                }
+                            case 2: if value.formattedValue != nil {
+                                blueWeekLessonTitle = value.formattedValue
+                                blueWeekSubgroup = .second
+                                blueWeekNote = value.note
+                                blueWeekLessonForm = getLessonForm(effectiveFormat: value.effectiveFormat!)
+                                }
+                            case 3: if value.formattedValue != nil {
+                                blueWeekCabinet = value.formattedValue
+                                
+                                blueWeekOtherCabinet = locationIsBroken(effectiveFormat: value.effectiveFormat!)
+                                }
+                            default: print ("cell out of range")
+                            }
+                        case 3:
+                            switch columnIndex % 4 {
+                            case 0: lessonStartTime = lessonStartTime == nil ? value.formattedValue: lessonStartTime
+                            case 1: blueWeekTeacherName = value.formattedValue
+                            case 2: blueWeekTeacherName = blueWeekTeacherName == nil ? value.formattedValue: blueWeekTeacherName
+                            case 3: if value.formattedValue != nil {
+                                blueWeekCampus = value.formattedValue
+                                
+                                blueWeekOtherCampus = locationIsBroken(effectiveFormat: value.effectiveFormat!)
+                                }
+                            default: print ("cell out of range")
+                            }
+                        default: print ("rowNumber out of range")
                         }
-                    //}
+                    }
                     
                     if ((rowIndex - correctionIndex) % 4 == 3) || (rowIndex == data.rowData.count - 1) {
-                        
-                        if whiteWeekLessonTitle != nil {
-                            let buf = getLessonType(lessonTitle: whiteWeekLessonTitle!)
-                            whiteWeekLessonType = buf.mainType
-                            whiteWeekLessonTitle = buf.title
+                        if whiteWeekNote != nil {
+                           whiteWeekNote = textFormatting(text: whiteWeekNote!, lessonType: nil)
+                        }
+                        if blueWeekNote != nil {
+                           blueWeekNote = textFormatting(text: blueWeekNote!, lessonType: nil)
                         }
                         
-                        if blueWeekLessonTitle != nil {
-                            let buf = getLessonType(lessonTitle: blueWeekLessonTitle!)
-                            blueWeekLessonType = buf.mainType
-                            blueWeekLessonTitle = buf.title
+                        if whiteWeekTeacherName != nil {
+                           whiteWeekTeacherName = whiteWeekTeacherName!.prefix(1).capitalized + whiteWeekTeacherName!.dropFirst()
+                        }
+                        if blueWeekTeacherName != nil {
+                           blueWeekTeacherName = blueWeekTeacherName!.prefix(1).capitalized + blueWeekTeacherName!.dropFirst()
                         }
                         
-                        let startTime = dateParser(dateString: lessonStartTime!)!
+                        
+                        let startTime = timeParser(dateString: lessonStartTime!)!
                         let stopTime = startTime.addingTimeInterval(90.0 * 60.0)
                         
                         if whiteWeekLessonTitle != nil {
-                        let whiteWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: whiteWeekLessonTitle, teacherName: whiteWeekTeacherName, type: whiteWeekLessonType, form: whiteWeekLessonForm, subgroup: whiteWeekSubgroup, cabinet: whiteWeekCabinet, campus: whiteWeekCampus, note: whiteWeekNote, otherCabinet: whiteWeekOtherCabinet, otherCampus: whiteWeekOtherCampus)
+                            whiteWeekLessonType = getLessonType(lessonTitle: whiteWeekLessonTitle!)
+                            whiteWeekLessonTitle = textFormatting(text: whiteWeekLessonTitle!, lessonType: whiteWeekLessonType)
+                            
+                            let whiteWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: whiteWeekLessonTitle, teacherName: whiteWeekTeacherName, type: whiteWeekLessonType, form: whiteWeekLessonForm, subgroup: whiteWeekSubgroup, cabinet: whiteWeekCabinet, campus: whiteWeekCampus, note: whiteWeekNote, otherCabinet: whiteWeekOtherCabinet, otherCampus: whiteWeekOtherCampus)
                             
                             whiteWeakDay.append(whiteWeekLesson)
                         }
                         
                         if blueWeekLessonTitle != nil {
+                            blueWeekLessonType = getLessonType(lessonTitle: blueWeekLessonTitle!)
+                            blueWeekLessonTitle = textFormatting(text: blueWeekLessonTitle!, lessonType: blueWeekLessonType)
+                            
                             let blueWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: blueWeekLessonTitle, teacherName: blueWeekTeacherName, type: blueWeekLessonType, form: blueWeekLessonForm, subgroup: blueWeekSubgroup, cabinet: blueWeekCabinet, campus: blueWeekCampus, note: blueWeekNote, otherCabinet: blueWeekOtherCabinet, otherCampus: blueWeekOtherCampus)
                             
                             blueWeakDay.append(blueWeekLesson)
                         }
-                        
-                        
-                        
-                        
                         lessonStartTime = nil
                         
                         whiteWeekLessonTitle = nil
@@ -231,7 +229,6 @@ extension GetTimeTableResponse {
                         blueWeekCabinet = nil
                         blueWeekOtherCabinet = false
                         blueWeekNote = nil
-                        
                     }
                 }
                 whiteWeakTimetable.append(whiteWeakDay)
@@ -240,7 +237,7 @@ extension GetTimeTableResponse {
         }
         return whiteWeakTimetable + blueWeakTimetable
     }
-
+    
     func cellIsMerged(in json: TimeTableJSON, columnIndex:Int, rowIndex:Int ) -> Bool {
         for sheet in json.sheets {
             for merge in sheet.merges {
@@ -262,57 +259,71 @@ extension GetTimeTableResponse {
         }
     }
     
-    func getLessonType(lessonTitle: String) -> (mainType: LessonType?, title: String) {
-        if lessonTitle.contains("(ЛБ)") {
-            return (.laboratory, titleFormatting(lessonTitle: lessonTitle, lessonType: "(лб)"))
+    func getLessonType(lessonTitle: String) -> LessonType? {
+        let lessonTitle = lessonTitle.lowercased()
+        if lessonTitle.contains("(лб)") {
+            return .laboratory
         }
-        
-        if lessonTitle.contains("(ЛК)") {
-            return (.lecture, titleFormatting(lessonTitle: lessonTitle, lessonType: "(лк)"))
+        if lessonTitle.contains("(лк)") {
+            return .lecture
         }
-        
-        if lessonTitle.contains("(ПР)") {
-            return (.practice, titleFormatting(lessonTitle: lessonTitle, lessonType: "(пр)"))
+        if lessonTitle.contains("(пр)") || lessonTitle.contains("(ознакомительная)") {
+            return .practice
         }
-        if lessonTitle.contains("(ОЗНАКОМИТЕЛЬНАЯ)") {
-            return (.practice, titleFormatting(lessonTitle: lessonTitle, lessonType: nil))
-        }
-        return (.none, titleFormatting(lessonTitle: lessonTitle, lessonType: nil))
+        return .none
     }
     
-    func titleFormatting (lessonTitle: String, lessonType: String?) -> String {
+    func textFormatting (text: String, lessonType: LessonType?) -> String {
+        var lessonTypeString: String?
+        switch lessonType {
+        case .laboratory:
+            lessonTypeString = "(лб)"
+        case .practice:
+            lessonTypeString = "(пр)"
+        case .lecture:
+            lessonTypeString = "(лк)"
+        default:
+            lessonTypeString = nil
+        }
+        
+        
         var findStringindex = 0
         var lessonTypeIndex: String.Index
-        var startIndex = lessonTitle.count
-        var lessonTitle = lessonTitle.lowercased()
+        var startIndex = text.count
+        var text = text.lowercased()
         
         if lessonType != nil {
-        for (index, char) in lessonTitle.enumerated() {
-            lessonTypeIndex = lessonType!.index(lessonType!.startIndex, offsetBy: findStringindex)
-            
-            if char == lessonType![lessonTypeIndex] {
-                if lessonTypeIndex == lessonType!.startIndex {
-                    startIndex = index
-                }
-                if findStringindex == lessonType!.count - 1 {
-                    break
-                }
+            for (index, char) in text.enumerated() {
+                lessonTypeIndex = lessonTypeString!.index(lessonTypeString!.startIndex, offsetBy: findStringindex)
                 
-                findStringindex += 1
+                if char == lessonTypeString![lessonTypeIndex] {
+                    if lessonTypeIndex == lessonTypeString!.startIndex {
+                        startIndex = index
+                    }
+                    if findStringindex == lessonTypeString!.count - 1 {
+                        break
+                    }
+                    
+                    findStringindex += 1
+                }
+                else {
+                    findStringindex = 0
+                    startIndex = text.count
+                }
             }
-            else {
-                findStringindex = 0
-                startIndex = lessonTitle.count
-            }
-        }
-        
-        let index = lessonTitle.index(lessonType!.startIndex, offsetBy: startIndex)
             
-        lessonTitle = String(lessonTitle[..<index])
+            let index = text.index(lessonTypeString!.startIndex, offsetBy: startIndex)
+            
+            text = String(text[..<index])
         }
-        lessonTitle = lessonTitle.prefix(1).capitalized + lessonTitle.dropFirst()
         
-        return lessonTitle
+        var result = ""
+        text.uppercased().enumerateSubstrings(in: text.startIndex..<text.endIndex, options: .bySentences) { (sub, _, _, _)  in
+            result += String(sub!.prefix(1))
+            result += String(sub!.dropFirst(1)).lowercased()
+        }
+
+        return result
     }
     
     func locationIsBroken(effectiveFormat: EffectiveFormat) -> Bool {
@@ -326,7 +337,7 @@ extension GetTimeTableResponse {
         }
     }
     
-    func dateParser(dateString: String) -> Date? {
+    func timeParser(dateString: String) -> Date? {
         let userCalendar = Calendar.current
         
         let range = NSRange(location: 0, length: dateString.count)
