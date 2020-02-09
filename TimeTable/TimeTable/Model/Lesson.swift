@@ -17,11 +17,15 @@ struct Lesson {
     let type: LessonType?
     let form: LessonForm?
     let subgroup: Subgroup?
-    let cabinet: String?
-    let campus: String?
+    let location: [Location]?
     let note: String?
     let otherCabinet: Bool
     let otherCampus: Bool
+}
+
+struct Location {
+    let cabinet: String?
+    let campus: String?
 }
 
 enum LessonForm {case standart, online, canceled}

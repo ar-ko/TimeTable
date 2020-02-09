@@ -20,7 +20,7 @@ class TimeTableViewController: UIViewController {
     @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
     
-    var groupSchedule = GroupSchedule(timeTable: [[Lesson]](), group: fourthGroup)
+    var groupSchedule = GroupSchedule(timeTable: [[Lesson]](), group: firstGroup)
     
     override func viewDidLoad() {
         super.viewDidLoad()

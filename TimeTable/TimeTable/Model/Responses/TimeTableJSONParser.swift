@@ -184,7 +184,8 @@ extension GetTimeTableResponse {
                         if blueWeekTeacherName != nil {
                            blueWeekTeacherName = blueWeekTeacherName!.prefix(1).capitalized + blueWeekTeacherName!.dropFirst()
                         }
-                        
+                        let whiteWeekLocation = getLocations(of: whiteWeekCabinet, and: whiteWeekCampus)
+                        let blueWeekLocation = getLocations(of: blueWeekCabinet, and: blueWeekCampus)
                         
                         let startTime = timeParser(dateString: lessonStartTime!)!
                         let stopTime = startTime.addingTimeInterval(90.0 * 60.0)
@@ -193,7 +194,7 @@ extension GetTimeTableResponse {
                             whiteWeekLessonType = getLessonType(lessonTitle: whiteWeekLessonTitle!)
                             whiteWeekLessonTitle = textFormatting(text: whiteWeekLessonTitle!, lessonType: whiteWeekLessonType)
                             
-                            let whiteWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: whiteWeekLessonTitle, teacherName: whiteWeekTeacherName, type: whiteWeekLessonType, form: whiteWeekLessonForm, subgroup: whiteWeekSubgroup, cabinet: whiteWeekCabinet, campus: whiteWeekCampus, note: whiteWeekNote, otherCabinet: whiteWeekOtherCabinet, otherCampus: whiteWeekOtherCampus)
+                            let whiteWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: whiteWeekLessonTitle, teacherName: whiteWeekTeacherName, type: whiteWeekLessonType, form: whiteWeekLessonForm, subgroup: whiteWeekSubgroup, location: whiteWeekLocation, note: whiteWeekNote, otherCabinet: whiteWeekOtherCabinet, otherCampus: whiteWeekOtherCampus)
                             
                             whiteWeakDay.append(whiteWeekLesson)
                         }
@@ -202,7 +203,7 @@ extension GetTimeTableResponse {
                             blueWeekLessonType = getLessonType(lessonTitle: blueWeekLessonTitle!)
                             blueWeekLessonTitle = textFormatting(text: blueWeekLessonTitle!, lessonType: blueWeekLessonType)
                             
-                            let blueWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: blueWeekLessonTitle, teacherName: blueWeekTeacherName, type: blueWeekLessonType, form: blueWeekLessonForm, subgroup: blueWeekSubgroup, cabinet: blueWeekCabinet, campus: blueWeekCampus, note: blueWeekNote, otherCabinet: blueWeekOtherCabinet, otherCampus: blueWeekOtherCampus)
+                            let blueWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: blueWeekLessonTitle, teacherName: blueWeekTeacherName, type: blueWeekLessonType, form: blueWeekLessonForm, subgroup: blueWeekSubgroup, location: blueWeekLocation, note: blueWeekNote, otherCabinet: blueWeekOtherCabinet, otherCampus: blueWeekOtherCampus)
                             
                             blueWeakDay.append(blueWeekLesson)
                         }
@@ -275,6 +276,8 @@ extension GetTimeTableResponse {
     
     func textFormatting (text: String, lessonType: LessonType?) -> String {
         var lessonTypeString: String?
+        var text = text.lowercased()
+        
         switch lessonType {
         case .laboratory:
             lessonTypeString = "(лб)"
@@ -286,35 +289,10 @@ extension GetTimeTableResponse {
             lessonTypeString = nil
         }
         
-        
-        var findStringindex = 0
-        var lessonTypeIndex: String.Index
-        var startIndex = text.count
-        var text = text.lowercased()
-        
         if lessonType != nil {
-            for (index, char) in text.enumerated() {
-                lessonTypeIndex = lessonTypeString!.index(lessonTypeString!.startIndex, offsetBy: findStringindex)
-                
-                if char == lessonTypeString![lessonTypeIndex] {
-                    if lessonTypeIndex == lessonTypeString!.startIndex {
-                        startIndex = index
-                    }
-                    if findStringindex == lessonTypeString!.count - 1 {
-                        break
-                    }
-                    
-                    findStringindex += 1
-                }
-                else {
-                    findStringindex = 0
-                    startIndex = text.count
-                }
+            if let index = text.range(of: lessonTypeString!)?.lowerBound {
+                text = String(text[..<index])
             }
-            
-            let index = text.index(lessonTypeString!.startIndex, offsetBy: startIndex)
-            
-            text = String(text[..<index])
         }
         
         var result = ""
@@ -368,6 +346,76 @@ extension GetTimeTableResponse {
             index += characterToNum(character: character) * Int(pow(26, Double(ind)))
         }
         return (index - 1)
+    }
+    
+    func getLocations(of cabinet: String?, and campus: String?) -> [Location]? {
+        var locations = [Location]()
+        
+        var campuses = [String]()
+        var cabinets = [String]()
+        
+        let pattern = "[0-9а-яА-Я.]{1,}"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        
+        if cabinet != nil {
+            let range = NSRange(location: 0, length: cabinet!.count)
+            
+            let regexMatches = regex.matches(in: cabinet!, options: [], range: range)
+            for cab in regexMatches {
+                let rangeG = Range(cab.range, in: cabinet!)
+                cabinets.append(String(cabinet![rangeG!]))
+            }
+        }
+        
+        if campus != nil {
+            let range = NSRange(location: 0, length: campus!.count)
+            
+            let regexMatches = regex.matches(in: campus!, options: [], range: range)
+            for camp in regexMatches {
+                let rangeG = Range(camp.range, in: campus!)
+                campuses.append(String(campus![rangeG!]))
+            }
+        }
+        
+        switch (cabinets.count, campuses.count) {
+        case (1, 1):
+            locations.append(Location(cabinet: cabinets.first, campus: campuses.first))
+        case (1, 2...):
+            for campus in campuses {
+                locations.append(Location(cabinet: cabinets.first, campus: campus))
+            }
+        case (2..., 1):
+            for cabinet in cabinets {
+                locations.append(Location(cabinet: cabinet, campus: campuses.first))
+            }
+        case (2, 2):
+            locations.append(Location(cabinet: cabinets.first, campus: cabinets.last))
+            locations.append(Location(cabinet: campuses.first, campus: campuses.last))
+        case (1... , 0):
+            var buf = ""
+            for (index, cabinet) in cabinets.enumerated() {
+                if index % 2 != 0 {
+                    locations.append(Location(cabinet: buf, campus: cabinet))
+                }
+                else {
+                    buf = cabinet
+                }
+            }
+        case (0, 1...):
+            var buf = ""
+            for (index, campus) in campuses.enumerated() {
+                if index % 2 != 0 {
+                    locations.append(Location(cabinet: buf, campus: campus))
+                }
+                else {
+                    buf = campus
+                }
+            }
+        case (0,0): break
+        default:
+            print("ERROR: getLocations, unknown option")
+        }
+        return locations
     }
     
     func characterToNum(character: Character) -> Int {

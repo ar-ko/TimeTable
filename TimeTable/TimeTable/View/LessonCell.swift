@@ -65,9 +65,16 @@ class LessonCell: UITableViewCell {
             self.lessonTypeHeightConstraint.constant = 16
         }
         
-        self.lessonLocationLabel.text = "\(lesson.cabinet ?? "")\n\(lesson.campus ?? "")"
-        //self.lessonLocationLabel.text = "230\n(УК1)\n\n316\n(УК1)\n\n406\n(УК5)"
-        //print("Cabinet: \(lesson.cabinet ?? "")\nCampus: \(lesson.campus ?? "")\n")
+        if lesson.location != nil {
+            var locations = ""
+            for (index, location) in lesson.location!.enumerated() {
+                locations += "\(location.cabinet!)\n\(location.campus!)"
+                if index != lesson.location!.count - 1 {
+                    locations += "\n\n"
+                }
+            }
+            self.lessonLocationLabel.text = locations
+        }
         
         if lesson.note != nil {
             self.lessonNoteLabel.text = lesson.note!
