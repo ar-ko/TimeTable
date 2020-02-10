@@ -14,11 +14,13 @@ struct GroupSchedule {
     lazy var indexOfSelectedDay = getIndexOfSelectedDay(from: self.getStartDate())
     var groupInfo: Group
     lazy var dayTitle = getWeekName(currentDayIndex: indexOfSelectedDay)
+    var lastUpdate: Date
     
     
     init(timeTable: [[Lesson]], group: Group) {
         self.timeTable = timeTable
         self.groupInfo = group
+        self.lastUpdate = Date()
     }
     
     mutating func nextDayPressed() {

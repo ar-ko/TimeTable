@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BB05139B23E82C6F00048C8E /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05139A23E82C6F00048C8E /* Group.swift */; };
 		BB05139D23E82CCE00048C8E /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05139C23E82CCE00048C8E /* ApiKey.swift */; };
+		BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */; };
 		BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */; };
 		BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */; };
 		BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* TimeTableJSON.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		BB05139A23E82C6F00048C8E /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		BB05139C23E82CCE00048C8E /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
+		BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdateCell.swift; sourceTree = "<group>"; };
 		BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSONParser.swift; sourceTree = "<group>"; };
 		BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimeTableResponse.swift; sourceTree = "<group>"; };
 		BB7255DE23E3295600911B70 /* TimeTableJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSON.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				BBE2ACA223E1A8ED008FF119 /* LessonCell.swift */,
+				BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				BB05139B23E82C6F00048C8E /* Group.swift in Sources */,
 				BBE2ACA523E1AA40008FF119 /* Lesson.swift in Sources */,
+				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
 				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
 				BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */,
 				BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */,

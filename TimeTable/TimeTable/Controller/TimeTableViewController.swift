@@ -16,21 +16,24 @@ let fourthGroup = Group(name: "Экономика и управление", curs
 
 
 class TimeTableViewController: UIViewController {
-
+    
     @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
     
+    let timeTableRefreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }()
+    
+    //let defaults = UserDefaults.standard
     var groupSchedule = GroupSchedule(timeTable: [[Lesson]](), group: firstGroup)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        timeTableView.refreshControl = timeTableRefreshControl
         
-        TimeTableNetworkService.getTimeTable(group: groupSchedule.groupInfo) { (response) in
-            guard let response = response else { return }
-            self.groupSchedule.timeTable = response.timeTable
-            self.dayTitle.text = self.groupSchedule.dayTitle
-            self.timeTableView.reloadData()
-        }
+        getTimeTable()
     }
 }
 
@@ -40,21 +43,37 @@ extension TimeTableViewController: UITableViewDelegate {}
 extension TimeTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LessonCell
-        
-        if !self.groupSchedule.timeTable.isEmpty {
-            let lessons = self.groupSchedule.timeTable[groupSchedule.indexOfSelectedDay][indexPath.row]
-        cell.configure(with: lessons)
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell", for: indexPath) as! LastUpdateCell
+            
+            let groupSchedule = self.groupSchedule
+            cell.configure(with: groupSchedule)
+            
+            return cell
         }
-        return cell
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LessonCell
+            
+            if !self.groupSchedule.timeTable.isEmpty {
+                let lessons = self.groupSchedule.timeTable[groupSchedule.indexOfSelectedDay][indexPath.row - 1]
+                cell.configure(with: lessons)
+            }
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupSchedule.timeTable.isEmpty ? 0:groupSchedule.timeTable[groupSchedule.indexOfSelectedDay].count
+        return groupSchedule.timeTable.isEmpty ? 0:groupSchedule.timeTable[groupSchedule.indexOfSelectedDay].count + 1
     }
 }
 
 extension TimeTableViewController {
+    @objc private func refresh(sender: UIRefreshControl) {
+        getTimeTable()
+        
+        sender.endRefreshing()
+    }
+    
     @IBAction func previousDayPressed(_ sender: UIButton) {
         groupSchedule.previousDayPressed()
         dayTitle.text = groupSchedule.dayTitle
@@ -68,5 +87,23 @@ extension TimeTableViewController {
         
         self.timeTableView.reloadData()
     }
+    
+    func getTimeTable() {
+        TimeTableNetworkService.getTimeTable(group: groupSchedule.groupInfo) { (response) in
+            guard let response = response else { return }
+            if response.timeTable != nil {
+                self.groupSchedule.timeTable = response.timeTable
+                self.groupSchedule.lastUpdate = Date()
+                
+                //self.defaults.set(self.groupSchedule, forKey: "groupSchedule")
+                
+                self.dayTitle.text = self.groupSchedule.dayTitle
+                self.timeTableView.reloadData()
+            }
+            else {
+                //self.groupSchedule = self.defaults.object(forKey: "groupSchedule") as! GroupSchedule
+            }
+        }
+    }
+    
 }
-
