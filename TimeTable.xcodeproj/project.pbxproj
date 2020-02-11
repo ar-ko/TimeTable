@@ -12,6 +12,7 @@
 		BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */; };
 		BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */; };
 		BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */; };
+		BB65242023F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld */; };
 		BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* TimeTableJSON.swift */; };
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
 		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
@@ -33,6 +34,7 @@
 		BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdateCell.swift; sourceTree = "<group>"; };
 		BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSONParser.swift; sourceTree = "<group>"; };
 		BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimeTableResponse.swift; sourceTree = "<group>"; };
+		BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataGroupSchedule.xcdatamodel; sourceTree = "<group>"; };
 		BB7255DE23E3295600911B70 /* TimeTableJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSON.swift; sourceTree = "<group>"; };
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				BB7255DE23E3295600911B70 /* TimeTableJSON.swift */,
 				BB05139A23E82C6F00048C8E /* Group.swift */,
 				BBDB02F223EE8D2F008355A0 /* GroupSchedule.swift */,
+				BB65241E23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				BB05139B23E82C6F00048C8E /* Group.swift in Sources */,
 				BBE2ACA523E1AA40008FF119 /* Lesson.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
+				BB65242023F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld in Sources */,
 				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
 				BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */,
 				BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */,
@@ -484,6 +488,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BB65241E23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */,
+			);
+			currentVersion = BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */;
+			path = CoreDataGroupSchedule.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BBE2AC7923E19002008FF119 /* Project object */;
 }

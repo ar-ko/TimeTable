@@ -14,7 +14,7 @@ class LastUpdateCell: UITableViewCell {
     
     func configure(with groupSchedule: GroupSchedule) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, h:mm"
+        dateFormatter.dateFormat = "MMM d, HH:mm"
         let lastUpdate = dateFormatter.string(from: groupSchedule.lastUpdate)
         
         self.lastUpdateLabel.text = "Последнее обновление: \(lastUpdate)"
