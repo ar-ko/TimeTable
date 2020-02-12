@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 let firstGroup = Group(name: "Экономика и управление", curse: "1", semestrDate: "27.01.20-04.04.20", practiceDate: nil, sheetId: "%D0%BF%D1%80%D0%BE%D1%84%D1%8B", startColumn: "B", startRow: 11, endColumn: "E", endRow: 175)
@@ -20,18 +21,23 @@ class TimeTableViewController: UIViewController {
     @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
     
+    var container: NSPersistentContainer!
+    
     let timeTableRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         return refreshControl
     }()
     
-    //let defaults = UserDefaults.standard
     var groupSchedule = GroupSchedule(timeTable: [[Lesson]](), group: firstGroup)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         timeTableView.refreshControl = timeTableRefreshControl
+        
+        /*guard container != nil else {
+            fatalError("This view needs a persistent container.")
+        }*/
         
         getTimeTable()
     }

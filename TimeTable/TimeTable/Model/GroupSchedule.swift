@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 
 struct GroupSchedule {
@@ -37,6 +38,12 @@ struct GroupSchedule {
             indexOfSelectedDay = timeTable.count - 1
         }
         dayTitle = getWeekName(currentDayIndex: indexOfSelectedDay)
+    }
+    
+    func saveGroupSchedule() {
+        
+        // MARK: - ToDo
+        
     }
     
     func getIndexOfSelectedDay(from startDate: Date) -> Int {

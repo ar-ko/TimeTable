@@ -10,6 +10,7 @@ import UIKit
 
 
 class LessonCell: UITableViewCell {
+    
     @IBOutlet weak var lessonStartTimeLabel: UILabel!
     @IBOutlet weak var lessonEndTimeLabel: UILabel!
     

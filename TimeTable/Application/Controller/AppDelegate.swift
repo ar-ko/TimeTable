@@ -13,10 +13,14 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let rootVC = window?.rootViewController as? TimeTableViewController {
+            rootVC.container = persistentContainer
+        }
         return true
     }
 
@@ -41,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             container.loadPersistentStores { (descrition, error) in
             if let error = error {
                 
-                fatalError("Unresolved error \(error)")
+                fatalError("Unable to load persistent stores: \(error)")
             }
         }
         return container
