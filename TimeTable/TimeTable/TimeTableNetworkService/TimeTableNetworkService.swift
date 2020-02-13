@@ -18,9 +18,15 @@ class TimeTableNetworkService {
         guard let url = URL(string: group.urlString) else { return }
         
         NetworkService.shared.getData(url: url) { (json) in
-            guard let json = json as? TimeTableJSON else { return }
-            let response = GetTimeTableResponse(of: json, for: group)
-            completion(response)
+            if let json = json as? TimeTableJSON {
+                let response = GetTimeTableResponse(of: json, for: group)
+                completion(response)
+            }
+            else {
+                completion(nil)
+                
+            }
+            
         }
     }
     

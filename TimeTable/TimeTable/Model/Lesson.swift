@@ -18,9 +18,10 @@ struct Lesson {
     let form: LessonForm?
     let subgroup: Subgroup?
     let location: [Location]?
-    let note: String?
+    let note: String? 
     let otherCabinet: Bool
     let otherCampus: Bool
+   
 }
 
 struct Location {

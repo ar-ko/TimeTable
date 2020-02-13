@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "CoreDataGroupSchedule")
+        let container = NSPersistentContainer(name: "CoreDataTimeTable")
             container.loadPersistentStores { (descrition, error) in
             if let error = error {
                 

@@ -12,7 +12,7 @@
 		BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */; };
 		BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */; };
 		BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */; };
-		BB65242023F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld */; };
+		BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */; };
 		BB720C5423F3F1A80048B27D /* CDGroupSchedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB720C5223F3F1A80048B27D /* CDGroupSchedule+CoreDataClass.swift */; };
 		BB720C5523F3F1A80048B27D /* CDGroupSchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB720C5323F3F1A80048B27D /* CDGroupSchedule+CoreDataProperties.swift */; };
 		BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* TimeTableJSON.swift */; };
@@ -153,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				BB7255E023E350CA00911B70 /* NetworkError.swift */,
-				BB65241E23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld */,
+				BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,7 +282,7 @@
 				BB05139B23E82C6F00048C8E /* Group.swift in Sources */,
 				BBE2ACA523E1AA40008FF119 /* Lesson.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
-				BB65242023F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld in Sources */,
+				BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */,
 				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
 				BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */,
 				BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */,
@@ -498,13 +498,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		BB65241E23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodeld */ = {
+		BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */,
 			);
 			currentVersion = BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */;
-			path = CoreDataGroupSchedule.xcdatamodeld;
+			path = CoreDataTimeTable.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

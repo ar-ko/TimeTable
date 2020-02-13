@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Group {
+class Group {
     let name: String
     let curse: String
     let semestrDate: String

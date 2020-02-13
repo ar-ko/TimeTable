@@ -18,11 +18,10 @@ class LastUpdateCell: UITableViewCell {
         
         
         let diffInDays = Calendar.current.dateComponents([.minute], from: groupSchedule.lastUpdate, to: Date()).minute
-        
         var lastUpdate = ""
         
         switch diffInDays! {
-        case (0...1):
+        case (0):
             lastUpdate = "менее минуты назад"
         case (1...60):
             lastUpdate = "\(diffInDays!) минут назад"

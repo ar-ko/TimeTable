@@ -34,11 +34,7 @@ class TimeTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         timeTableView.refreshControl = timeTableRefreshControl
-        
-        /*guard container != nil else {
-            fatalError("This view needs a persistent container.")
-        }*/
-        
+                
         getTimeTable()
     }
 }
@@ -74,6 +70,25 @@ extension TimeTableViewController: UITableViewDataSource {
 }
 
 extension TimeTableViewController {
+    func saveGroupSchedule(groupSchedule: GroupSchedule) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "CDGroupSchedule", in: context)
+        let groupScheduleObject = NSManagedObject(entity: entity!, insertInto: context) as! CDGroupSchedule
+        groupScheduleObject.lastUpdate = groupSchedule.lastUpdate
+        /*groupScheduleObject.groupInfo = groupSchedule.groupInfo
+        groupScheduleObject.timeTable = groupSchedule.timeTable*/
+        
+        do {
+            try context.save()
+            print("OK")
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     @objc private func refresh(sender: UIRefreshControl) {
         getTimeTable()
         
@@ -96,18 +111,29 @@ extension TimeTableViewController {
     
     func getTimeTable() {
         TimeTableNetworkService.getTimeTable(group: groupSchedule.groupInfo) { (response) in
-            guard let response = response else { return }
-            if response.timeTable != nil {
+            if let response = response {
                 self.groupSchedule.timeTable = response.timeTable
                 self.groupSchedule.lastUpdate = Date()
                 
-                //self.defaults.set(self.groupSchedule, forKey: "groupSchedule")
+                self.saveGroupSchedule(groupSchedule: self.groupSchedule)
                 
                 self.dayTitle.text = self.groupSchedule.dayTitle
                 self.timeTableView.reloadData()
             }
             else {
-                //self.groupSchedule = self.defaults.object(forKey: "groupSchedule") as! GroupSchedule
+                DispatchQueue.main.async {
+               let appDelegate = UIApplication.shared.delegate as! AppDelegate
+               let context = appDelegate.persistentContainer.viewContext
+                    
+                let fetchRequest: NSFetchRequest<CDGroupSchedule> = CDGroupSchedule.fetchRequest()
+                
+                do {
+                    let group = try context.fetch(fetchRequest).first!
+                    print(group)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                }
             }
         }
     }
