@@ -34,7 +34,7 @@ class TimeTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         timeTableView.refreshControl = timeTableRefreshControl
-                
+        
         getTimeTable()
     }
 }
@@ -70,24 +70,6 @@ extension TimeTableViewController: UITableViewDataSource {
 }
 
 extension TimeTableViewController {
-    func saveGroupSchedule(groupSchedule: GroupSchedule) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "CDGroupSchedule", in: context)
-        let groupScheduleObject = NSManagedObject(entity: entity!, insertInto: context) as! CDGroupSchedule
-        groupScheduleObject.lastUpdate = groupSchedule.lastUpdate
-        /*groupScheduleObject.groupInfo = groupSchedule.groupInfo
-        groupScheduleObject.timeTable = groupSchedule.timeTable*/
-        
-        do {
-            try context.save()
-            print("OK")
-            
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
     
     @objc private func refresh(sender: UIRefreshControl) {
         getTimeTable()
@@ -122,19 +104,40 @@ extension TimeTableViewController {
             }
             else {
                 DispatchQueue.main.async {
-               let appDelegate = UIApplication.shared.delegate as! AppDelegate
-               let context = appDelegate.persistentContainer.viewContext
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    let context = appDelegate.persistentContainer.viewContext
                     
-                let fetchRequest: NSFetchRequest<CDGroupSchedule> = CDGroupSchedule.fetchRequest()
-                
-                do {
-                    let group = try context.fetch(fetchRequest).first!
-                    print(group)
-                } catch {
-                    print(error.localizedDescription)
-                }
+                    let fetchRequest: NSFetchRequest<CDGroupSchedule> = CDGroupSchedule.fetchRequest()
+                    
+                    do {
+                        let group = try context.fetch(fetchRequest).first!
+                        let time = group.value(forKey: "lastUpdate") as! Date
+                        
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MMM d, HH:mm"
+                        print ( dateFormatter.string(from: time))
+                        
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }
             }
+        }
+    }
+    
+    func saveGroupSchedule(groupSchedule: GroupSchedule) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "CDGroupSchedule", in: context)
+        let groupScheduleObject = NSManagedObject(entity: entity!, insertInto: context) as! CDGroupSchedule
+        groupScheduleObject.lastUpdate = groupSchedule.lastUpdate
+        
+        do {
+            try context.save()
+            print("OK")
+        } catch {
+            print(error.localizedDescription)
         }
     }
     

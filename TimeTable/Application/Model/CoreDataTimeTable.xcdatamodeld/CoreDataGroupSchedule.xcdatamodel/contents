@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G3020" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="class">
+    <entity name="CDGroupSchedule" representedClassName="CDGroupSchedule" syncable="YES">
+        <attribute name="lastUpdate" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="GGroup" representedClassName="GGroup" syncable="YES" codeGenerationType="class">
         <attribute name="curse" attributeType="String"/>
         <attribute name="endColumn" optional="YES" attributeType="String"/>
         <attribute name="endRow" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -13,14 +16,8 @@
         <attribute name="startColumn" optional="YES" attributeType="String"/>
         <attribute name="startRow" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="urlString" optional="YES" attributeType="String"/>
-        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupSchedule" inverseName="group" inverseEntity="GroupSchedule"/>
     </entity>
-    <entity name="GroupSchedule" representedClassName="GroupSchedule" syncable="YES">
-        <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="newRelationship" inverseEntity="Group"/>
-        <relationship name="timeTable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lesson" inverseName="newRelationship" inverseEntity="Lesson"/>
-    </entity>
-    <entity name="Lesson" representedClassName="Lesson" syncable="YES">
+    <entity name="LLesson" representedClassName="LLesson" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="form" optional="YES" attributeType="Transformable"/>
         <attribute name="location" optional="YES" attributeType="Transformable"/>
@@ -32,11 +29,10 @@
         <attribute name="teacherName" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="Transformable"/>
-        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupSchedule" inverseName="timeTable" inverseEntity="GroupSchedule"/>
     </entity>
     <elements>
-        <element name="GroupSchedule" positionX="-376.25390625" positionY="-259.1015625" width="128" height="88"/>
-        <element name="Lesson" positionX="-151.8671875" positionY="-194.98046875" width="128" height="223"/>
-        <element name="Group" positionX="-518.81640625" positionY="-310" width="96.86328125" height="238"/>
+        <element name="LLesson" positionX="-151.8671875" positionY="-194.98046875" width="128" height="208"/>
+        <element name="CDGroupSchedule" positionX="56.5546875" positionY="-161.91015625" width="128" height="58"/>
+        <element name="GGroup" positionX="250.23046875" positionY="-304.6171875" width="128" height="223"/>
     </elements>
 </model>
