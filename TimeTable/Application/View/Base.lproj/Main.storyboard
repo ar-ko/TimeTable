@@ -169,6 +169,8 @@
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="pwe-p8-6LQ"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="kuT-aH-WXb"/>
+                                    <outletCollection property="gestureRecognizers" destination="kfc-0h-3bC" appends="YES" id="DEg-jq-Hl1"/>
+                                    <outletCollection property="gestureRecognizers" destination="Kww-Q9-gXC" appends="YES" id="DnO-9P-o43"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWT-EV-yec">
@@ -203,6 +205,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="bd5-Zd-jrG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="5AL-Yr-lWe"/>
                             <constraint firstItem="E64-3i-kHT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8TN-tb-7oR"/>
@@ -224,6 +227,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="kfc-0h-3bC">
+                    <connections>
+                        <action selector="RightSwipe:" destination="BYZ-38-t0r" id="9pD-Pn-TUx"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="Kww-Q9-gXC">
+                    <connections>
+                        <action selector="LeftSwipe:" destination="BYZ-38-t0r" id="9HN-gX-2yG"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="131.25" y="106.69014084507042"/>
         </scene>

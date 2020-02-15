@@ -21,7 +21,7 @@ class TimeTableViewController: UIViewController {
     @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
     
-    var container: NSPersistentContainer!
+    //var container: NSPersistentContainer!
     
     let timeTableRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -84,6 +84,13 @@ extension TimeTableViewController {
         self.timeTableView.reloadData()
     }
     
+    @IBAction func RightSwipe(_ sender: Any) {
+        groupSchedule.previousDayPressed()
+        dayTitle.text = groupSchedule.dayTitle
+        
+        self.timeTableView.reloadData()
+    }
+    
     @IBAction func nextDayPressed(_ sender: UIButton) {
         groupSchedule.nextDayPressed()
         dayTitle.text = groupSchedule.dayTitle
@@ -91,18 +98,25 @@ extension TimeTableViewController {
         self.timeTableView.reloadData()
     }
     
+    @IBAction func LeftSwipe(_ sender: Any) {
+           groupSchedule.nextDayPressed()
+           dayTitle.text = groupSchedule.dayTitle
+           
+           self.timeTableView.reloadData()
+       }
+    
     func getTimeTable() {
         TimeTableNetworkService.getTimeTable(group: groupSchedule.groupInfo) { (response) in
             if let response = response {
                 self.groupSchedule.timeTable = response.timeTable
                 self.groupSchedule.lastUpdate = Date()
                 
-                self.saveGroupSchedule(groupSchedule: self.groupSchedule)
+                //self.saveGroupSchedule(groupSchedule: self.groupSchedule)
                 
                 self.dayTitle.text = self.groupSchedule.dayTitle
                 self.timeTableView.reloadData()
             }
-            else {
+            else {/*
                 DispatchQueue.main.async {
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     let context = appDelegate.persistentContainer.viewContext
@@ -120,7 +134,7 @@ extension TimeTableViewController {
                     } catch {
                         print(error.localizedDescription)
                     }
-                }
+                }*/
             }
         }
     }
