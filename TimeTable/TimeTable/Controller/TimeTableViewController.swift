@@ -79,29 +79,37 @@ extension TimeTableViewController {
     
     @IBAction func previousDayPressed(_ sender: UIButton) {
         groupSchedule.previousDayPressed()
-        dayTitle.text = groupSchedule.dayTitle
         
+        UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
+        
+        dayTitle.text = groupSchedule.dayTitle
         self.timeTableView.reloadData()
     }
     
     @IBAction func RightSwipe(_ sender: Any) {
         groupSchedule.previousDayPressed()
-        dayTitle.text = groupSchedule.dayTitle
         
+        UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
+        
+        dayTitle.text = groupSchedule.dayTitle
         self.timeTableView.reloadData()
     }
     
     @IBAction func nextDayPressed(_ sender: UIButton) {
         groupSchedule.nextDayPressed()
-        dayTitle.text = groupSchedule.dayTitle
         
+        UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
+        
+        dayTitle.text = groupSchedule.dayTitle
         self.timeTableView.reloadData()
     }
     
     @IBAction func LeftSwipe(_ sender: Any) {
            groupSchedule.nextDayPressed()
-           dayTitle.text = groupSchedule.dayTitle
            
+           UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
+           
+           dayTitle.text = groupSchedule.dayTitle
            self.timeTableView.reloadData()
        }
     
