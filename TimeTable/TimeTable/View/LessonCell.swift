@@ -66,11 +66,12 @@ class LessonCell: UITableViewCell {
             self.lessonTypeHeightConstraint.constant = 16
         }
         
-        if lesson.location != nil {
+        if lesson.locations != nil {
             var locations = ""
-            for (index, location) in lesson.location!.enumerated() {
+            for (index, location) in lesson.locations!.enumerated() {
+                let location = location as! Location
                 locations += "\(location.cabinet!)\n\(location.campus!)"
-                if index != lesson.location!.count - 1 {
+                if index != lesson.locations!.count - 1 {
                     locations += "\n\n"
                 }
             }

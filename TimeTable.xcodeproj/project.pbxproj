@@ -12,9 +12,17 @@
 		BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */; };
 		BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */; };
 		BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */; };
+		BB43535D24050DE100910D37 /* Day+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535324050DE100910D37 /* Day+CoreDataClass.swift */; };
+		BB43535E24050DE100910D37 /* Day+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535424050DE100910D37 /* Day+CoreDataProperties.swift */; };
+		BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535524050DE100910D37 /* GroupSchedule+CoreDataClass.swift */; };
+		BB43536024050DE100910D37 /* GroupSchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535624050DE100910D37 /* GroupSchedule+CoreDataProperties.swift */; };
+		BB43536124050DE100910D37 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535724050DE100910D37 /* Location+CoreDataClass.swift */; };
+		BB43536224050DE100910D37 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535824050DE100910D37 /* Location+CoreDataProperties.swift */; };
+		BB43536324050DE100910D37 /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535924050DE100910D37 /* Group+CoreDataClass.swift */; };
+		BB43536424050DE100910D37 /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535A24050DE100910D37 /* Group+CoreDataProperties.swift */; };
+		BB43536524050DE100910D37 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535B24050DE100910D37 /* Lesson+CoreDataClass.swift */; };
+		BB43536624050DE100910D37 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535C24050DE100910D37 /* Lesson+CoreDataProperties.swift */; };
 		BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */; };
-		BB720C5423F3F1A80048B27D /* CDGroupSchedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB720C5223F3F1A80048B27D /* CDGroupSchedule+CoreDataClass.swift */; };
-		BB720C5523F3F1A80048B27D /* CDGroupSchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB720C5323F3F1A80048B27D /* CDGroupSchedule+CoreDataProperties.swift */; };
 		BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* TimeTableJSON.swift */; };
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
 		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
@@ -36,9 +44,17 @@
 		BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdateCell.swift; sourceTree = "<group>"; };
 		BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSONParser.swift; sourceTree = "<group>"; };
 		BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimeTableResponse.swift; sourceTree = "<group>"; };
+		BB43535324050DE100910D37 /* Day+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BB43535424050DE100910D37 /* Day+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BB43535524050DE100910D37 /* GroupSchedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupSchedule+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BB43535624050DE100910D37 /* GroupSchedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupSchedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BB43535724050DE100910D37 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BB43535824050DE100910D37 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BB43535924050DE100910D37 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BB43535A24050DE100910D37 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BB43535B24050DE100910D37 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BB43535C24050DE100910D37 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataGroupSchedule.xcdatamodel; sourceTree = "<group>"; };
-		BB720C5223F3F1A80048B27D /* CDGroupSchedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDGroupSchedule+CoreDataClass.swift"; path = "TimeTable/CoreData/CDGroupSchedule+CoreDataClass.swift"; sourceTree = "<group>"; };
-		BB720C5323F3F1A80048B27D /* CDGroupSchedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDGroupSchedule+CoreDataProperties.swift"; path = "TimeTable/CoreData/CDGroupSchedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BB7255DE23E3295600911B70 /* TimeTableJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSON.swift; sourceTree = "<group>"; };
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -76,6 +92,23 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
+		BB8407DB2404E9DD0094D343 /* CoreData model */ = {
+			isa = PBXGroup;
+			children = (
+				BB43535324050DE100910D37 /* Day+CoreDataClass.swift */,
+				BB43535424050DE100910D37 /* Day+CoreDataProperties.swift */,
+				BB43535524050DE100910D37 /* GroupSchedule+CoreDataClass.swift */,
+				BB43535624050DE100910D37 /* GroupSchedule+CoreDataProperties.swift */,
+				BB43535724050DE100910D37 /* Location+CoreDataClass.swift */,
+				BB43535824050DE100910D37 /* Location+CoreDataProperties.swift */,
+				BB43535924050DE100910D37 /* Group+CoreDataClass.swift */,
+				BB43535A24050DE100910D37 /* Group+CoreDataProperties.swift */,
+				BB43535B24050DE100910D37 /* Lesson+CoreDataClass.swift */,
+				BB43535C24050DE100910D37 /* Lesson+CoreDataProperties.swift */,
+			);
+			path = "CoreData model";
+			sourceTree = "<group>";
+		};
 		BBC902ED23E1B80B0021CA1C /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +128,6 @@
 		BBE2AC7823E19002008FF119 = {
 			isa = PBXGroup;
 			children = (
-				BB720C5223F3F1A80048B27D /* CDGroupSchedule+CoreDataClass.swift */,
-				BB720C5323F3F1A80048B27D /* CDGroupSchedule+CoreDataProperties.swift */,
 				BBE2AC8323E19002008FF119 /* TimeTable */,
 				BBE2AC8223E19002008FF119 /* Products */,
 			);
@@ -153,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				BB7255E023E350CA00911B70 /* NetworkError.swift */,
-				BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +202,7 @@
 		BBE2AC9E23E19185008FF119 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */,
 				BBE2AC8823E19002008FF119 /* TimeTableViewController.swift */,
 			);
 			path = Controller;
@@ -181,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				BBE2ACA223E1A8ED008FF119 /* LessonCell.swift */,
-				BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +219,8 @@
 		BBE2ACA023E19190008FF119 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */,
+				BB8407DB2404E9DD0094D343 /* CoreData model */,
 				BB0E410123E2988700AB6CDC /* Responses */,
 				BBE2ACA423E1AA40008FF119 /* Lesson.swift */,
 				BB7255DE23E3295600911B70 /* TimeTableJSON.swift */,
@@ -279,24 +311,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB43536124050DE100910D37 /* Location+CoreDataClass.swift in Sources */,
+				BB43536424050DE100910D37 /* Group+CoreDataProperties.swift in Sources */,
 				BB05139B23E82C6F00048C8E /* Group.swift in Sources */,
+				BB43536624050DE100910D37 /* Lesson+CoreDataProperties.swift in Sources */,
+				BB43536224050DE100910D37 /* Location+CoreDataProperties.swift in Sources */,
+				BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */,
 				BBE2ACA523E1AA40008FF119 /* Lesson.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
 				BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */,
 				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
 				BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */,
 				BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */,
+				BB43536324050DE100910D37 /* Group+CoreDataClass.swift in Sources */,
 				BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */,
-				BB720C5423F3F1A80048B27D /* CDGroupSchedule+CoreDataClass.swift in Sources */,
 				BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */,
+				BB43536024050DE100910D37 /* GroupSchedule+CoreDataProperties.swift in Sources */,
 				BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */,
 				BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */,
 				BBDB02F323EE8D2F008355A0 /* GroupSchedule.swift in Sources */,
 				BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */,
 				BBE2ACA323E1A8ED008FF119 /* LessonCell.swift in Sources */,
+				BB43536524050DE100910D37 /* Lesson+CoreDataClass.swift in Sources */,
+				BB43535E24050DE100910D37 /* Day+CoreDataProperties.swift in Sources */,
 				BB05139D23E82CCE00048C8E /* ApiKey.swift in Sources */,
+				BB43535D24050DE100910D37 /* Day+CoreDataClass.swift in Sources */,
 				BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */,
-				BB720C5523F3F1A80048B27D /* CDGroupSchedule+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

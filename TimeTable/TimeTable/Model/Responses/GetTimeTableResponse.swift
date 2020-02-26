@@ -7,20 +7,21 @@
 //
 
 import Foundation
+import CoreData
 
 
 struct GetTimeTableResponse {
-    var timeTable: [[Lesson]]!
+    var timeTable: [Day]!
     
-    init(of json: TimeTableJSON, for group: Group) {
+    init(of json: TimeTableJSON, for group: Group, context: NSManagedObjectContext) {
         let startColumnIndex = letterToIndex(letter: group.startColumn)
-        let startRowIndex = group.startRow - 1
+        let startRowIndex = Int(group.startRow - 1)
         
         let daysSeparator = getDaysSeparator(json: json, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
         
-        let timeTable = JSONParser(json: json, daysSeparator: daysSeparator, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
+        let timeTable = JSONParser(json: json, daysSeparator: daysSeparator, context: context, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
         
-        self.timeTable =  timeTable
+        self.timeTable = timeTable
     }
     
 }

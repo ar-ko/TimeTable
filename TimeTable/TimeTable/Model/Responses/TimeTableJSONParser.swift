@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 
 extension GetTimeTableResponse {
@@ -36,24 +37,24 @@ extension GetTimeTableResponse {
         return daysSeparator
     }
     
-    func JSONParser(json: TimeTableJSON, daysSeparator: [Int], rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [[Lesson]] {
-        var whiteWeakTimetable = [[Lesson]]()
-        var blueWeakTimetable = [[Lesson]]()
+    func JSONParser(json: TimeTableJSON, daysSeparator: [Int], context: NSManagedObjectContext, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Day] {
+        var whiteWeakTimetable = [Day]()
+        var blueWeakTimetable = [Day]()
         
         for sheet in json.sheets {
             for data in sheet.data {
-                var whiteWeakDay = [Lesson]()
-                var blueWeakDay = [Lesson]()
+                let whiteWeakDay = Day(context: context)
+                let blueWeakDay = Day(context: context)
                 
                 var correctionIndex = 0
                 
                 var lessonStartTime: String?
                 
                 var whiteWeekLessonTitle: String?
-                var whiteWeekSubgroup: Subgroup?
+                var whiteWeekSubgroup: Subgroup = .none
                 var whiteWeekTeacherName: String?
-                var whiteWeekLessonType: LessonType?
-                var whiteWeekLessonForm: LessonForm?
+                var whiteWeekLessonType: LessonType = .none
+                var whiteWeekLessonForm: LessonForm = .none
                 var whiteWeekCampus: String?
                 var whiteWeekOtherCampus = false
                 var whiteWeekCabinet: String?
@@ -61,10 +62,10 @@ extension GetTimeTableResponse {
                 var whiteWeekNote: String?
                 
                 var blueWeekLessonTitle: String?
-                var blueWeekSubgroup: Subgroup?
+                var blueWeekSubgroup: Subgroup = .none
                 var blueWeekTeacherName: String?
-                var blueWeekLessonType: LessonType?
-                var blueWeekLessonForm: LessonForm?
+                var blueWeekLessonType: LessonType = .none
+                var blueWeekLessonForm: LessonForm = .none
                 var blueWeekCampus: String?
                 var blueWeekOtherCampus = false
                 var blueWeekCabinet: String?
@@ -78,8 +79,8 @@ extension GetTimeTableResponse {
                         whiteWeakTimetable.append(whiteWeakDay)
                         blueWeakTimetable.append(blueWeakDay)
                         
-                        whiteWeakDay = []
-                        blueWeakDay = []
+                        //whiteWeakDay = []
+                        //let blueWeakDay = Day(context: context)
                         
                         correctionIndex += 1
                         continue
@@ -184,36 +185,61 @@ extension GetTimeTableResponse {
                         if blueWeekTeacherName != nil {
                            blueWeekTeacherName = blueWeekTeacherName!.prefix(1).capitalized + blueWeekTeacherName!.dropFirst()
                         }
-                        let whiteWeekLocation = getLocations(of: whiteWeekCabinet, and: whiteWeekCampus)
-                        let blueWeekLocation = getLocations(of: blueWeekCabinet, and: blueWeekCampus)
+                        let whiteWeekLocation = getLocations(of: whiteWeekCabinet, and: whiteWeekCampus, context: context)
+                        let blueWeekLocation = getLocations(of: blueWeekCabinet, and: blueWeekCampus, context: context)
                         
                         let startTime = timeParser(dateString: lessonStartTime!)!
-                        let stopTime = startTime.addingTimeInterval(90.0 * 60.0)
                         
                         if whiteWeekLessonTitle != nil {
+                            let lesson = Lesson(context: context)
+                            
                             whiteWeekLessonType = getLessonType(lessonTitle: whiteWeekLessonTitle!)
                             whiteWeekLessonTitle = textFormatting(text: whiteWeekLessonTitle!, lessonType: whiteWeekLessonType)
                             
-                            let whiteWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: whiteWeekLessonTitle, teacherName: whiteWeekTeacherName, type: whiteWeekLessonType, form: whiteWeekLessonForm, subgroup: whiteWeekSubgroup, location: whiteWeekLocation, note: whiteWeekNote, otherCabinet: whiteWeekOtherCabinet, otherCampus: whiteWeekOtherCampus)
+                            lesson.startTime = startTime
+                            lesson.title = whiteWeekLessonTitle
+                            lesson.teacherName = whiteWeekTeacherName
+                            lesson.type = whiteWeekLessonType
+                            lesson.form = whiteWeekLessonForm
+                            lesson.subgroup = whiteWeekSubgroup
+                            if whiteWeekLocation != nil {
+                            lesson.locations = NSOrderedSet(array: whiteWeekLocation!)
+                            }
+                            lesson.note = whiteWeekNote
+                            lesson.otherCabinet = whiteWeekOtherCabinet
+                            lesson.otherCampus = whiteWeekOtherCampus
                             
-                            whiteWeakDay.append(whiteWeekLesson)
+                            whiteWeakDay.addToLessons(lesson)
                         }
                         
                         if blueWeekLessonTitle != nil {
+                            let lesson = Lesson(context: context)
+                            
                             blueWeekLessonType = getLessonType(lessonTitle: blueWeekLessonTitle!)
                             blueWeekLessonTitle = textFormatting(text: blueWeekLessonTitle!, lessonType: blueWeekLessonType)
                             
-                            let blueWeekLesson = Lesson(startTime: startTime, endTime: stopTime, title: blueWeekLessonTitle, teacherName: blueWeekTeacherName, type: blueWeekLessonType, form: blueWeekLessonForm, subgroup: blueWeekSubgroup, location: blueWeekLocation, note: blueWeekNote, otherCabinet: blueWeekOtherCabinet, otherCampus: blueWeekOtherCampus)
+                            lesson.startTime = startTime
+                            lesson.title = blueWeekLessonTitle
+                            lesson.teacherName = blueWeekTeacherName
+                            lesson.type = blueWeekLessonType
+                            lesson.form = blueWeekLessonForm
+                            lesson.subgroup = blueWeekSubgroup
+                            if blueWeekLocation != nil {
+                            lesson.locations = NSOrderedSet(array: blueWeekLocation!)
+                            }
+                            lesson.note = blueWeekNote
+                            lesson.otherCabinet = blueWeekOtherCabinet
+                            lesson.otherCampus = blueWeekOtherCampus
                             
-                            blueWeakDay.append(blueWeekLesson)
+                            blueWeakDay.addToLessons(lesson)
                         }
                         lessonStartTime = nil
                         
                         whiteWeekLessonTitle = nil
-                        whiteWeekSubgroup = nil
+                        whiteWeekSubgroup = Subgroup.none
                         whiteWeekTeacherName = nil
-                        whiteWeekLessonForm = nil
-                        whiteWeekLessonType = nil
+                        whiteWeekLessonForm = LessonForm.none
+                        whiteWeekLessonType = LessonType.none
                         whiteWeekCampus = nil
                         whiteWeekOtherCampus = false
                         whiteWeekCabinet = nil
@@ -221,10 +247,10 @@ extension GetTimeTableResponse {
                         whiteWeekNote = nil
                         
                         blueWeekLessonTitle = nil
-                        blueWeekSubgroup = nil
+                        blueWeekSubgroup = Subgroup.none
                         blueWeekTeacherName = nil
-                        blueWeekLessonForm = nil
-                        blueWeekLessonType = nil
+                        blueWeekLessonForm = LessonForm.none
+                        whiteWeekLessonType = LessonType.none
                         blueWeekCampus = nil
                         blueWeekOtherCampus = false
                         blueWeekCabinet = nil
@@ -260,7 +286,7 @@ extension GetTimeTableResponse {
         }
     }
     
-    func getLessonType(lessonTitle: String) -> LessonType? {
+    func getLessonType(lessonTitle: String) -> LessonType {
         let lessonTitle = lessonTitle.lowercased()
         if lessonTitle.contains("(лб)") {
             return .laboratory
@@ -271,7 +297,7 @@ extension GetTimeTableResponse {
         if lessonTitle.contains("(пр)") || lessonTitle.contains("(ознакомительная)") {
             return .practice
         }
-        return .none
+        return LessonType.none
     }
     
     func textFormatting (text: String, lessonType: LessonType?) -> String {
@@ -289,7 +315,7 @@ extension GetTimeTableResponse {
             lessonTypeString = nil
         }
         
-        if lessonType != nil {
+        if lessonType != LessonType.none {
             if let index = text.range(of: lessonTypeString!)?.lowerBound {
                 text = String(text[..<index])
             }
@@ -348,7 +374,7 @@ extension GetTimeTableResponse {
         return (index - 1)
     }
     
-    func getLocations(of cabinet: String?, and campus: String?) -> [Location]? {
+    func getLocations(of cabinet: String?, and campus: String?, context: NSManagedObjectContext) -> [Location]? {
         var locations = [Location]()
         
         var campuses = [String]()
@@ -379,23 +405,48 @@ extension GetTimeTableResponse {
         
         switch (cabinets.count, campuses.count) {
         case (1, 1):
-            locations.append(Location(cabinet: cabinets.first, campus: campuses.first))
+            let location = Location(context: context)
+            location.cabinet = cabinets.first
+            location.campus = campuses.first
+            
+            locations.append(location)
         case (1, 2...):
             for campus in campuses {
-                locations.append(Location(cabinet: cabinets.first, campus: campus))
+                let location = Location(context: context)
+                location.cabinet = cabinets.first
+                location.campus = campus
+                
+                locations.append(location)
             }
         case (2..., 1):
             for cabinet in cabinets {
-                locations.append(Location(cabinet: cabinet, campus: campuses.first))
+                let location = Location(context: context)
+                location.cabinet = cabinet
+                location.campus = campuses.first
+                
+                locations.append(location)
             }
         case (2, 2):
-            locations.append(Location(cabinet: cabinets.first, campus: cabinets.last))
-            locations.append(Location(cabinet: campuses.first, campus: campuses.last))
+            let firstLocation = Location(context: context)
+            firstLocation.cabinet = cabinets.last
+            firstLocation.campus = cabinets.last
+            
+            locations.append(firstLocation)
+            
+            let secondLocation = Location(context: context)
+            secondLocation.cabinet = campuses.first
+            secondLocation.campus = campuses.last
+
+            locations.append(secondLocation)
         case (1... , 0):
             var buf = ""
             for (index, cabinet) in cabinets.enumerated() {
                 if index % 2 != 0 {
-                    locations.append(Location(cabinet: buf, campus: cabinet))
+                    let location = Location(context: context)
+                    location.cabinet = buf
+                    location.campus = cabinet
+
+                    locations.append(location)
                 }
                 else {
                     buf = cabinet
@@ -405,7 +456,11 @@ extension GetTimeTableResponse {
             var buf = ""
             for (index, campus) in campuses.enumerated() {
                 if index % 2 != 0 {
-                    locations.append(Location(cabinet: buf, campus: campus))
+                    let location = Location(context: context)
+                    location.cabinet = buf
+                    location.campus = campus
+
+                    locations.append(location)
                 }
                 else {
                     buf = campus

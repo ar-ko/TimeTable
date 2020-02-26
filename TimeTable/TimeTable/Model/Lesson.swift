@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Lesson {
+/*struct Lesson {
     let startTime: Date
     let endTime: Date
     let title: String?
@@ -33,4 +33,4 @@ enum LessonForm {case standart, online, canceled}
 
 enum Subgroup {case first, second, general}
 
-enum LessonType {case lecture, practice, laboratory}
+enum LessonType {case lecture, practice, laboratory}*/

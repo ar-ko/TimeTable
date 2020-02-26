@@ -9,16 +9,16 @@
 import Foundation
 
 
-class Group {
+/*class Group {
     let name: String
     let curse: String
     let semestrDate: String
     let practiceDate: String?
     
-    let spreadsheetId: String
+    let spreadsheetId: String //
     let sheetId: String
-    let fields: String
-    let urlString: String
+    let fields: String //
+    let urlString: String //
     
     let startColumn: String
     let startRow: Int
@@ -42,4 +42,4 @@ class Group {
         self.endColumn = endColumn
         self.endRow = endRow
     }
-}
+}*/

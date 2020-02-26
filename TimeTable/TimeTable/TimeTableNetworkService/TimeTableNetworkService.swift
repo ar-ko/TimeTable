@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 
 class TimeTableNetworkService {
@@ -14,12 +15,12 @@ class TimeTableNetworkService {
     private init() {}
     
     
-    static func getTimeTable(group: Group, completion: @escaping(GetTimeTableResponse?) -> ()) {
+    static func getTimeTable(group: Group, context: NSManagedObjectContext, completion: @escaping(GetTimeTableResponse?) -> ()) {
         guard let url = URL(string: group.urlString) else { return }
         
         NetworkService.shared.getData(url: url) { (json) in
             if let json = json as? TimeTableJSON {
-                let response = GetTimeTableResponse(of: json, for: group)
+                let response = GetTimeTableResponse(of: json, for: group, context: context)
                 completion(response)
             }
             else {

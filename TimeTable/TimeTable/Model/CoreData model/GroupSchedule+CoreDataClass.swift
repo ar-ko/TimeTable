@@ -1,29 +1,22 @@
 //
-//  TimeTable.swift
+//  GroupSchedule+CoreDataClass.swift
 //  TimeTable
 //
-//  Created by ar_ko on 08/02/2020.
+//  Created by ar_ko on 25/02/2020.
 //  Copyright © 2020 ar_ko. All rights reserved.
+//
 //
 
 import Foundation
+import CoreData
 
-
-/*struct GroupSchedule {
-    var timeTable: [[Lesson]]
+@objc(GroupSchedule)
+public class GroupSchedule: NSManagedObject {
+    
     lazy var indexOfSelectedDay = getIndexOfSelectedDay(from: self.getStartDate())
-    var groupInfo: Group
     lazy var dayTitle = getWeekName(currentDayIndex: indexOfSelectedDay)
-    var lastUpdate: Date
-    
-    
-    init(timeTable: [[Lesson]], group: Group) {
-        self.timeTable = timeTable
-        self.groupInfo = group
-        self.lastUpdate = Date()
-    }
-    
-    mutating func nextDayPressed() {
+
+    func nextDayPressed() {
         indexOfSelectedDay += 1
         if indexOfSelectedDay == timeTable.count {
             indexOfSelectedDay = 0
@@ -31,7 +24,7 @@ import Foundation
         dayTitle = getWeekName(currentDayIndex: indexOfSelectedDay)
     }
     
-    mutating func previousDayPressed() {
+    func previousDayPressed() {
         indexOfSelectedDay -= 1
         if indexOfSelectedDay == -1 {
             indexOfSelectedDay = timeTable.count - 1
@@ -111,4 +104,4 @@ import Foundation
             return "Расписание"
         }
     }
-}*/
+}

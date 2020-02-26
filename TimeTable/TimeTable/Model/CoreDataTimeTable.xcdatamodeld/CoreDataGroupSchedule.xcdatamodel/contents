@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G3020" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Day" representedClassName="Day" syncable="YES">
+        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Lesson" inverseName="day" inverseEntity="Lesson"/>
+        <relationship name="timeTable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupSchedule" inverseName="timeTable" inverseEntity="GroupSchedule"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="curse" attributeType="String"/>
+        <attribute name="endColumn" attributeType="String"/>
+        <attribute name="endRow" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="practiceDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="semestrDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sheetId" attributeType="String"/>
+        <attribute name="startColumn" optional="YES" attributeType="String"/>
+        <attribute name="startRow" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="groupSchedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupSchedule" inverseName="group" inverseEntity="GroupSchedule"/>
+    </entity>
+    <entity name="GroupSchedule" representedClassName="GroupSchedule" syncable="YES">
+        <attribute name="lastUpdate" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="groupSchedule" inverseEntity="Group"/>
+        <relationship name="timeTable" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Day" inverseName="timeTable" inverseEntity="Day"/>
+    </entity>
+    <entity name="Lesson" representedClassName="Lesson" syncable="YES">
+        <attribute name="formRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="otherCabinet" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="otherCampus" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="startTime" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="subgroupRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="teacherName" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="typeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="lessons" inverseEntity="Day"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Location" inverseName="lesson" inverseEntity="Location"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="cabinet" optional="YES" attributeType="String"/>
+        <attribute name="campus" optional="YES" attributeType="String"/>
+        <relationship name="lesson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lesson" inverseName="locations" inverseEntity="Lesson"/>
+    </entity>
+    <elements>
+        <element name="Day" positionX="30.41796875" positionY="-207.01171875" width="128" height="73"/>
+        <element name="Group" positionX="26.41796875" positionY="-535.19140625" width="128" height="193"/>
+        <element name="GroupSchedule" positionX="-146.203125" positionY="-331.91796875" width="128" height="88"/>
+        <element name="Lesson" positionX="236.390625" positionY="-152.046875" width="128" height="208"/>
+        <element name="Location" positionX="395.91015625" positionY="88.35546875" width="128" height="88"/>
+    </elements>
+</model>
