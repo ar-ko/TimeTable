@@ -16,7 +16,6 @@ class LastUpdateCell: UITableViewCell {
     func configure(with groupSchedule: GroupSchedule) {
         let dateFormatter = DateFormatter()
         
-        
         let diffInDays = Calendar.current.dateComponents([.minute], from: groupSchedule.lastUpdate, to: Date()).minute
         var lastUpdate = ""
         
@@ -50,7 +49,6 @@ class LastUpdateCell: UITableViewCell {
                 dateFormatter.dateFormat = "MMM d, HH:mm"
                 lastUpdate = dateFormatter.string(from: groupSchedule.lastUpdate)
             }
-            
         }
         
         self.lastUpdateLabel.text = "Последнее обновление: \(lastUpdate)"

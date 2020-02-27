@@ -17,7 +17,8 @@ import CoreData
 
 
 class TimeTableViewController: UIViewController {
-    var context: NSManagedObjectContext!
+    lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var groupSchedule: GroupSchedule?
     
     @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
@@ -29,59 +30,44 @@ class TimeTableViewController: UIViewController {
         return refreshControl
     }()
     
-    var groupSchedule: GroupSchedule?
-    //var groupSchedule = GroupSchedule(timeTable: [[Lesson]](), group: firstGroup)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        remove()
+        //remove()
+        check()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        //let groupName = "Экономика и управление"
-        
-        //let groupScheduleFetch: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
-        //groupScheduleFetch.predicate = NSPredicate(format: "GroupSchedule.group.name == Экономика и управление")
-        
-        /*let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
-        do {
-            let results = try context.fetch(fetchRequest)
-            
-            if results.count > 0 {*/
-                groupSchedule = GroupSchedule(context: context)
+        groupSchedule = GroupSchedule(context: context)
         groupSchedule!.group = createGroup(context: context)
-                //groupSchedule =results.first
-                /*try context.save()
-            } else {
-                groupSchedule = GroupSchedule(context: context)
-                groupSchedule?.group = createGroup(context: context)
-                //groupSchedule?.group.name = groupName
-                //groupSchedule?.group.curse = groupCurse
-                
-                try context.save()
-            }
-        } catch {
-            print("Ошибка выборки \(error)")
-        }*/
-         
+        //load()
+        
         timeTableView.refreshControl = timeTableRefreshControl
         getTimeTable(context: context)
     }
     
     func remove() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
         let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
         
         do {
             let groupSchedule = try context.fetch(fetchRequest)
             
+            print("remove \(groupSchedule.count)")
+            
             for g in groupSchedule {
                 context.delete(g)
             }
             try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func check() {
+        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
+        
+        do {
+            let groupSchedule = try context.fetch(fetchRequest)
+            
+            print("check \(groupSchedule.count)")
         } catch {
             print(error)
         }
@@ -128,19 +114,72 @@ extension TimeTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("TYT1")
         var day: Day?
         if groupSchedule!.timeTable.count > 0 {
-            //print(groupSchedule!.timeTable.count)
-            day = groupSchedule!.timeTable[groupSchedule!.indexOfSelectedDay - 1] as? Day
+            day = groupSchedule!.timeTable[groupSchedule!.indexOfSelectedDay] as? Day
         }
-        print(day?.lessons?.count as? Int)
-        print("TYT2")
         return groupSchedule!.timeTable.count > 0 ? day!.lessons!.count + 1 : 0
     }
 }
 
 extension TimeTableViewController {
+    // MARK: loading TimeTable
+    func getTimeTable(context: NSManagedObjectContext) {
+        DispatchQueue.main.async {
+            TimeTableNetworkService.getTimeTable(group: self.groupSchedule!.group, context: context) { (response) in
+                if let response = response {
+                    print("tyt")
+                    let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
+                    do {
+                        let groupSchedules = try self.context.fetch(fetchRequest)
+                        print(groupSchedules.count)
+                        
+                        if groupSchedules.count > 0 {
+                            groupSchedules.first!.timeTable = NSOrderedSet(array: response.timeTable)
+                            groupSchedules.first!.lastUpdate = Date()
+                            
+                            do {
+                                try context.save()
+                                print("GroupSchedule saved!")
+                            } catch {
+                                print(error)
+                            }
+                            
+                        }
+                        print("GroupSchedule get!")
+                    } catch {
+                        print(error)
+                    }
+                    
+                    self.dayTitle.text = self.groupSchedule!.dayTitle
+                    self.timeTableView.reloadData()
+                }
+                else {
+                    print("load from cash")
+                    self.load()
+                }
+            }
+        }
+    }
+    
+    func load() {
+        
+        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
+        do {
+            let groupSchedules = try self.context.fetch(fetchRequest)
+            print(groupSchedules.count)
+            if groupSchedules.count > 0 {
+                self.groupSchedule!.timeTable = groupSchedules.first!.timeTable
+                self.groupSchedule!.lastUpdate = groupSchedules.first!.lastUpdate
+                
+            }
+            print("GroupSchedule get!")
+        } catch {
+            print(error)
+        }
+        self.dayTitle.text = self.groupSchedule!.dayTitle
+        self.timeTableView.reloadData()
+    }
     
     @objc private func refresh(sender: UIRefreshControl) {
         getTimeTable(context: context)
@@ -182,51 +221,5 @@ extension TimeTableViewController {
         
         dayTitle.text = groupSchedule!.dayTitle
         self.timeTableView.reloadData()
-    }
-    
-    func getTimeTable(context: NSManagedObjectContext) {
-        TimeTableNetworkService.getTimeTable(group: groupSchedule!.group, context: context) { (response) in
-            if let response = response {
-                
-                //let groupSchedule = GroupSchedule(context: context)
-                
-                self.groupSchedule!.timeTable = NSOrderedSet(array: response.timeTable)
-                self.groupSchedule!.lastUpdate = Date()
-                
-                do {
-                    try context.save()
-                    print("GroupSchedule saved!")
-                } catch {
-                    print(error)
-                }
-                
-                //groupSchedule.group = self.createGroup(context: context)
-                
-                //self.groupSchedule = groupSchedule
-                
-                self.dayTitle.text = self.groupSchedule!.dayTitle
-                self.timeTableView.reloadData()
-            }
-            else {/*
-                 DispatchQueue.main.async {
-                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                 let context = appDelegate.persistentContainer.viewContext
-                 
-                 let fetchRequest: NSFetchRequest<CDGroupSchedule> = CDGroupSchedule.fetchRequest()
-                 
-                 do {
-                 let group = try context.fetch(fetchRequest).first!
-                 let time = group.value(forKey: "lastUpdate") as! Date
-                 
-                 let dateFormatter = DateFormatter()
-                 dateFormatter.dateFormat = "MMM d, HH:mm"
-                 print ( dateFormatter.string(from: time))
-                 
-                 } catch {
-                 print(error.localizedDescription)
-                 }
-                 }*/
-            }
-        }
     }
 }

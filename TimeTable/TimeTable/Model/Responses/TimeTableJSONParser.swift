@@ -36,15 +36,15 @@ extension GetTimeTableResponse {
         }
         return daysSeparator
     }
-    
+        
     func JSONParser(json: TimeTableJSON, daysSeparator: [Int], context: NSManagedObjectContext, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Day] {
-        var whiteWeakTimetable = [Day]()
-        var blueWeakTimetable = [Day]()
+        var whiteWeekTimetable = [Day]()
+        var blueWeekTimetable = [Day]()
         
         for sheet in json.sheets {
             for data in sheet.data {
-                let whiteWeakDay = Day(context: context)
-                let blueWeakDay = Day(context: context)
+                var whiteWeekDayLessons = [Lesson]()
+                var blueWeekDayLessons = [Lesson]()
                 
                 var correctionIndex = 0
                 
@@ -75,12 +75,11 @@ extension GetTimeTableResponse {
                 for (rowIndex, rowData) in data.rowData.enumerated(){
                     
                     if daysSeparator.contains(rowIndex) {
-                        
-                        whiteWeakTimetable.append(whiteWeakDay)
-                        blueWeakTimetable.append(blueWeakDay)
-                        
-                        //whiteWeakDay = []
-                        //let blueWeakDay = Day(context: context)
+                        whiteWeekTimetable.append(createDay(lessons: whiteWeekDayLessons, context: context))
+                        blueWeekTimetable.append(createDay(lessons: blueWeekDayLessons, context: context))
+
+                        whiteWeekDayLessons = []
+                        blueWeekDayLessons = []
                         
                         correctionIndex += 1
                         continue
@@ -209,7 +208,7 @@ extension GetTimeTableResponse {
                             lesson.otherCabinet = whiteWeekOtherCabinet
                             lesson.otherCampus = whiteWeekOtherCampus
                             
-                            whiteWeakDay.addToLessons(lesson)
+                            whiteWeekDayLessons.append(lesson)
                         }
                         
                         if blueWeekLessonTitle != nil {
@@ -231,7 +230,7 @@ extension GetTimeTableResponse {
                             lesson.otherCabinet = blueWeekOtherCabinet
                             lesson.otherCampus = blueWeekOtherCampus
                             
-                            blueWeakDay.addToLessons(lesson)
+                            blueWeekDayLessons.append(lesson)
                         }
                         lessonStartTime = nil
                         
@@ -258,12 +257,19 @@ extension GetTimeTableResponse {
                         blueWeekNote = nil
                     }
                 }
-                whiteWeakTimetable.append(whiteWeakDay)
-                blueWeakTimetable.append(blueWeakDay)
+                whiteWeekTimetable.append(createDay(lessons: whiteWeekDayLessons, context: context))
+                blueWeekTimetable.append(createDay(lessons: blueWeekDayLessons, context: context))
             }
         }
-        return whiteWeakTimetable + blueWeakTimetable
+        return whiteWeekTimetable + blueWeekTimetable
     }
+    
+    func createDay(lessons: [Lesson], context: NSManagedObjectContext) -> Day {
+         let day = Day(context: context)
+         day.lessons = NSOrderedSet(array: lessons)
+         
+         return day
+     }
     
     func cellIsMerged(in json: TimeTableJSON, columnIndex:Int, rowIndex:Int ) -> Bool {
         for sheet in json.sheets {
