@@ -36,6 +36,7 @@ class TimeTableViewController: UIViewController {
             
             if result.count > 0 {
                 groupSchedule = result.first
+                updateDayTitleAndReloadView()
             } else {
                 groupSchedule = GroupSchedule(context: context)
                 groupSchedule?.group = createGroup(context: context)
@@ -140,8 +141,10 @@ extension TimeTableViewController {
     }
     
     func updateDayTitleAndReloadView() {
+        DispatchQueue.main.async {
         self.dayTitle.text = self.groupSchedule!.dayTitle
         self.timeTableView.reloadData()
+        }
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
