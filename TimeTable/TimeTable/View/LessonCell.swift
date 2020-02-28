@@ -113,7 +113,6 @@ class LessonCell: UITableViewCell {
             self.lessonCanceledView.backgroundColor = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
             self.lessonTypeLabel.textColor = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
             self.lessonTitleLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            break
         }
     }
 }

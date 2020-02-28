@@ -26,7 +26,6 @@ struct TimeTableJSON: Decodable {
                     var formattedValue: String?
                     var note: String?
                     var effectiveFormat: EffectiveFormat?
-                    
                 }
             }
         }

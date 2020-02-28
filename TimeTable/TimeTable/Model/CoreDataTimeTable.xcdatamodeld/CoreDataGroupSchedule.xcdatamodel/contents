@@ -17,7 +17,7 @@
         <relationship name="groupSchedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupSchedule" inverseName="group" inverseEntity="GroupSchedule"/>
     </entity>
     <entity name="GroupSchedule" representedClassName="GroupSchedule" syncable="YES">
-        <attribute name="lastUpdate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="groupSchedule" inverseEntity="Group"/>
         <relationship name="timeTable" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Day" inverseName="timeTable" inverseEntity="Day"/>
     </entity>

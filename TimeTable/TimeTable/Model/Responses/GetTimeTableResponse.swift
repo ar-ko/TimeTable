@@ -13,6 +13,7 @@ import CoreData
 struct GetTimeTableResponse {
     var timeTable: [Day]!
     
+    
     init(of json: TimeTableJSON, for group: Group, context: NSManagedObjectContext) {
         let startColumnIndex = letterToIndex(letter: group.startColumn)
         let startRowIndex = Int(group.startRow - 1)

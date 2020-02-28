@@ -13,11 +13,12 @@ class LastUpdateCell: UITableViewCell {
     
     @IBOutlet weak var lastUpdateLabel: UILabel!
     
+    
     func configure(with groupSchedule: GroupSchedule) {
         let dateFormatter = DateFormatter()
-        
-        let diffInDays = Calendar.current.dateComponents([.minute], from: groupSchedule.lastUpdate, to: Date()).minute
         var lastUpdate = ""
+        
+        let diffInDays = Calendar.current.dateComponents([.minute], from: groupSchedule.lastUpdate!, to: Date()).minute
         
         switch diffInDays! {
         case 0:
@@ -37,20 +38,18 @@ class LastUpdateCell: UITableViewCell {
         case 240...299:
             lastUpdate = "четыре часа назад"
         default:
-            if Calendar.current.isDateInToday(groupSchedule.lastUpdate) {
+            if Calendar.current.isDateInToday(groupSchedule.lastUpdate!) {
                 dateFormatter.dateFormat = "HH:mm"
-                lastUpdate = "сегодня в \(dateFormatter.string(from: groupSchedule.lastUpdate))"
+                lastUpdate = "сегодня в \(dateFormatter.string(from: groupSchedule.lastUpdate!))"
             }
-            else if Calendar.current.isDateInYesterday(groupSchedule.lastUpdate) {
+            else if Calendar.current.isDateInYesterday(groupSchedule.lastUpdate!) {
                 dateFormatter.dateFormat = "HH:mm"
-                lastUpdate = "вчера в \(dateFormatter.string(from: groupSchedule.lastUpdate))"
-            }
-            else {
+                lastUpdate = "вчера в \(dateFormatter.string(from: groupSchedule.lastUpdate!))"
+            } else {
                 dateFormatter.dateFormat = "MMM d, HH:mm"
-                lastUpdate = dateFormatter.string(from: groupSchedule.lastUpdate)
+                lastUpdate = dateFormatter.string(from: groupSchedule.lastUpdate!)
             }
         }
-        
         self.lastUpdateLabel.text = "Последнее обновление: \(lastUpdate)"
     }
 }

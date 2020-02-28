@@ -16,6 +16,7 @@ public class GroupSchedule: NSManagedObject {
     lazy var indexOfSelectedDay = getIndexOfSelectedDay(from: self.getStartDate())
     lazy var dayTitle = getWeekName(currentDayIndex: indexOfSelectedDay)
 
+    
     func nextDayPressed() {
         indexOfSelectedDay += 1
         if indexOfSelectedDay == timeTable.count {
@@ -37,10 +38,7 @@ public class GroupSchedule: NSManagedObject {
         
         let diffInDays = Calendar.current.dateComponents([.day], from: startDate, to: currentDate).day
         
-        guard let days: Int = diffInDays else {
-            print("TYT")
-            return 0
-        }
+        guard let days: Int = diffInDays else { return 0 }
         
         // Коррекция даты, находим начало недели
         let calendar = Calendar.current
@@ -55,8 +53,7 @@ public class GroupSchedule: NSManagedObject {
         case true:
             if calendar.component(.weekday, from: currentDate) == 1 {
                 return 6
-            }
-            else { return calendar.component(.weekday, from: currentDate) - 2 }
+            } else { return calendar.component(.weekday, from: currentDate) - 2 }
         case false:
             if calendar.component(.weekday, from: currentDate) == 1 {
                 return 0
@@ -71,6 +68,7 @@ public class GroupSchedule: NSManagedObject {
         dateComponents.day = 27
         dateComponents.month = 01
         dateComponents.year = 2020
+        
         return userCalendar.date(from: dateComponents)!
     }
     

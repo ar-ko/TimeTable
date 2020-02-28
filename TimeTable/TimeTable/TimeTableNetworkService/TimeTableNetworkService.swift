@@ -21,14 +21,12 @@ class TimeTableNetworkService {
         NetworkService.shared.getData(url: url) { (json) in
             if let json = json as? TimeTableJSON {
                 let response = GetTimeTableResponse(of: json, for: group, context: context)
+                
                 completion(response)
             }
             else {
                 completion(nil)
-                
             }
-            
         }
     }
-    
 }

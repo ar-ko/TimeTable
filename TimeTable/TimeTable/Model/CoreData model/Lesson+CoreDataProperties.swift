@@ -12,10 +12,6 @@ import CoreData
 
 
 extension Lesson {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Lesson> {
-        return NSFetchRequest<Lesson>(entityName: "Lesson")
-    }
     
     @NSManaged public var startTime: Date
     var endTime: Date {
@@ -49,6 +45,11 @@ extension Lesson {
     @NSManaged public var otherCampus: Bool
 
     @NSManaged public var day: Day?
+    
+    
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Lesson> {
+        return NSFetchRequest<Lesson>(entityName: "Lesson")
+    }
 }
     
 enum LessonForm: Int {case none, standart, online, canceled}
@@ -59,6 +60,7 @@ enum LessonType: Int {case none, lecture, practice, laboratory}
 // MARK: Generated accessors for locations
 extension Lesson {
 
+    
     @objc(insertObject:inLocationsAtIndex:)
     @NSManaged public func insertIntoLocations(_ value: Location, at idx: Int)
 

@@ -12,19 +12,21 @@ import CoreData
 
 
 extension GroupSchedule {
-
+    
+    @NSManaged public var lastUpdate: Date?
+    @NSManaged public var group: Group
+    @NSManaged public var timeTable: NSOrderedSet
+    
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<GroupSchedule> {
         return NSFetchRequest<GroupSchedule>(entityName: "GroupSchedule")
     }
-
-    @NSManaged public var lastUpdate: Date
-    @NSManaged public var group: Group
-    @NSManaged public var timeTable: NSOrderedSet
 }
 
 // MARK: Generated accessors for timeTable
 extension GroupSchedule {
 
+    
     @objc(insertObject:inTimeTableAtIndex:)
     @NSManaged public func insertIntoTimeTable(_ value: Day, at idx: Int)
 

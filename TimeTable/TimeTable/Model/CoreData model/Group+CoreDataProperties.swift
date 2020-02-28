@@ -12,11 +12,7 @@ import CoreData
 
 
 extension Group {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Group> {
-        return NSFetchRequest<Group>(entityName: "Group")
-    }
-
+    
     @NSManaged public var name: String
     @NSManaged public var curse: String
     
@@ -40,5 +36,9 @@ extension Group {
     @NSManaged public var startRow: Int16
 
     @NSManaged public var groupSchedule: GroupSchedule
-
+    
+    
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Group> {
+        return NSFetchRequest<Group>(entityName: "Group")
+    }
 }

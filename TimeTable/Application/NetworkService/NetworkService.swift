@@ -22,17 +22,15 @@ class NetworkService {
             do {
                 guard let data = data else { throw NetworkError.noInternetConnection }
                 
-                do { let timeTableJSON = try JSONDecoder().decode(TimeTableJSON.self, from: data)
+                let timeTableJSON = try JSONDecoder().decode(TimeTableJSON.self, from: data)
                 
                 DispatchQueue.main.async {
                     completion(timeTableJSON)
                 }
-            }
             } catch {
                 print("ERROR: \(error)")
                 completion(nil)
             }
         }.resume()
     }
-    
 }

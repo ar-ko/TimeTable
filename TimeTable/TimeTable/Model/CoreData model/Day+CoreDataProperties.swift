@@ -13,18 +13,19 @@ import CoreData
 
 extension Day {
 
+    @NSManaged public var lessons: NSOrderedSet?
+    @NSManaged public var timeTable: GroupSchedule?
+    
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Day> {
         return NSFetchRequest<Day>(entityName: "Day")
     }
-
-    @NSManaged public var lessons: NSOrderedSet?
-    @NSManaged public var timeTable: GroupSchedule?
-
 }
 
 // MARK: Generated accessors for lessons
 extension Day {
 
+    
     @objc(insertObject:inLessonsAtIndex:)
     @NSManaged public func insertIntoLessons(_ value: Lesson, at idx: Int)
 
