@@ -27,6 +27,7 @@
 		BB8C582F240AD1DF00E12327 /* GroupSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C582E240AD1DF00E12327 /* GroupSettingsViewController.swift */; };
 		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
 		BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */; };
+		BBDB8D7C240BBADD007DB747 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */; };
 		BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8423E19002008FF119 /* AppDelegate.swift */; };
 		BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8623E19002008FF119 /* SceneDelegate.swift */; };
 		BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8823E19002008FF119 /* TimeTableViewController.swift */; };
@@ -57,6 +58,7 @@
 		BB8C582E240AD1DF00E12327 /* GroupSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsViewController.swift; sourceTree = "<group>"; };
 		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableNetworkService.swift; sourceTree = "<group>"; };
+		BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		BBE2AC8123E19002008FF119 /* TimeTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBE2AC8423E19002008FF119 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBE2AC8623E19002008FF119 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				BBE2AC8623E19002008FF119 /* SceneDelegate.swift */,
 				BBE2AC8423E19002008FF119 /* AppDelegate.swift */,
+				BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,7 +234,6 @@
 		BBE2AC9E23E19185008FF119 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */,
 				BBE2AC8823E19002008FF119 /* TimeTableViewController.swift */,
 			);
 			path = Controller;
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				BBE2ACA223E1A8ED008FF119 /* LessonCell.swift */,
+				BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */,
 				BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */,
 				BB43536324050DE100910D37 /* Group+CoreDataClass.swift in Sources */,
+				BBDB8D7C240BBADD007DB747 /* CustomTabBarController.swift in Sources */,
 				BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */,
 				BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */,
 				BB43536024050DE100910D37 /* GroupSchedule+CoreDataProperties.swift in Sources */,

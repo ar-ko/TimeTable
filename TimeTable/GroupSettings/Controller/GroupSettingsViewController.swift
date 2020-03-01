@@ -11,6 +11,8 @@ import CoreData
 
 
 class GroupSettingsViewController: UIViewController {
+    var context: NSManagedObjectContext?
+    var groupScheldue: GroupSchedule?
     
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var groupCurseLabel: UILabel!
@@ -19,7 +21,12 @@ class GroupSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        //groupNameLabel = context
+        if let tbc = self.tabBarController as? CustomTabBarController {
+            context = tbc.context
+            groupScheldue = tbc.groupScheldue
+        }
         
+        groupNameLabel.text = groupScheldue?.group.name
+        groupCurseLabel.text = groupScheldue?.group.curse
     }
 }

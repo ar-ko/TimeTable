@@ -46,6 +46,10 @@ class TimeTableViewController: UIViewController {
         } catch {
             print(error)
         }
+        if let tbc = self.tabBarController as? CustomTabBarController {
+            tbc.groupScheldue = groupSchedule
+            tbc.context = context
+        }
         
         timeTableView.refreshControl = timeTableRefreshControl
         getTimeTable(context: context)
