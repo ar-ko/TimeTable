@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class TimeTableViewController: UIViewController {
+class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     
     lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var groupSchedule: GroupSchedule?
@@ -28,6 +28,7 @@ class TimeTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //remove()
+        self.tabBarController?.delegate = self
         
         let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
         do {
@@ -53,6 +54,15 @@ class TimeTableViewController: UIViewController {
         
         timeTableView.refreshControl = timeTableRefreshControl
         getTimeTable(context: context)
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let tabBarIndex = tabBarController.selectedIndex
+        if tabBarIndex == 0 {
+            groupSchedule?.indexOfSelectedDay = groupSchedule?.getIndexForToday() ?? groupSchedule!.indexOfSelectedDay
+            groupSchedule?.dayTitle = (groupSchedule?.getDayName(currentDayIndex: groupSchedule!.indexOfSelectedDay))!
+            updateDayTitleAndReloadView()
+        }
     }
     
     func remove() {
@@ -122,7 +132,7 @@ extension TimeTableViewController: UITableViewDataSource {
 }
 
 extension TimeTableViewController {
-
+    
     func getTimeTable(context: NSManagedObjectContext) {
         TimeTableNetworkService.getTimeTable(group: self.groupSchedule!.group, context: context) { (response) in
             if let response = response {
@@ -146,8 +156,8 @@ extension TimeTableViewController {
     
     func updateDayTitleAndReloadView() {
         DispatchQueue.main.async {
-        self.dayTitle.text = self.groupSchedule!.dayTitle
-        self.timeTableView.reloadData()
+            self.dayTitle.text = self.groupSchedule!.dayTitle
+            self.timeTableView.reloadData()
         }
     }
     

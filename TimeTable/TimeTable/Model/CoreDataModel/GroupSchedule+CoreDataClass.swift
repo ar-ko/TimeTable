@@ -13,8 +13,8 @@ import CoreData
 @objc(GroupSchedule)
 public class GroupSchedule: NSManagedObject {
     
-    lazy var indexOfSelectedDay = getIndexOfSelectedDay(from: self.getStartDate())
-    lazy var dayTitle = getWeekName(currentDayIndex: indexOfSelectedDay)
+    lazy var indexOfSelectedDay = getIndexForToday()
+    lazy var dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
 
     
     func nextDayPressed() {
@@ -22,7 +22,7 @@ public class GroupSchedule: NSManagedObject {
         if indexOfSelectedDay == timeTable.count {
             indexOfSelectedDay = 0
         }
-        dayTitle = getWeekName(currentDayIndex: indexOfSelectedDay)
+        dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
     }
     
     func previousDayPressed() {
@@ -30,10 +30,11 @@ public class GroupSchedule: NSManagedObject {
         if indexOfSelectedDay == -1 {
             indexOfSelectedDay = timeTable.count - 1
         }
-        dayTitle = getWeekName(currentDayIndex: indexOfSelectedDay)
+        dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
     }
         
-    func getIndexOfSelectedDay(from startDate: Date) -> Int {
+    func getIndexForToday() -> Int {
+        let startDate = getStartDate()
         let currentDate = Date()
         
         let diffInDays = Calendar.current.dateComponents([.day], from: startDate, to: currentDate).day
@@ -72,7 +73,7 @@ public class GroupSchedule: NSManagedObject {
         return userCalendar.date(from: dateComponents)!
     }
     
-    func getWeekName(currentDayIndex: Int) -> String {
+    func getDayName(currentDayIndex: Int) -> String {
         switch currentDayIndex {
         case 0:
             return "Понедельник, белая"

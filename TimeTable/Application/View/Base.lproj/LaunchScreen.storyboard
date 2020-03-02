@@ -16,18 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch screen image" translatesAutoresizingMaskIntoConstraints="NO" id="vJ1-cS-sJg">
-                                <rect key="frame" x="49.5" y="252" width="221" height="64"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="vJ1-cS-sJg">
+                                <rect key="frame" x="32" y="213.5" width="256" height="141"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="221" id="aLy-mo-43f"/>
-                                    <constraint firstAttribute="height" constant="64" id="qff-Z1-Twz"/>
+                                    <constraint firstAttribute="width" constant="256" id="G4E-aL-rTf"/>
+                                    <constraint firstAttribute="height" constant="141" id="dm9-Jy-myQ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="vJ1-cS-sJg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9ZS-8K-OXW"/>
+                            <constraint firstItem="vJ1-cS-sJg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="CJr-pj-yrG"/>
                             <constraint firstItem="vJ1-cS-sJg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="EdK-Pz-Nae"/>
+                            <constraint firstItem="vJ1-cS-sJg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="dM7-Oi-Ugy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Launch screen image" width="388" height="175"/>
+        <image name="LaunchScreen" width="512" height="282"/>
     </resources>
 </document>

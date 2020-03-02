@@ -10,15 +10,15 @@ import UIKit
 import CoreData
 
 
-class CustomTabBarController: UITabBarController {
-
+class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
+    
     var groupScheldue: GroupSchedule?
     var context: NSManagedObjectContext?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //self.delegate = self
     }
+    
 }
