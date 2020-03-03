@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
+class CustomTabBarController: UITabBarController {
     
     var groupScheldue: GroupSchedule?
     var context: NSManagedObjectContext?
@@ -18,7 +18,6 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.delegate = self
     }
     
 }

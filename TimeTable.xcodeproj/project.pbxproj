@@ -24,7 +24,6 @@
 		BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */; };
 		BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* TimeTableJSON.swift */; };
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
-		BB8C582F240AD1DF00E12327 /* GroupSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C582E240AD1DF00E12327 /* GroupSettingsViewController.swift */; };
 		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
 		BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */; };
 		BBDB8D7C240BBADD007DB747 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */; };
@@ -35,6 +34,7 @@
 		BBE2AC8E23E19003008FF119 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBE2AC8D23E19003008FF119 /* Assets.xcassets */; };
 		BBE2AC9123E19003008FF119 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBE2AC8F23E19003008FF119 /* LaunchScreen.storyboard */; };
 		BBE2ACA323E1A8ED008FF119 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2ACA223E1A8ED008FF119 /* LessonCell.swift */; };
+		BBF95898240EC22000067579 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF95897240EC22000067579 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +55,6 @@
 		BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataGroupSchedule.xcdatamodel; sourceTree = "<group>"; };
 		BB7255DE23E3295600911B70 /* TimeTableJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSON.swift; sourceTree = "<group>"; };
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		BB8C582E240AD1DF00E12327 /* GroupSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsViewController.swift; sourceTree = "<group>"; };
 		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableNetworkService.swift; sourceTree = "<group>"; };
 		BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		BBE2AC9023E19003008FF119 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBE2AC9223E19003008FF119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBE2ACA223E1A8ED008FF119 /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
+		BBF95897240EC22000067579 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,20 +107,20 @@
 			path = CoreDataModel;
 			sourceTree = "<group>";
 		};
-		BB8C582A240AD12B00E12327 /* GroupSettings */ = {
+		BB8C582A240AD12B00E12327 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				BB8C582D240AD18B00E12327 /* Model */,
 				BB8C582C240AD18600E12327 /* View */,
 				BB8C582B240AD17700E12327 /* Controller */,
 			);
-			path = GroupSettings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		BB8C582B240AD17700E12327 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BB8C582E240AD1DF00E12327 /* GroupSettingsViewController.swift */,
+				BBF95897240EC22000067579 /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				BBE2AC9823E19014008FF119 /* Application */,
-				BB8C582A240AD12B00E12327 /* GroupSettings */,
+				BB8C582A240AD12B00E12327 /* Settings */,
 				BBE2AC9D23E1917D008FF119 /* TimeTable */,
 				BBE2ACA123E19823008FF119 /* SupportingFiles */,
 			);
@@ -346,9 +346,9 @@
 				BB43536224050DE100910D37 /* Location+CoreDataProperties.swift in Sources */,
 				BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
-				BB8C582F240AD1DF00E12327 /* GroupSettingsViewController.swift in Sources */,
 				BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */,
 				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
+				BBF95898240EC22000067579 /* SettingsViewController.swift in Sources */,
 				BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */,
 				BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */,
 				BB43536324050DE100910D37 /* Group+CoreDataClass.swift in Sources */,

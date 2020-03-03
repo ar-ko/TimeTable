@@ -48,7 +48,7 @@ class LastUpdateCell: UITableViewCell {
             dateFormatter.dateFormat = "HH:mm"
             lastUpdate = "вчера в \(dateFormatter.string(from: groupSchedule.lastUpdate!))"
         } else {
-            dateFormatter.dateFormat = "MMM d, HH:mm"
+            dateFormatter.dateFormat = "d MMM, HH:mm"
             lastUpdate = dateFormatter.string(from: groupSchedule.lastUpdate!)
         }
         self.lastUpdateLabel.text = "Последнее обновление: \(lastUpdate)"
