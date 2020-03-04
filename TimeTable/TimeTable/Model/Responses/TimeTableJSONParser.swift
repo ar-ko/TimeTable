@@ -456,7 +456,7 @@ extension GetTimeTableResponse {
             }
         case (2, 2):
             let firstLocation = Location(context: context)
-            firstLocation.cabinet = cabinets.last
+            firstLocation.cabinet = cabinets.first
             firstLocation.campus = cabinets.last
             
             locations.append(firstLocation)
