@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Group 1</key>
+	<dict>
+		<key>name</key>
+		<string>Экономика и управление</string>
+		<key>curse</key>
+		<integer>1</integer>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>B</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>E</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>C</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>D</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<key>Group 2</key>
+	<dict>
+		<key>name</key>
+		<string>Экономика и управление</string>
+		<key>curse</key>
+		<integer>2</integer>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>R</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>U</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>S</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>T</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<key>Group 3</key>
+	<dict>
+		<key>name</key>
+		<string>Сервис мехатронных систем</string>
+		<key>curse</key>
+		<integer>1</integer>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>F</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>I</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>G</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>H</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+</dict>
+</plist>

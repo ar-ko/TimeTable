@@ -8,11 +8,17 @@
         <attribute name="curse" attributeType="String"/>
         <attribute name="endColumn" attributeType="String"/>
         <attribute name="endRow" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="groupInfoEndColumn" attributeType="String"/>
+        <attribute name="groupInfoEndRow" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="groupInfoStartColumn" attributeType="String"/>
+        <attribute name="groupInfoStartRow" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="numberOfPersons" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="practiceDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="semestrDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="sheetId" attributeType="String"/>
-        <attribute name="startColumn" optional="YES" attributeType="String"/>
+        <attribute name="spreadsheetId" attributeType="String"/>
+        <attribute name="startColumn" attributeType="String"/>
         <attribute name="startRow" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="groupSchedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupSchedule" inverseName="group" inverseEntity="GroupSchedule"/>
     </entity>
@@ -41,7 +47,7 @@
     </entity>
     <elements>
         <element name="Day" positionX="30.41796875" positionY="-207.01171875" width="128" height="73"/>
-        <element name="Group" positionX="26.41796875" positionY="-535.19140625" width="128" height="193"/>
+        <element name="Group" positionX="26.41796875" positionY="-535.19140625" width="128" height="283"/>
         <element name="GroupSchedule" positionX="-146.203125" positionY="-331.91796875" width="128" height="88"/>
         <element name="Lesson" positionX="236.390625" positionY="-152.046875" width="128" height="208"/>
         <element name="Location" positionX="395.91015625" positionY="88.35546875" width="128" height="88"/>

@@ -28,6 +28,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //remove()
+        
         self.tabBarController?.delegate = self
         
         let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
@@ -84,10 +85,17 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         group.name = "Экономика и управление"
         group.curse = "1"
         group.sheetId = "%D0%BF%D1%80%D0%BE%D1%84%D1%8B"
+        group.spreadsheetId = "1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw"
+        
         group.startColumn = "B"
         group.startRow = 11
         group.endColumn = "E"
-        group.endRow = 175
+        group.endRow = 179
+        
+        group.groupInfoStartColumn = "C"
+        group.groupInfoStartRow = 8
+        group.groupInfoEndColumn = "D"
+        group.groupInfoEndRow = 10
         
         return group
     }
