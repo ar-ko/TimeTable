@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import CoreData
+
 
 class ProfileViewController: UITableViewController {
 
-    var Groups: [Group] = []
+    var groups: [Group] = []
     
+        lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let response = GetGroupsResponse(context: context)
+        groups = response.groups
+        
+        print(groups.count)
 
     }
 

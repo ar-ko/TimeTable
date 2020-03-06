@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Group 1</key>
+<array>
 	<dict>
 		<key>name</key>
 		<string>Экономика и управление</string>
 		<key>curse</key>
-		<integer>1</integer>
+		<string>1 курс</string>
 		<key>sheetId</key>
 		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
 		<key>spreadsheetId</key>
@@ -29,12 +28,11 @@
 		<key>groupInfoEndRow</key>
 		<integer>10</integer>
 	</dict>
-	<key>Group 2</key>
 	<dict>
 		<key>name</key>
 		<string>Экономика и управление</string>
 		<key>curse</key>
-		<integer>2</integer>
+		<string>2 курс</string>
 		<key>sheetId</key>
 		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
 		<key>spreadsheetId</key>
@@ -56,12 +54,11 @@
 		<key>groupInfoEndRow</key>
 		<integer>10</integer>
 	</dict>
-	<key>Group 3</key>
 	<dict>
 		<key>name</key>
 		<string>Сервис мехатронных систем</string>
 		<key>curse</key>
-		<integer>1</integer>
+		<string>1 курс</string>
 		<key>sheetId</key>
 		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
 		<key>spreadsheetId</key>
@@ -83,5 +80,5 @@
 		<key>groupInfoEndRow</key>
 		<integer>10</integer>
 	</dict>
-</dict>
+</array>
 </plist>
