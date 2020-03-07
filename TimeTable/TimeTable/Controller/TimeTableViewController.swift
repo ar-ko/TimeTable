@@ -48,6 +48,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         } catch {
             print(error)
         }
+        
         if let tbc = self.tabBarController as? CustomTabBarController {
             tbc.groupScheldue = groupSchedule
             tbc.context = context
@@ -62,7 +63,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         if tabBarIndex == 0 {
             groupSchedule?.indexOfSelectedDay = groupSchedule?.getIndexForToday() ?? groupSchedule!.indexOfSelectedDay
             groupSchedule?.dayTitle = (groupSchedule?.getDayName(currentDayIndex: groupSchedule!.indexOfSelectedDay))!
-            updateDayTitleAndReloadView()
+            getTimeTable(context: context)
         }
     }
     

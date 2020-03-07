@@ -332,6 +332,7 @@ extension GetTimeTableResponse {
     func textFormatting (text: String, lessonType: LessonType?) -> String {
         var lessonTypeString: String?
         var text = text.lowercased()
+        var lessonType = lessonType
         
         switch lessonType {
         case .laboratory:
@@ -341,6 +342,7 @@ extension GetTimeTableResponse {
         case .lecture:
             lessonTypeString = "(лк)"
         default:
+            lessonType = LessonType.none
             lessonTypeString = nil
         }
         

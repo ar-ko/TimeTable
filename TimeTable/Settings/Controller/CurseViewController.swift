@@ -10,6 +10,8 @@ import UIKit
 
 class CurseViewController: UITableViewController {
 
+    var groupCurses: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,14 +19,19 @@ class CurseViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return groupCurses.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurseCell", for: indexPath)
+        cell.textLabel?.text = groupCurses[indexPath.row]
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        UserDefaults.standard.set(groupCurses[indexPath.row], forKey: "groupCurse")
     }
 
 }

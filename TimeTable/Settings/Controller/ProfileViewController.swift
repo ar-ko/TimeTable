@@ -11,32 +11,45 @@ import CoreData
 
 
 class ProfileViewController: UITableViewController {
-
-    var groups: [Group] = []
     
-        lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var groupProfiles: [String] = []
+    var groups: [Group] = []
+    var context: NSManagedObjectContext?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let response = GetGroupsResponse(context: context)
-        groups = response.groups
-        
-        print(groups.count)
-
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCurseSegue",
+            let destination = segue.destination as? CurseViewController,
+            let cell = sender as? UITableViewCell,
+            let indexPath = tableView.indexPath(for: cell) {
+            let groupProfile = groupProfiles[indexPath.row]
+            UserDefaults.standard.set(groupProfile, forKey: "groupProfile")
+            
+            var groupCurses: [String] = []
+            for group in groups {
+                if group.name == groupProfile {
+                    groupCurses.append(group.curse)
+                }
+            }
+            groupCurses.sort()
+            destination.groupCurses = groupCurses
+        }
+    }
     
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath)
+        cell.textLabel?.text = groupProfiles[indexPath.row]
         
-        return 0
+        return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 0
+        return groupProfiles.count
     }
-
 }

@@ -311,10 +311,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="wQN-UF-ub2" kind="show" id="dCv-Ft-cEQ"/>
+                                            <segue destination="wQN-UF-ub2" kind="show" identifier="showProfileSegue" id="dCv-Ft-cEQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="9bL-Sl-roo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="9bL-Sl-roo">
                                         <rect key="frame" x="0.0" y="99" width="320" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9bL-Sl-roo" id="nXg-Xo-WQ0">
@@ -343,7 +343,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="k68-2S-RMY" kind="show" id="z3b-C1-m4V"/>
+                                            <segue destination="k68-2S-RMY" kind="show" identifier="changeCurseSegue" id="z3b-C1-m4V"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -355,6 +355,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Настройки" id="Sa6-Mq-Zgh"/>
+                    <connections>
+                        <outlet property="groupCurseLabel" destination="dlJ-fY-hyh" id="CwQ-PQ-t72"/>
+                        <outlet property="groupProfileLabel" destination="LN1-h8-xCg" id="TlQ-KN-d1p"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ndr-hI-FO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -363,7 +367,7 @@
         <!--Профиль-->
         <scene sceneID="7kS-TP-aWp">
             <objects>
-                <tableViewController id="wQN-UF-ub2" customClass="ProfileViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProfileViewController" id="wQN-UF-ub2" customClass="ProfileViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6fC-ht-xCD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -385,6 +389,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="k68-2S-RMY" kind="show" identifier="showCurseSegue" id="dd8-Ph-ktx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -396,7 +403,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NP4-cC-P2A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="230"/>
+            <point key="canvasLocation" x="2828" y="188"/>
         </scene>
         <!--Курс-->
         <scene sceneID="akI-uJ-DOh">
@@ -406,19 +413,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="wne-jP-xAU">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurseCell" id="eeB-IH-m5n">
-                                <rect key="frame" x="0.0" y="72" width="320" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eeB-IH-m5n" id="gcg-s9-TZm">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Xqj-hd-FNx" kind="unwind" unwindAction="cancelAction:" id="3hX-UO-pPA"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -429,8 +434,9 @@
                     <navigationItem key="navigationItem" title="Курс" id="Wev-4f-kYx"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhD-Ug-2bw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Xqj-hd-FNx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="916"/>
+            <point key="canvasLocation" x="2828" y="940"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="cdk-ye-qdg">
@@ -460,4 +466,7 @@
         <image name="SettingsCompact" width="18" height="18"/>
         <image name="SettingsRegular" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="z3b-C1-m4V"/>
+    </inferredMetricsTieBreakers>
 </document>
