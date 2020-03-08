@@ -17,7 +17,6 @@ class LessonCell: UITableViewCell {
     @IBOutlet weak var mainInformationStackView: UIStackView!
     @IBOutlet weak var lessonTitleLabel: UILabel!
     @IBOutlet weak var lessonTeacherNameLabel: UILabel!
-    @IBOutlet weak var lessonTypeDownConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var lessonTypeLabel: UILabel!
     @IBOutlet weak var lessonTypeHeightConstraint: NSLayoutConstraint!
@@ -27,7 +26,6 @@ class LessonCell: UITableViewCell {
     @IBOutlet weak var lessonCanceledView: UIView!
     @IBOutlet weak var otherLocationView: UIView!
     
-    @IBOutlet weak var lessonNoteDownConstraint: NSLayoutConstraint!
     @IBOutlet weak var lessonNoteLabel: UILabel!
     @IBOutlet weak var lessonNoteHeightConstraint: NSLayoutConstraint!
     
@@ -60,7 +58,6 @@ class LessonCell: UITableViewCell {
             if #available(iOS 11.0, *) {
                 self.mainInformationStackView.setCustomSpacing(0, after: self.lessonTypeLabel)
             } else {
-                self.lessonTypeDownConstraint.constant = 0
             }
             self.lessonTypeHeightConstraint.constant = 0
             self.lessonTypeLabel.text = nil
@@ -71,7 +68,6 @@ class LessonCell: UITableViewCell {
             if #available(iOS 11.0, *) {
                 self.mainInformationStackView.setCustomSpacing(8, after: self.lessonTypeLabel)
             } else {
-                self.lessonTypeDownConstraint.constant = 8
             }
             self.lessonTypeHeightConstraint.constant = 16
         }
@@ -94,7 +90,6 @@ class LessonCell: UITableViewCell {
             if #available(iOS 11.0, *) {
                 self.mainInformationStackView.setCustomSpacing(8, after: self.lessonNoteLabel)
             } else {
-                self.lessonNoteDownConstraint.constant = 8
             }
             self.lessonNoteHeightConstraint.constant = 16
         }
@@ -104,7 +99,6 @@ class LessonCell: UITableViewCell {
             if #available(iOS 11.0, *) {
                 self.mainInformationStackView.setCustomSpacing(0, after: self.lessonNoteLabel)
             } else {
-                self.lessonNoteDownConstraint.constant = 0
             }
             self.lessonNoteHeightConstraint.constant = 0
         }

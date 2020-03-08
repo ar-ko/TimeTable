@@ -188,10 +188,10 @@ extension GetTimeTableResponse {
                     
                     if ((rowIndex - correctionIndex) % 4 == 3) || (rowIndex == data.rowData.count - 1) {
                         if whiteWeekNote != nil {
-                            whiteWeekNote = textFormatting(text: whiteWeekNote!, lessonType: nil)
+                            whiteWeekNote = textFormatting(text: whiteWeekNote!)
                         }
                         if blueWeekNote != nil {
-                            blueWeekNote = textFormatting(text: blueWeekNote!, lessonType: nil)
+                            blueWeekNote = textFormatting(text: blueWeekNote!)
                         }
                         
                         if whiteWeekTeacherName != nil {
@@ -329,10 +329,9 @@ extension GetTimeTableResponse {
         return LessonType.none
     }
     
-    func textFormatting (text: String, lessonType: LessonType?) -> String {
+    func textFormatting (text: String, lessonType: LessonType = LessonType.none) -> String {
         var lessonTypeString: String?
         var text = text.lowercased()
-        var lessonType = lessonType
         
         switch lessonType {
         case .laboratory:
@@ -342,7 +341,6 @@ extension GetTimeTableResponse {
         case .lecture:
             lessonTypeString = "(лк)"
         default:
-            lessonType = LessonType.none
             lessonTypeString = nil
         }
         

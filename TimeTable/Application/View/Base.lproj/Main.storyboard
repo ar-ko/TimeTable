@@ -121,10 +121,8 @@
                                                     <constraints>
                                                         <constraint firstItem="DNu-QN-6BI" firstAttribute="leading" secondItem="xKQ-gl-dvR" secondAttribute="leading" id="AqG-hx-AVo"/>
                                                         <constraint firstAttribute="trailing" secondItem="HKa-sH-Rk2" secondAttribute="trailing" id="HND-oY-RBO"/>
-                                                        <constraint firstItem="1yH-e0-3Kb" firstAttribute="top" secondItem="gZz-Mm-IGA" secondAttribute="bottom" constant="8" id="KkT-9T-8i7"/>
                                                         <constraint firstAttribute="trailing" secondItem="DNu-QN-6BI" secondAttribute="trailing" id="V6o-2D-dqe"/>
                                                         <constraint firstAttribute="bottom" secondItem="HKa-sH-Rk2" secondAttribute="bottom" id="fPI-Pl-7vY"/>
-                                                        <constraint firstItem="DNu-QN-6BI" firstAttribute="top" secondItem="1yH-e0-3Kb" secondAttribute="bottom" constant="8" id="kyE-qJ-E8E"/>
                                                         <constraint firstItem="HKa-sH-Rk2" firstAttribute="leading" secondItem="xKQ-gl-dvR" secondAttribute="leading" id="vQh-mG-Spy"/>
                                                     </constraints>
                                                 </stackView>
@@ -157,13 +155,11 @@
                                             <outlet property="lessonCanceledView" destination="xf7-wY-uza" id="FFg-Ax-RT6"/>
                                             <outlet property="lessonEndTimeLabel" destination="1f6-Pt-ALC" id="uWP-eZ-XIh"/>
                                             <outlet property="lessonLocationLabel" destination="kdQ-Gz-xaZ" id="Hzx-mE-jD8"/>
-                                            <outlet property="lessonNoteDownConstraint" destination="KkT-9T-8i7" id="1qI-FY-YtO"/>
                                             <outlet property="lessonNoteHeightConstraint" destination="grf-wW-LYD" id="Xxc-i6-6Rh"/>
                                             <outlet property="lessonNoteLabel" destination="gZz-Mm-IGA" id="Fdc-7E-24F"/>
                                             <outlet property="lessonStartTimeLabel" destination="j9b-Mv-AyX" id="StD-Vf-0U1"/>
                                             <outlet property="lessonTeacherNameLabel" destination="HKa-sH-Rk2" id="hHm-te-Wmm"/>
                                             <outlet property="lessonTitleLabel" destination="DNu-QN-6BI" id="TI5-hB-3gc"/>
-                                            <outlet property="lessonTypeDownConstraint" destination="kyE-qJ-E8E" id="iBo-Zc-fae"/>
                                             <outlet property="lessonTypeHeightConstraint" destination="wqo-mX-n1l" id="NyZ-Tf-4pF"/>
                                             <outlet property="lessonTypeLabel" destination="1yH-e0-3Kb" id="SUj-j0-Pbt"/>
                                             <outlet property="mainInformationStackView" destination="xKQ-gl-dvR" id="Sb4-oB-OUG"/>
@@ -279,7 +275,7 @@
                         <sections>
                             <tableViewSection headerTitle="Группа" id="RBO-bR-dgq">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="tzy-Dw-qns">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="43.5" id="tzy-Dw-qns">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tzy-Dw-qns" id="F1L-LF-iN2">
@@ -296,7 +292,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Экономика и управление" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN1-h8-xCg">
-                                                    <rect key="frame" x="109" y="12" width="176" height="20.5"/>
+                                                    <rect key="frame" x="109" y="11.5" width="176" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -314,7 +310,7 @@
                                             <segue destination="wQN-UF-ub2" kind="show" identifier="showProfileSegue" id="dCv-Ft-cEQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="9bL-Sl-roo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="43.5" id="9bL-Sl-roo">
                                         <rect key="frame" x="0.0" y="99" width="320" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9bL-Sl-roo" id="nXg-Xo-WQ0">
@@ -328,7 +324,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 курс" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlJ-fY-hyh">
-                                                    <rect key="frame" x="236" y="12" width="49" height="20.5"/>
+                                                    <rect key="frame" x="236" y="11.5" width="49" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>

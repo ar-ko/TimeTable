@@ -14,6 +14,8 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     
     lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var groupSchedule: GroupSchedule?
+    var groupProfile: String = ""
+    var groupCurse: String = ""
     
     @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
@@ -24,6 +26,28 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         return refreshControl
     }()
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
+        groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
+        
+        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "group.name == %@ AND group.curse == %@", argumentArray: [groupProfile, groupCurse])
+        do {
+            let result = try self.context.fetch(fetchRequest)
+            if result.count > 0 {
+                groupSchedule = result.first
+            } else {
+                groupSchedule = GroupSchedule(context: context)
+                groupSchedule?.group = createGroup(context: context)
+                groupSchedule?.timeTable = NSOrderedSet(array: [Day]())
+                groupSchedule?.lastUpdate = nil
+            }
+        } catch {
+            print(error)
+        }
+        getTimeTable(context: context)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,26 +60,16 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
             let result = try self.context.fetch(fetchRequest)
             print("Расписаний: \(result.count)")
             
-            if result.count > 0 {
-                groupSchedule = result.first
-                updateDayTitleAndReloadView()
-            } else {
-                groupSchedule = GroupSchedule(context: context)
-                groupSchedule?.group = createGroup(context: context)
-                groupSchedule?.timeTable = NSOrderedSet(array: [Day]())
-                groupSchedule?.lastUpdate = nil
-            }
         } catch {
             print(error)
+            
         }
         
         if let tbc = self.tabBarController as? CustomTabBarController {
-            tbc.groupScheldue = groupSchedule
             tbc.context = context
         }
         
         timeTableView.refreshControl = timeTableRefreshControl
-        getTimeTable(context: context)
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -63,7 +77,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         if tabBarIndex == 0 {
             groupSchedule?.indexOfSelectedDay = groupSchedule?.getIndexForToday() ?? groupSchedule!.indexOfSelectedDay
             groupSchedule?.dayTitle = (groupSchedule?.getDayName(currentDayIndex: groupSchedule!.indexOfSelectedDay))!
-            getTimeTable(context: context)
+            updateDayTitleAndReloadView()
         }
     }
     
@@ -84,7 +98,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         let group = Group(context: context)
         
         group.name = "Экономика и управление"
-        group.curse = "1"
+        group.curse = "1 курс"
         group.sheetId = "%D0%BF%D1%80%D0%BE%D1%84%D1%8B"
         group.spreadsheetId = "1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw"
         
@@ -97,6 +111,9 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         group.groupInfoStartRow = 8
         group.groupInfoEndColumn = "D"
         group.groupInfoEndRow = 10
+        
+        UserDefaults.standard.set("Экономика и управление", forKey: "groupProfile")
+        UserDefaults.standard.set("1 курс", forKey: "groupCurse")
         
         return group
     }
@@ -132,6 +149,7 @@ extension TimeTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var day: Day?
+        guard groupSchedule != nil else { return 0 }
         if groupSchedule!.timeTable.count > 0 {
             day = groupSchedule!.timeTable[groupSchedule!.indexOfSelectedDay] as? Day
         }

@@ -11,16 +11,14 @@ import CoreData
 
 class SettingsViewController: UITableViewController {
     
-    var groupSchedule: GroupSchedule?
     var context: NSManagedObjectContext?
     var groups: [Group] = []
-    var groupProfile = UserDefaults.standard.string(forKey: "groupProfile")
-    var groupCurse = UserDefaults.standard.string(forKey: "groupCurse")
     
     
     @IBOutlet weak var groupProfileLabel: UILabel!
     @IBOutlet weak var groupCurseLabel: UILabel!
-    
+    var groupProfile: String?
+    var groupCurse: String?
     
     override func viewWillAppear(_ animated: Bool) {
         groupProfile = UserDefaults.standard.string(forKey: "groupProfile")
@@ -29,10 +27,24 @@ class SettingsViewController: UITableViewController {
         groupProfileLabel.text = groupProfile
         groupCurseLabel.text = groupCurse
         
-        groupSchedule?.group = groups.filter {$0.name == groupProfile && $0.curse == groupCurse}.first!
-        
         if let selectedRow = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedRow, animated: true)
+        }
+        
+        
+        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "group.name == %@ AND group.curse == %@", argumentArray: [groupProfile!, groupCurse!])
+        do {
+            let result = try self.context!.fetch(fetchRequest)
+            
+            if result.count == 0 {
+                let groupSchedule = GroupSchedule(context: context!)
+                groupSchedule.group = groups.filter {$0.name == groupProfile && $0.curse == groupCurse}.first!
+                groupSchedule.timeTable = NSOrderedSet(array: [Day]())
+                groupSchedule.lastUpdate = nil
+            }
+        } catch {
+            print(error)
         }
     }
     
@@ -40,7 +52,6 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         
         if let tbc = self.tabBarController as? CustomTabBarController {
-            groupSchedule = tbc.groupScheldue
             context = tbc.context
         }
         
@@ -75,5 +86,7 @@ class SettingsViewController: UITableViewController {
         
     }
     
-    @IBAction func cancelAction(_ seque: UIStoryboardSegue) {}
+    @IBAction func cancelAction(_ seque: UIStoryboardSegue) {
+
+    }
 }
