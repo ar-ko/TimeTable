@@ -12,15 +12,15 @@ import CoreData
 
 class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     
-    lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var groupSchedule: GroupSchedule?
-    var groupProfile: String = ""
-    var groupCurse: String = ""
+    private lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var groupSchedule: GroupSchedule?
+    private var groupProfile: String = ""
+    private var groupCurse: String = ""
     
     @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
     
-    let timeTableRefreshControl: UIRefreshControl = {
+    private let timeTableRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         return refreshControl
@@ -37,11 +37,15 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
             let result = try self.context.fetch(fetchRequest)
             if result.count > 0 {
                 groupSchedule = result.first
+                
             } else {
                 groupSchedule = GroupSchedule(context: context)
                 groupSchedule?.group = createGroup(context: context)
                 groupSchedule?.timeTable = NSOrderedSet(array: [Day]())
                 groupSchedule?.lastUpdate = nil
+                /*DispatchQueue.main.async(){
+                 self.performSegue(withIdentifier: "setupGroupSeque", sender: self)
+                 }*/
             }
         } catch {
             print(error)
@@ -51,25 +55,24 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //remove()
+        printGroupSchelduesCount()
         
         self.tabBarController?.delegate = self
-        
-        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
-        do {
-            let result = try self.context.fetch(fetchRequest)
-            print("Расписаний: \(result.count)")
-            
-        } catch {
-            print(error)
-            
-        }
-        
         if let tbc = self.tabBarController as? CustomTabBarController {
             tbc.context = context
         }
         
         timeTableView.refreshControl = timeTableRefreshControl
+    }
+    
+    private func printGroupSchelduesCount() {
+        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
+        do {
+            let result = try self.context.fetch(fetchRequest)
+            print("Расписаний: \(result.count)")
+        } catch {
+            print(error)
+        }
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -78,19 +81,6 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
             groupSchedule?.indexOfSelectedDay = groupSchedule?.getIndexForToday() ?? groupSchedule!.indexOfSelectedDay
             groupSchedule?.dayTitle = (groupSchedule?.getDayName(currentDayIndex: groupSchedule!.indexOfSelectedDay))!
             updateDayTitleAndReloadView()
-        }
-    }
-    
-    func remove() {
-        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
-        do {
-            let result = try context.fetch(fetchRequest)
-            for res in result {
-                context.delete(res)
-            }
-            try context.save()
-        } catch {
-            print(error)
         }
     }
     
@@ -225,4 +215,14 @@ extension TimeTableViewController {
         
         updateDayTitleAndReloadView()
     }
+    
+ /*   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "setupGroupSeque" {
+            let vc = segue.destination as! SettingsViewController
+            vc.context = context
+        }
+    }
+    
+    @IBAction func cancelAction(_ seque: UIStoryboardSegue) {
+    }*/
 }

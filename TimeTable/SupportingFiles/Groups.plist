@@ -30,6 +30,84 @@
 	</dict>
 	<dict>
 		<key>name</key>
+		<string>Сервис мехатронных систем</string>
+		<key>curse</key>
+		<string>1 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>F</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>I</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>G</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>H</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Правоведение и правоохранительная деятельность</string>
+		<key>curse</key>
+		<string>2 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>J</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>M</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>K</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>L</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Сервис мехатронных систем</string>
+		<key>curse</key>
+		<string>2 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>N</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>Q</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>O</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>P</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
 		<string>Экономика и управление</string>
 		<key>curse</key>
 		<string>2 курс</string>
@@ -56,27 +134,183 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>Сервис мехатронных систем</string>
+		<string>Электроника, радиотехника и связь</string>
 		<key>curse</key>
-		<string>1 курс</string>
+		<string>3 курс</string>
 		<key>sheetId</key>
 		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
 		<key>spreadsheetId</key>
 		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
 		<key>startColumn</key>
-		<string>F</string>
+		<string>V</string>
 		<key>startRow</key>
 		<integer>11</integer>
 		<key>endColumn</key>
-		<string>I</string>
+		<string>Y</string>
 		<key>endRow</key>
 		<integer>179</integer>
 		<key>groupInfoStartColumn</key>
-		<string>G</string>
+		<string>W</string>
 		<key>groupInfoStartRow</key>
 		<integer>8</integer>
 		<key>groupInfoEndColumn</key>
-		<string>H</string>
+		<string>X</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Экономика и управление</string>
+		<key>curse</key>
+		<string>3 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>Z</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>AC</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>AA</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>AB</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Правоведение и правоохранительная деятельность</string>
+		<key>curse</key>
+		<string>3 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>AD</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>AG</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>AE</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>AF</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Сервис</string>
+		<key>curse</key>
+		<string>4 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>AH</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>AK</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>AI</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>AJ</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Правоведение и правоохранительная деятельность</string>
+		<key>curse</key>
+		<string>4 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>AL</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>AO</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>AM</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>AN</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Электроника, радиотехника и связь</string>
+		<key>curse</key>
+		<string>4 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>AP</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>AS</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>AQ</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>AR</string>
+		<key>groupInfoEndRow</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Экономика и управление</string>
+		<key>curse</key>
+		<string>4 курс</string>
+		<key>sheetId</key>
+		<string>%D0%BF%D1%80%D0%BE%D1%84%D1%8B</string>
+		<key>spreadsheetId</key>
+		<string>1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw</string>
+		<key>startColumn</key>
+		<string>AT</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>AW</string>
+		<key>endRow</key>
+		<integer>179</integer>
+		<key>groupInfoStartColumn</key>
+		<string>AU</string>
+		<key>groupInfoStartRow</key>
+		<integer>8</integer>
+		<key>groupInfoEndColumn</key>
+		<string>AV</string>
 		<key>groupInfoEndRow</key>
 		<integer>10</integer>
 	</dict>

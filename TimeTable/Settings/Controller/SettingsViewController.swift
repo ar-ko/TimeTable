@@ -11,18 +11,19 @@ import CoreData
 
 class SettingsViewController: UITableViewController {
     
-    var context: NSManagedObjectContext?
-    var groups: [Group] = []
-    
+    private var context: NSManagedObjectContext?
+    private var groups: [Group] = []
+    private var groupProfile: String?
+    private var groupCurse: String?
     
     @IBOutlet weak var groupProfileLabel: UILabel!
     @IBOutlet weak var groupCurseLabel: UILabel!
-    var groupProfile: String?
-    var groupCurse: String?
+    @IBOutlet weak var clearCacheButton: UIButton!
+    
     
     override func viewWillAppear(_ animated: Bool) {
-        groupProfile = UserDefaults.standard.string(forKey: "groupProfile")
-        groupCurse = UserDefaults.standard.string(forKey: "groupCurse")
+        groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
+        groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
         
         groupProfileLabel.text = groupProfile
         groupCurseLabel.text = groupCurse
@@ -30,7 +31,6 @@ class SettingsViewController: UITableViewController {
         if let selectedRow = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedRow, animated: true)
         }
-        
         
         let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "group.name == %@ AND group.curse == %@", argumentArray: [groupProfile!, groupCurse!])
@@ -46,6 +46,9 @@ class SettingsViewController: UITableViewController {
         } catch {
             print(error)
         }
+        
+        clearCacheButton.setTitleColor(#colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1), for: .normal)
+        clearCacheButton.isEnabled = true
     }
     
     override func viewDidLoad() {
@@ -86,7 +89,24 @@ class SettingsViewController: UITableViewController {
         
     }
     
+    @IBAction func clearCacheButtonPressed(_ sender: Any) {
+        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "group.name != %@ AND group.curse != %@", argumentArray: [groupProfile!, groupCurse!])
+        do {
+            let result = try context!.fetch(fetchRequest)
+            for res in result {
+                context!.delete(res)
+            }
+            try context!.save()
+            print("Cache clear!")
+        } catch {
+            print(error)
+        }
+        clearCacheButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
+        clearCacheButton.isEnabled = false
+    }
+    
     @IBAction func cancelAction(_ seque: UIStoryboardSegue) {
-
+        
     }
 }

@@ -12,7 +12,6 @@ import CoreData
 
 class CustomTabBarController: UITabBarController {
     
-    var groupScheldue: GroupSchedule?
     var context: NSManagedObjectContext?
     
     
