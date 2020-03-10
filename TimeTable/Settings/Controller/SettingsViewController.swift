@@ -11,10 +11,8 @@ import CoreData
 
 class SettingsViewController: UITableViewController {
     
-    private var context: NSManagedObjectContext?
+    var context: NSManagedObjectContext?
     private var groups: [Group] = []
-    private var groupProfile: String?
-    private var groupCurse: String?
     
     @IBOutlet weak var groupProfileLabel: UILabel!
     @IBOutlet weak var groupCurseLabel: UILabel!
@@ -22,29 +20,14 @@ class SettingsViewController: UITableViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
-        groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
+        let groupProfile = UserDefaults.standard.string(forKey: "groupProfile")
+        let groupCurse = UserDefaults.standard.string(forKey: "groupCurse")
         
         groupProfileLabel.text = groupProfile
         groupCurseLabel.text = groupCurse
         
         if let selectedRow = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedRow, animated: true)
-        }
-        
-        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "group.name == %@ AND group.curse == %@", argumentArray: [groupProfile!, groupCurse!])
-        do {
-            let result = try self.context!.fetch(fetchRequest)
-            
-            if result.count == 0 {
-                let groupSchedule = GroupSchedule(context: context!)
-                groupSchedule.group = groups.filter {$0.name == groupProfile && $0.curse == groupCurse}.first!
-                groupSchedule.timeTable = NSOrderedSet(array: [Day]())
-                groupSchedule.lastUpdate = nil
-            }
-        } catch {
-            print(error)
         }
         
         clearCacheButton.setTitleColor(#colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1), for: .normal)
@@ -64,32 +47,23 @@ class SettingsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == "showProfileSegue",
             let destination = segue.destination as? ProfileViewController {
-            var groupProfiles: [String] = []
-            for group in groups {
-                if !groupProfiles.contains(group.name) {
-                    groupProfiles.append(group.name)
-                }
-            }
-            groupProfiles.sort()
-            destination.groupProfiles = groupProfiles
+            
             destination.context = context!
             destination.groups = groups
         }
         if segue.identifier == "changeCurseSegue",
             let destination = segue.destination as? CurseViewController {
-            var groupCurses: [String] = []
-            for group in groups {
-                if group.name == UserDefaults.standard.string(forKey: "groupProfile") {
-                    groupCurses.append(group.curse)
-                }
-            }
-            groupCurses.sort()
-            destination.groupCurses = groupCurses
+
+            destination.groups = groups
+            destination.context = context
         }
         
     }
     
     @IBAction func clearCacheButtonPressed(_ sender: Any) {
+        let groupProfile = UserDefaults.standard.string(forKey: "groupProfile")
+        let groupCurse = UserDefaults.standard.string(forKey: "groupCurse")
+        
         let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "group.name != %@ AND group.curse != %@", argumentArray: [groupProfile!, groupCurse!])
         do {
@@ -107,6 +81,5 @@ class SettingsViewController: UITableViewController {
     }
     
     @IBAction func cancelAction(_ seque: UIStoryboardSegue) {
-        
     }
 }

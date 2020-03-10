@@ -37,20 +37,20 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
             let result = try self.context.fetch(fetchRequest)
             if result.count > 0 {
                 groupSchedule = result.first
-                
+                getTimeTable(context: context)
             } else {
-                groupSchedule = GroupSchedule(context: context)
+                /*groupSchedule = GroupSchedule(context: context)
                 groupSchedule?.group = createGroup(context: context)
                 groupSchedule?.timeTable = NSOrderedSet(array: [Day]())
-                groupSchedule?.lastUpdate = nil
-                /*DispatchQueue.main.async(){
+                groupSchedule?.lastUpdate = nil*/
+                DispatchQueue.main.async(){
                  self.performSegue(withIdentifier: "setupGroupSeque", sender: self)
-                 }*/
+                 }
             }
         } catch {
             print(error)
         }
-        getTimeTable(context: context)
+        
     }
     
     override func viewDidLoad() {
@@ -216,13 +216,13 @@ extension TimeTableViewController {
         updateDayTitleAndReloadView()
     }
     
- /*   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "setupGroupSeque" {
             let vc = segue.destination as! SettingsViewController
             vc.context = context
         }
     }
     
-    @IBAction func cancelAction(_ seque: UIStoryboardSegue) {
-    }*/
+    @IBAction func cancelActionMain(_ seque: UIStoryboardSegue) {
+    }
 }

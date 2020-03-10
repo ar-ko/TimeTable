@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Сегодня-->
+        <!--Time Table View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="TimeTableViewController" id="BYZ-38-t0r" customClass="TimeTableViewController" customModule="TimeTable" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E64-3i-kHT">
-                                <rect key="frame" x="0.0" y="60" width="320" height="459"/>
+                                <rect key="frame" x="0.0" y="104" width="320" height="415"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="lastUpdateCell" id="3Ek-Xr-34H" customClass="LastUpdateCell" customModule="TimeTable" customModuleProvider="target">
@@ -175,7 +175,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWT-EV-yec">
-                                <rect key="frame" x="16" y="16" width="30" height="30"/>
+                                <rect key="frame" x="16" y="60" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="9nu-Nw-9yZ"/>
                                     <constraint firstAttribute="height" constant="30" id="pjA-hU-vj0"/>
@@ -187,7 +187,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bd5-Zd-jrG">
-                                <rect key="frame" x="274" y="16" width="30" height="30"/>
+                                <rect key="frame" x="274" y="60" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="6QK-X9-m0t"/>
                                     <constraint firstAttribute="height" constant="30" id="Mxp-0S-7AH"/>
@@ -201,7 +201,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Расписание" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C27-9t-3Ll">
-                                <rect key="frame" x="54" y="21" width="212" height="20.5"/>
+                                <rect key="frame" x="54" y="65" width="212" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -224,10 +224,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Сегодня" image="CalendarRegular" landscapeImage="CalendarCompact" id="id7-Rs-hkS"/>
+                    <navigationItem key="navigationItem" id="bej-Wl-4Ew"/>
                     <connections>
                         <outlet property="dayTitle" destination="C27-9t-3Ll" id="Uzd-zY-xgh"/>
                         <outlet property="timeTableView" destination="E64-3i-kHT" id="5Br-qh-vDq"/>
+                        <segue destination="kYL-Wf-Cxt" kind="show" identifier="setupGroupSeque" id="6w3-c6-Gg1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -242,7 +243,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1012.5" y="-154.22535211267606"/>
+            <point key="canvasLocation" x="1817" y="-154"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="k33-GB-U5c">
@@ -256,7 +257,7 @@
                         <color key="selectedImageTintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="TXx-tx-QCV"/>
+                        <segue destination="URq-Uh-yIs" kind="relationship" relationship="viewControllers" id="TXx-tx-QCV"/>
                         <segue destination="2HW-9t-PIL" kind="relationship" relationship="viewControllers" id="R2a-Br-Vjh"/>
                     </connections>
                 </tabBarController>
@@ -432,7 +433,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NP4-cC-P2A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="188"/>
+            <point key="canvasLocation" x="2828" y="194"/>
         </scene>
         <!--Курс-->
         <scene sceneID="akI-uJ-DOh">
@@ -451,7 +452,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Xqj-hd-FNx" kind="unwind" unwindAction="cancelAction:" id="3hX-UO-pPA"/>
+                                    <segue destination="Xqj-hd-FNx" kind="unwind" unwindAction="cancelAction:" id="iNZ-3h-y03"/>
+                                    <segue destination="Xqj-hd-FNx" kind="unwind" trigger="accessoryAction" unwindAction="cancelActionMain:" id="cjh-Gg-7wG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -486,6 +488,25 @@
             </objects>
             <point key="canvasLocation" x="1013" y="560"/>
         </scene>
+        <!--Сегодня-->
+        <scene sceneID="YYy-Ou-krs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="URq-Uh-yIs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Сегодня" image="CalendarRegular" landscapeImage="CalendarCompact" id="id7-Rs-hkS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Liv-ne-Zf6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vxQ-Ox-fMN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IPh-zt-Aoh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012.5" y="-154.22535211267606"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CalendarCompact" width="18" height="18"/>
@@ -497,5 +518,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="z3b-C1-m4V"/>
+        <segue reference="6w3-c6-Gg1"/>
     </inferredMetricsTieBreakers>
 </document>

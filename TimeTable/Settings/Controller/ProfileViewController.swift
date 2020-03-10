@@ -12,9 +12,9 @@ import CoreData
 
 class ProfileViewController: UITableViewController {
     
-    var groupProfiles: [String] = []
     var groups: [Group] = []
     var context: NSManagedObjectContext?
+    private var groupProfiles: [String] = []
     private var filteredProfiles: [String] = []
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -29,6 +29,13 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for group in groups {
+            if !groupProfiles.contains(group.name) {
+                groupProfiles.append(group.name)
+            }
+        }
+        groupProfiles.sort()
         
         configureSearchController()
     }
@@ -54,16 +61,10 @@ class ProfileViewController: UITableViewController {
                 
                 UserDefaults.standard.set(groupProfile, forKey: "groupProfile")
                 
-                var groupCurses: [String] = []
-                for group in groups {
-                    if group.name == groupProfile {
-                        groupCurses.append(group.curse)
-                    }
-                }
-                groupCurses.sort()
-                
                 let destination = segue.destination as! CurseViewController
-                destination.groupCurses = groupCurses
+                
+                destination.groups = groups
+                destination.context = context
             }
         }
     }
