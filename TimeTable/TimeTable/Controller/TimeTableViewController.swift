@@ -28,6 +28,8 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
         groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
         groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
         
@@ -39,18 +41,15 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
                 groupSchedule = result.first
                 getTimeTable(context: context)
             } else {
-                /*groupSchedule = GroupSchedule(context: context)
-                groupSchedule?.group = createGroup(context: context)
-                groupSchedule?.timeTable = NSOrderedSet(array: [Day]())
-                groupSchedule?.lastUpdate = nil*/
-                DispatchQueue.main.async(){
                  self.performSegue(withIdentifier: "setupGroupSeque", sender: self)
-                 }
             }
         } catch {
             print(error)
         }
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewDidLoad() {
@@ -82,30 +81,6 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
             groupSchedule?.dayTitle = (groupSchedule?.getDayName(currentDayIndex: groupSchedule!.indexOfSelectedDay))!
             updateDayTitleAndReloadView()
         }
-    }
-    
-    func createGroup(context: NSManagedObjectContext) -> Group {
-        let group = Group(context: context)
-        
-        group.name = "Экономика и управление"
-        group.curse = "1 курс"
-        group.sheetId = "%D0%BF%D1%80%D0%BE%D1%84%D1%8B"
-        group.spreadsheetId = "1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw"
-        
-        group.startColumn = "B"
-        group.startRow = 11
-        group.endColumn = "E"
-        group.endRow = 179
-        
-        group.groupInfoStartColumn = "C"
-        group.groupInfoStartRow = 8
-        group.groupInfoEndColumn = "D"
-        group.groupInfoEndRow = 10
-        
-        UserDefaults.standard.set("Экономика и управление", forKey: "groupProfile")
-        UserDefaults.standard.set("1 курс", forKey: "groupCurse")
-        
-        return group
     }
 }
 
@@ -173,7 +148,7 @@ extension TimeTableViewController {
     
     func updateDayTitleAndReloadView() {
         DispatchQueue.main.async {
-            self.dayTitle.text = self.groupSchedule!.dayTitle
+            self.dayTitle.text = self.groupSchedule?.dayTitle ?? "Расписание"
             self.timeTableView.reloadData()
         }
     }
@@ -218,8 +193,9 @@ extension TimeTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "setupGroupSeque" {
-            let vc = segue.destination as! SettingsViewController
-            vc.context = context
+            let destination = segue.destination as! ProfileViewController
+            destination.context = context
+            destination.firstLaunch = true
         }
     }
     

@@ -12,8 +12,9 @@ import CoreData
 
 class ProfileViewController: UITableViewController {
     
-    var groups: [Group] = []
+    var firstLaunch: Bool?
     var context: NSManagedObjectContext?
+    private var groups: [Group] = []
     private var groupProfiles: [String] = []
     private var filteredProfiles: [String] = []
     
@@ -29,6 +30,7 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        groups = GetGroupsResponse(context: context!).groups
         
         for group in groups {
             if !groupProfiles.contains(group.name) {
@@ -65,6 +67,7 @@ class ProfileViewController: UITableViewController {
                 
                 destination.groups = groups
                 destination.context = context
+                destination.firstLaunch = firstLaunch
             }
         }
     }

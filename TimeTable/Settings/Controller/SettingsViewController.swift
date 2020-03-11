@@ -49,7 +49,7 @@ class SettingsViewController: UITableViewController {
             let destination = segue.destination as? ProfileViewController {
             
             destination.context = context!
-            destination.groups = groups
+            
         }
         if segue.identifier == "changeCurseSegue",
             let destination = segue.destination as? CurseViewController {

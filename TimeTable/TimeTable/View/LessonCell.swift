@@ -14,12 +14,17 @@ class LessonCell: UITableViewCell {
     @IBOutlet weak var lessonStartTimeLabel: UILabel!
     @IBOutlet weak var lessonEndTimeLabel: UILabel!
     
-    @IBOutlet weak var mainInformationStackView: UIStackView!
+    
     @IBOutlet weak var lessonTitleLabel: UILabel!
     @IBOutlet weak var lessonTeacherNameLabel: UILabel!
+    @IBOutlet weak var lessonTeacherNameHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lessonTeacherNameBottomConstraint: NSLayoutConstraint!
+    
     
     @IBOutlet weak var lessonTypeLabel: UILabel!
     @IBOutlet weak var lessonTypeHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lessonTypeBottomConstraint: NSLayoutConstraint!
+    
     
     @IBOutlet weak var lessonLocationLabel: UILabel!
     
@@ -28,6 +33,7 @@ class LessonCell: UITableViewCell {
     
     @IBOutlet weak var lessonNoteLabel: UILabel!
     @IBOutlet weak var lessonNoteHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lessonNoteBottomConstraint: NSLayoutConstraint!
     
     
     func configure(with lesson: Lesson) {
@@ -37,7 +43,6 @@ class LessonCell: UITableViewCell {
         self.lessonStartTimeLabel.text = dateFormatter.string(from: lesson.startTime)
         self.lessonEndTimeLabel.text = dateFormatter.string(from: lesson.endTime)
         self.lessonTitleLabel.text = lesson.title
-        self.lessonTeacherNameLabel.text = lesson.teacherName
         
         var lessonType: String
         
@@ -54,22 +59,29 @@ class LessonCell: UITableViewCell {
         default: lessonType += ""
         }
         
-        if lessonType == "" {
-            if #available(iOS 11.0, *) {
-                self.mainInformationStackView.setCustomSpacing(0, after: self.lessonTypeLabel)
-            } else {
-            }
-            self.lessonTypeHeightConstraint.constant = 0
-            self.lessonTypeLabel.text = nil
-            
+        if lesson.note != nil {
+            self.lessonNoteBottomConstraint.constant = 8
+            self.lessonNoteHeightConstraint.constant = 16
+            self.lessonNoteLabel.text = lesson.note!
         }
         else {
-            self.lessonTypeLabel.text = lessonType
-            if #available(iOS 11.0, *) {
-                self.mainInformationStackView.setCustomSpacing(8, after: self.lessonTypeLabel)
-            } else {
-            }
+            self.lessonNoteBottomConstraint.constant = 0
+            self.lessonNoteHeightConstraint.constant = 0
+            
+            self.lessonNoteLabel.text = nil
+        }
+        
+        if lessonType != "" {
+            self.lessonTypeBottomConstraint.constant = 8
             self.lessonTypeHeightConstraint.constant = 16
+            
+            self.lessonTypeLabel.text = lessonType
+        }
+        else {
+            self.lessonTypeBottomConstraint.constant = 0
+            self.lessonTypeHeightConstraint.constant = 0
+            
+            self.lessonTypeLabel.text = nil
         }
         
         if lesson.locations != nil {
@@ -84,24 +96,18 @@ class LessonCell: UITableViewCell {
             self.lessonLocationLabel.text = locations
         }
         
-        if lesson.note != nil {
-            self.lessonNoteLabel.text = lesson.note!
+        if lesson.teacherName != nil {
+            self.lessonTeacherNameBottomConstraint.constant = 8
+            self.lessonTeacherNameHeightConstraint.constant = 18
             
-            if #available(iOS 11.0, *) {
-                self.mainInformationStackView.setCustomSpacing(8, after: self.lessonNoteLabel)
-            } else {
-            }
-            self.lessonNoteHeightConstraint.constant = 16
-        }
-        else {
-            self.lessonNoteLabel.text = nil
+            self.lessonTeacherNameLabel.text = lesson.teacherName
+        } else {
+            self.lessonTeacherNameBottomConstraint.constant = 0
+            self.lessonTeacherNameHeightConstraint.constant = 0
             
-            if #available(iOS 11.0, *) {
-                self.mainInformationStackView.setCustomSpacing(0, after: self.lessonNoteLabel)
-            } else {
-            }
-            self.lessonNoteHeightConstraint.constant = 0
+            self.lessonTeacherNameLabel.text = nil
         }
+
         
         self.otherLocationView.backgroundColor = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
         

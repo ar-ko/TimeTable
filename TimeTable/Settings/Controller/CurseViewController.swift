@@ -11,7 +11,8 @@ import CoreData
 
 
 class CurseViewController: UITableViewController {
-
+    
+    var firstLaunch: Bool?
     var groups: [Group] = []
     var context: NSManagedObjectContext?
     private var groupCurses: [String] = []
@@ -57,12 +58,17 @@ class CurseViewController: UITableViewController {
                 groupSchedule.group = groups.filter {$0.name == groupProfile && $0.curse == groupCurse}.first!
                 groupSchedule.timeTable = NSOrderedSet(array: [Day]())
                 groupSchedule.lastUpdate = nil
-                
                 try context!.save()
                 print("New group create!")
             }
         } catch {
             print(error)
         }
+        
+        if firstLaunch == true {
+            performSegue(withIdentifier: "backToMainSegue", sender: nil)
+        }
+        performSegue(withIdentifier: "backToSettingsSegue", sender: nil)
+        
     }
 }
