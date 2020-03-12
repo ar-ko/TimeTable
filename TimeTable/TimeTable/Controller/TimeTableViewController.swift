@@ -28,7 +28,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: true)
         
         groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
         groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
@@ -41,7 +41,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
                 groupSchedule = result.first
                 getTimeTable(context: context)
             } else {
-                 self.performSegue(withIdentifier: "setupGroupSeque", sender: self)
+                self.performSegue(withIdentifier: "setupGroupSeque", sender: self)
             }
         } catch {
             print(error)
@@ -49,7 +49,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidLoad() {

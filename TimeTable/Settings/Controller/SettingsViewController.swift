@@ -48,7 +48,7 @@ class SettingsViewController: UITableViewController {
         if  segue.identifier == "showProfileSegue",
             let destination = segue.destination as? ProfileViewController {
             
-            destination.context = context!
+            destination.context = context
             
         }
         if segue.identifier == "changeCurseSegue",

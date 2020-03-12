@@ -30,6 +30,7 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         groups = GetGroupsResponse(context: context!).groups
         
         for group in groups {
