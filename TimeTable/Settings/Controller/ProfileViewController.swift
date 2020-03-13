@@ -12,9 +12,9 @@ import CoreData
 
 class ProfileViewController: UITableViewController {
     
-    var firstLaunch: Bool?
-    var context: NSManagedObjectContext?
-    private var groups: [Group] = []
+    var firstLaunch = false
+    var context: NSManagedObjectContext!
+    var groups: [Group] = []
     private var groupProfiles: [String] = []
     private var filteredProfiles: [String] = []
     
@@ -31,7 +31,9 @@ class ProfileViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        groups = GetGroupsResponse(context: context!).groups
+        if firstLaunch {
+            groups = GetGroupsResponse(context: context!).groups
+        }
         
         for group in groups {
             if !groupProfiles.contains(group.name) {
@@ -41,6 +43,10 @@ class ProfileViewController: UITableViewController {
         groupProfiles.sort()
         
         configureSearchController()
+    }
+    
+    deinit {
+        self.searchController.view.removeFromSuperview()
     }
     
     private func configureSearchController() {
@@ -71,10 +77,6 @@ class ProfileViewController: UITableViewController {
                 destination.firstLaunch = firstLaunch
             }
         }
-    }
-    
-    deinit {
-        self.searchController.view.removeFromSuperview()
     }
     
     // MARK: - Table view data source

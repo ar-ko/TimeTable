@@ -28,6 +28,7 @@
 		BB8A2F45241157D7009944D3 /* GroupSchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535624050DE100910D37 /* GroupSchedule+CoreDataProperties.swift */; };
 		BB8A2F4824116701009944D3 /* GroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F4724116701009944D3 /* GroupResponse.swift */; };
 		BBBAAED9241034B60034DA8F /* Groups.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBBAAED8241034B60034DA8F /* Groups.plist */; };
+		BBC14372241BF9EB00BBEBAC /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */; };
 		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
 		BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */; };
 		BBDB8D7C240BBADD007DB747 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */; };
@@ -63,6 +64,7 @@
 		BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BB8A2F4724116701009944D3 /* GroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponse.swift; sourceTree = "<group>"; };
 		BBBAAED8241034B60034DA8F /* Groups.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Groups.plist; sourceTree = "<group>"; };
+		BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BBC902F123E1BA640021CA1C /* TimeTableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableNetworkService.swift; sourceTree = "<group>"; };
 		BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				BB8A2F46241166E0009944D3 /* Responses */,
+				BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				BB43536124050DE100910D37 /* Location+CoreDataClass.swift in Sources */,
 				BB43536624050DE100910D37 /* Lesson+CoreDataProperties.swift in Sources */,
 				BB43536224050DE100910D37 /* Location+CoreDataProperties.swift in Sources */,
+				BBC14372241BF9EB00BBEBAC /* CoreDataStorage.swift in Sources */,
 				BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
 				BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */,
