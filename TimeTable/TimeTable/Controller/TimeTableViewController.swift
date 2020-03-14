@@ -14,8 +14,8 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     
     private lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var groupSchedule: GroupSchedule?
-    private var groupProfile: String = ""
-    private var groupCurse: String = ""
+    private var groupProfile: String!
+    private var groupCurse: String!
     
     @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
@@ -26,6 +26,8 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         return refreshControl
     }()
     
+    let coreDataStorage = CoreDataStorage()
+    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -33,28 +35,23 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
         groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
         
-        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "group.name == %@ AND group.curse == %@", argumentArray: [groupProfile, groupCurse])
-        do {
-            let result = try self.context.fetch(fetchRequest)
-            if result.count > 0 {
-                groupSchedule = result.first
-                getTimeTable(context: context)
-            } else {
-                self.performSegue(withIdentifier: "setupGroupSeque", sender: self)
+        groupSchedule = coreDataStorage.loadGroupScheldule(profile: groupProfile, curse: groupCurse, in: context)
+        
+        if groupSchedule != nil {
+            self.coreDataStorage.getTimeTable(for: self.groupSchedule!, in: self.context){ (complite) in
+                if complite {
+                    self.updateDayTitleAndReloadView()
+                }
             }
-        } catch {
-            print(error)
+        } else {
+            performSegue(withIdentifier: "setupGroupSeque", sender: self)
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        printGroupSchelduesCount()
+        
+        coreDataStorage.printGroupSchelduesCount(in: context)
         
         self.tabBarController?.delegate = self
         if let tbc = self.tabBarController as? CustomTabBarController {
@@ -64,14 +61,8 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         timeTableView.refreshControl = timeTableRefreshControl
     }
     
-    private func printGroupSchelduesCount() {
-        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
-        do {
-            let result = try self.context.fetch(fetchRequest)
-            print("Расписаний: \(result.count)")
-        } catch {
-            print(error)
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -113,48 +104,29 @@ extension TimeTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var day: Day?
+        var day: Day!
         guard groupSchedule != nil else { return 0 }
         if groupSchedule!.timeTable.count > 0 {
             day = groupSchedule!.timeTable[groupSchedule!.indexOfSelectedDay] as? Day
         }
         
-        return groupSchedule!.timeTable.count > 0 ? day!.lessons!.count + 1 : 0
+        return groupSchedule!.timeTable.count > 0 ? day.lessons!.count + 1 : 0
     }
 }
 
 extension TimeTableViewController {
     
-    func getTimeTable(context: NSManagedObjectContext) {
-        TimeTableNetworkService.getTimeTable(group: self.groupSchedule!.group, context: context) { (response) in
-            if let response = response {
-                self.groupSchedule!.timeTable = NSOrderedSet(array: response.timeTable)
-                self.groupSchedule!.lastUpdate = Date()
-                
-                do {
-                    try context.save()
-                    print("GroupSchedule saved!")
-                } catch {
-                    print(error)
-                }
-                self.updateDayTitleAndReloadView()
-            }
-            else {
-                print("load from cash")
-                self.updateDayTitleAndReloadView()
-            }
-        }
-    }
-    
     func updateDayTitleAndReloadView() {
-        DispatchQueue.main.async {
-            self.dayTitle.text = self.groupSchedule?.dayTitle ?? "Расписание"
-            self.timeTableView.reloadData()
-        }
+        self.dayTitle.text = self.groupSchedule?.dayTitle ?? "Расписание"
+        self.timeTableView.reloadData()
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
-        getTimeTable(context: context)
+        self.coreDataStorage.getTimeTable(for: self.groupSchedule!, in: self.context){ (complite) in
+            if complite {
+                self.updateDayTitleAndReloadView()
+            }
+        }
         
         sender.endRefreshing()
     }
@@ -194,6 +166,7 @@ extension TimeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "setupGroupSeque" {
             let destination = segue.destination as! ProfileViewController
+            
             destination.context = context
             destination.firstLaunch = true
         }

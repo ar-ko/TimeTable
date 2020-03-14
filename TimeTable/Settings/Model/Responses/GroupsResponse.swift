@@ -13,6 +13,7 @@ import CoreData
 struct GetGroupsResponse {
     var groups: [Group] = []
     
+    
     init(context: NSManagedObjectContext) {
         let pathToFile = Bundle.main.path(forResource: "Groups", ofType: "plist")
         let dataArray = NSArray(contentsOfFile: pathToFile!)!
@@ -37,5 +38,4 @@ struct GetGroupsResponse {
             groups.append(group)
         }
     }
-    
 }

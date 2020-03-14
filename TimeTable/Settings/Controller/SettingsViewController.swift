@@ -15,7 +15,6 @@ class SettingsViewController: UITableViewController {
     private var groups: [Group] = []
     private var groupProfile: String!
     private var groupCurse: String!
-    private let coreDataStorage = CoreDataStorage()
     
     @IBOutlet weak var groupProfileLabel: UILabel!
     @IBOutlet weak var groupCurseLabel: UILabel!
@@ -64,7 +63,8 @@ class SettingsViewController: UITableViewController {
     }
     
     @IBAction func clearCacheButtonPressed(_ sender: Any) {
-        coreDataStorage.clearCoreDataExcept(groupProfile: groupProfile, groupCurse: groupCurse, in: context)
+        let coreDataStorage = CoreDataStorage()
+        coreDataStorage.clearCoreDataExcept(profile: groupProfile, curse: groupCurse, in: context)
 
         clearCacheButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         clearCacheButton.isEnabled = false

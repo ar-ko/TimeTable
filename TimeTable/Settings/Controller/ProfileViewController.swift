@@ -15,7 +15,7 @@ class ProfileViewController: UITableViewController {
     var firstLaunch = false
     var context: NSManagedObjectContext!
     var groups: [Group] = []
-    private var groupProfiles: [String] = []
+    private lazy var groupProfiles = GetGroupProfilesResponse(groups: groups).groupProfiles
     private var filteredProfiles: [String] = []
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -34,13 +34,6 @@ class ProfileViewController: UITableViewController {
         if firstLaunch {
             groups = GetGroupsResponse(context: context!).groups
         }
-        
-        for group in groups {
-            if !groupProfiles.contains(group.name) {
-                groupProfiles.append(group.name)
-            }
-        }
-        groupProfiles.sort()
         
         configureSearchController()
     }

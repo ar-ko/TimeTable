@@ -26,7 +26,9 @@
 		BB8A2F43241157D7009944D3 /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */; };
 		BB8A2F44241157D7009944D3 /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */; };
 		BB8A2F45241157D7009944D3 /* GroupSchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535624050DE100910D37 /* GroupSchedule+CoreDataProperties.swift */; };
-		BB8A2F4824116701009944D3 /* GroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F4724116701009944D3 /* GroupResponse.swift */; };
+		BB8A2F4824116701009944D3 /* GroupsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F4724116701009944D3 /* GroupsResponse.swift */; };
+		BB989EA3241D0D1E00493890 /* GroupProfilesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB989EA2241D0D1E00493890 /* GroupProfilesResponse.swift */; };
+		BB989EA6241D1A6D00493890 /* GroupCurseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB989EA5241D1A6D00493890 /* GroupCurseResponse.swift */; };
 		BBBAAED9241034B60034DA8F /* Groups.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBBAAED8241034B60034DA8F /* Groups.plist */; };
 		BBC14372241BF9EB00BBEBAC /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */; };
 		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
@@ -62,7 +64,9 @@
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BB8A2F4724116701009944D3 /* GroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponse.swift; sourceTree = "<group>"; };
+		BB8A2F4724116701009944D3 /* GroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsResponse.swift; sourceTree = "<group>"; };
+		BB989EA2241D0D1E00493890 /* GroupProfilesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProfilesResponse.swift; sourceTree = "<group>"; };
+		BB989EA5241D1A6D00493890 /* GroupCurseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCurseResponse.swift; sourceTree = "<group>"; };
 		BBBAAED8241034B60034DA8F /* Groups.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Groups.plist; sourceTree = "<group>"; };
 		BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -120,7 +124,9 @@
 		BB8A2F46241166E0009944D3 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				BB8A2F4724116701009944D3 /* GroupResponse.swift */,
+				BB989EA2241D0D1E00493890 /* GroupProfilesResponse.swift */,
+				BB989EA5241D1A6D00493890 /* GroupCurseResponse.swift */,
+				BB8A2F4724116701009944D3 /* GroupsResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -156,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				BB8A2F46241166E0009944D3 /* Responses */,
-				BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				BB7255E023E350CA00911B70 /* NetworkError.swift */,
+				BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 			files = (
 				BB8A2F43241157D7009944D3 /* Group+CoreDataClass.swift in Sources */,
 				BB8A2F44241157D7009944D3 /* Group+CoreDataProperties.swift in Sources */,
+				BB989EA6241D1A6D00493890 /* GroupCurseResponse.swift in Sources */,
 				BB8A2F45241157D7009944D3 /* GroupSchedule+CoreDataProperties.swift in Sources */,
 				BB43536124050DE100910D37 /* Location+CoreDataClass.swift in Sources */,
 				BB43536624050DE100910D37 /* Lesson+CoreDataProperties.swift in Sources */,
@@ -375,7 +382,7 @@
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
 				BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */,
 				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
-				BB8A2F4824116701009944D3 /* GroupResponse.swift in Sources */,
+				BB8A2F4824116701009944D3 /* GroupsResponse.swift in Sources */,
 				BBF95898240EC22000067579 /* SettingsViewController.swift in Sources */,
 				BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */,
 				BB62EB902410AC7C002906A8 /* ProfileViewController.swift in Sources */,
@@ -385,6 +392,7 @@
 				BBC902F223E1BA640021CA1C /* TimeTableNetworkService.swift in Sources */,
 				BB62EB922410AD21002906A8 /* CurseViewController.swift in Sources */,
 				BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */,
+				BB989EA3241D0D1E00493890 /* GroupProfilesResponse.swift in Sources */,
 				BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */,
 				BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */,
 				BBE2ACA323E1A8ED008FF119 /* LessonCell.swift in Sources */,

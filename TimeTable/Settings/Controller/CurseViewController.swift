@@ -14,21 +14,12 @@ class CurseViewController: UITableViewController {
     
     var firstLaunch: Bool?
     var groups: [Group] = []
-    var context: NSManagedObjectContext?
-    private var groupCurses: [String] = []
-    private var groupProfile:String?
+    var context: NSManagedObjectContext!
+    private lazy var groupCurses = GetGroupCurseResponse(groups: groups, groupProfile: groupProfile).groupCurses
+    private lazy var groupProfile = UserDefaults.standard.string(forKey: "groupProfile")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        groupProfile = UserDefaults.standard.string(forKey: "groupProfile")
-        
-         for group in groups {
-             if group.name == groupProfile {
-                 groupCurses.append(group.curse)
-             }
-         }
-         groupCurses.sort()
     }
 
     // MARK: - Table view data source
@@ -46,29 +37,14 @@ class CurseViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let groupCurse = groupCurses[indexPath.row]
-        
         UserDefaults.standard.set(groupCurse, forKey: "groupCurse")
         
-        let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "group.name == %@ AND group.curse == %@", argumentArray: [groupProfile!, groupCurse])
-        do {
-            let result = try self.context!.fetch(fetchRequest)
-            if result.count == 0 {
-                let groupSchedule = GroupSchedule(context: context!)
-                groupSchedule.group = groups.filter {$0.name == groupProfile && $0.curse == groupCurse}.first!
-                groupSchedule.timeTable = NSOrderedSet(array: [Day]())
-                groupSchedule.lastUpdate = nil
-                try context!.save()
-                print("New group create!")
-            }
-        } catch {
-            print(error)
-        }
+        let coreDataStorage = CoreDataStorage()
+        coreDataStorage.selectGroup(profile: groupProfile, curse: groupCurse, groupList: groups, in: context)
         
         if firstLaunch == true {
             performSegue(withIdentifier: "backToMainSegue", sender: nil)
         }
         performSegue(withIdentifier: "backToSettingsSegue", sender: nil)
-        
     }
 }
