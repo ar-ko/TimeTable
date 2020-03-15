@@ -7,7 +7,6 @@
 //
 //
 
-import Foundation
 import CoreData
 
 @objc(GroupSchedule)
@@ -16,6 +15,11 @@ public class GroupSchedule: NSManagedObject {
     lazy var indexOfSelectedDay = getIndexForToday()
     lazy var dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
 
+    
+    func setValuesForToday() {
+        self.indexOfSelectedDay = getIndexForToday()
+        self.dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
+    }
     
     func nextDayPressed() {
         indexOfSelectedDay += 1
@@ -33,9 +37,8 @@ public class GroupSchedule: NSManagedObject {
         dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
     }
         
-    func getIndexForToday() -> Int {
+    private func getIndexForToday(_ currentDate: Date = Date()) -> Int {
         let startDate = getStartDate()
-        let currentDate = Date()
         
         let diffInDays = Calendar.current.dateComponents([.day], from: startDate, to: currentDate).day
         
@@ -62,18 +65,7 @@ public class GroupSchedule: NSManagedObject {
         }
     }
     
-    func getStartDate() -> Date {
-        let userCalendar = Calendar.current
-        var dateComponents = DateComponents()
-        
-        dateComponents.day = 27
-        dateComponents.month = 01
-        dateComponents.year = 2020
-        
-        return userCalendar.date(from: dateComponents)!
-    }
-    
-    func getDayName(currentDayIndex: Int) -> String {
+    private func getDayName(currentDayIndex: Int) -> String {
         switch currentDayIndex {
         case 0:
             return "Понедельник, белая"
@@ -102,5 +94,18 @@ public class GroupSchedule: NSManagedObject {
         default:
             return "Расписание"
         }
+    }
+    
+    //MARK: - Set start date
+    
+    func getStartDate() -> Date {
+        let userCalendar = Calendar.current
+        var dateComponents = DateComponents()
+        
+        dateComponents.day = 27
+        dateComponents.month = 01
+        dateComponents.year = 2020
+        
+        return userCalendar.date(from: dateComponents)!
     }
 }

@@ -59,7 +59,6 @@ class SettingsViewController: UITableViewController {
             destination.groups = groups
             destination.context = context
         }
-        
     }
     
     @IBAction func clearCacheButtonPressed(_ sender: Any) {

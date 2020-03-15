@@ -6,14 +6,13 @@
 //  Copyright © 2020 ar_ko. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 
 internal struct CoreDataStorage {
     
     
-    func getTimeTable(for groupSchedule: GroupSchedule, in context: NSManagedObjectContext, completion: @escaping(Bool) -> ()) {
+    func getTimeTable(for groupSchedule: GroupSchedule, in context: NSManagedObjectContext, completion: @escaping() -> ()) {
         TimeTableNetworkService.getTimeTable(group: groupSchedule.group, context: context) { (response) in
             if let response = response {
                 groupSchedule.timeTable = NSOrderedSet(array: response.timeTable)
@@ -22,15 +21,14 @@ internal struct CoreDataStorage {
                 do {
                     try context.save()
                     print("TimeTable load and saved!")
-                    completion(true)
+                    completion()
                 } catch {
                     print(error)
-                    completion(false)
                 }
             }
             else {
-                print("load from cash")
-                completion(true)
+                print("TimeTable load from cash")
+                completion()
             }
         }
     }
@@ -39,7 +37,7 @@ internal struct CoreDataStorage {
         let fetchRequest: NSFetchRequest<GroupSchedule> = GroupSchedule.fetchRequest()
         do {
             let result = try context.fetch(fetchRequest)
-            print("Расписаний: \(result.count)")
+            print("GroupSchedules count: \(result.count)")
         } catch {
             print(error)
         }

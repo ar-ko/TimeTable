@@ -6,12 +6,12 @@
 //  Copyright © 2020 ar_ko. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 
 extension GetTimeTableResponse {
     
+    //MARK: - Preparation for parsing
     
     func getDaysSeparator(json: TimeTableJSON, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Int] {
         var merges = json.sheets.last!.merges
@@ -27,8 +27,7 @@ extension GetTimeTableResponse {
             if merge.startRowIndex == rowIndex {
                 separatorIndex += 4
                 rowIndex = merge.endRowIndex
-            }
-            else {
+            } else {
                 daysSeparator.append((daysSeparator.last ?? 0) + separatorIndex)
                 separatorIndex = 5
                 rowIndex = merge.endRowIndex
@@ -37,6 +36,8 @@ extension GetTimeTableResponse {
         
         return daysSeparator
     }
+    
+    //MARK: - Parsing
     
     func JSONParser(json: TimeTableJSON, daysSeparator: [Int], context: NSManagedObjectContext, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Day] {
         var whiteWeekTimetable = [Day]()
@@ -96,8 +97,7 @@ extension GetTimeTableResponse {
                                     if cellIsMerged(in: json, columnIndex: rangeIndexes.startColumnIndex + columnIndex,
                                                     rowIndex: rangeIndexes.startRowIndex + rowIndex) {
                                         whiteWeekSubgroup = .general
-                                    }
-                                    else {
+                                    } else {
                                         whiteWeekSubgroup = .first
                                     }
                                     whiteWeekLessonTitle = value.formattedValue
@@ -143,8 +143,7 @@ extension GetTimeTableResponse {
                                 if value.formattedValue != nil {
                                     if cellIsMerged(in: json, columnIndex: rangeIndexes.startColumnIndex + columnIndex, rowIndex: rangeIndexes.startRowIndex + rowIndex) {
                                         blueWeekSubgroup = .general
-                                    }
-                                    else {
+                                    } else {
                                         blueWeekSubgroup = .first
                                     }
                                     blueWeekLessonTitle = value.formattedValue
@@ -219,8 +218,8 @@ extension GetTimeTableResponse {
                             lesson.form = whiteWeekLessonForm
                             lesson.subgroup = whiteWeekSubgroup
                             
-                            if whiteWeekLocation != nil {
-                                lesson.locations = NSOrderedSet(array: whiteWeekLocation!)
+                            if whiteWeekLocation.count != 0 {
+                                lesson.locations = NSOrderedSet(array: whiteWeekLocation)
                             }
                             
                             lesson.note = whiteWeekNote
@@ -243,8 +242,8 @@ extension GetTimeTableResponse {
                             lesson.form = blueWeekLessonForm
                             lesson.subgroup = blueWeekSubgroup
                             
-                            if blueWeekLocation != nil {
-                                lesson.locations = NSOrderedSet(array: blueWeekLocation!)
+                            if blueWeekLocation.count != 0 {
+                                lesson.locations = NSOrderedSet(array: blueWeekLocation)
                             }
                             
                             lesson.note = blueWeekNote
@@ -286,14 +285,16 @@ extension GetTimeTableResponse {
         return whiteWeekTimetable + blueWeekTimetable
     }
     
-    func createDay(lessons: [Lesson], context: NSManagedObjectContext) -> Day {
+    //MARK: - Support functions
+    
+    private func createDay(lessons: [Lesson], context: NSManagedObjectContext) -> Day {
         let day = Day(context: context)
         day.lessons = NSOrderedSet(array: lessons)
         
         return day
     }
     
-    func cellIsMerged(in json: TimeTableJSON, columnIndex:Int, rowIndex:Int ) -> Bool {
+    private func cellIsMerged(in json: TimeTableJSON, columnIndex:Int, rowIndex:Int ) -> Bool {
         for sheet in json.sheets {
             for merge in sheet.merges {
                 if merge.startColumnIndex == columnIndex && merge.startRowIndex == rowIndex {
@@ -304,7 +305,7 @@ extension GetTimeTableResponse {
         return false
     }
     
-    func getLessonForm(effectiveFormat: EffectiveFormat) -> LessonForm {
+    private func getLessonForm(effectiveFormat: EffectiveFormat) -> LessonForm {
         switch (effectiveFormat.textFormat.foregroundColor.red, effectiveFormat.textFormat.foregroundColor.green, effectiveFormat.textFormat.foregroundColor.blue) {
         case (0.6, nil, 1):
             return .online
@@ -315,7 +316,7 @@ extension GetTimeTableResponse {
         }
     }
     
-    func getLessonType(lessonTitle: String) -> LessonType {
+    private func getLessonType(lessonTitle: String) -> LessonType {
         let lessonTitle = lessonTitle.lowercased()
         if lessonTitle.contains("(лб)") {
             return .laboratory
@@ -329,7 +330,7 @@ extension GetTimeTableResponse {
         return LessonType.none
     }
     
-    func textFormatting (text: String, lessonType: LessonType = LessonType.none) -> String {
+    private func textFormatting (text: String, lessonType: LessonType = LessonType.none) -> String {
         var lessonTypeString: String?
         var text = text.lowercased()
         
@@ -359,7 +360,7 @@ extension GetTimeTableResponse {
         return result
     }
     
-    func locationIsBroken(effectiveFormat: EffectiveFormat) -> Bool {
+    private func locationIsBroken(effectiveFormat: EffectiveFormat) -> Bool {
         if effectiveFormat.backgroundColor.red == 1 &&
             effectiveFormat.backgroundColor.green == nil &&
             effectiveFormat.backgroundColor.blue == nil {
@@ -369,7 +370,7 @@ extension GetTimeTableResponse {
         }
     }
     
-    func timeParser(dateString: String) -> Date? {
+    private func timeParser(dateString: String) -> Date? {
         let userCalendar = Calendar.current
         
         let range = NSRange(location: 0, length: dateString.count)
@@ -402,7 +403,7 @@ extension GetTimeTableResponse {
         return (index - 1)
     }
     
-    func getLocations(of cabinet: String?, and campus: String?, context: NSManagedObjectContext) -> [Location]? {
+    private func getLocations(of cabinet: String?, and campus: String?, context: NSManagedObjectContext) -> [Location] {
         var locations = [Location]()
         
         var campuses = [String]()
@@ -502,7 +503,7 @@ extension GetTimeTableResponse {
         return locations
     }
     
-    func characterToNum(character: Character) -> Int {
+    private func characterToNum(character: Character) -> Int {
         switch character {
         case "A": return 1
         case "B": return 2
@@ -535,5 +536,4 @@ extension GetTimeTableResponse {
             return 0
         }
     }
-    
 }

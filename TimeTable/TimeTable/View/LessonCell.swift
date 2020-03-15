@@ -14,17 +14,14 @@ class LessonCell: UITableViewCell {
     @IBOutlet weak var lessonStartTimeLabel: UILabel!
     @IBOutlet weak var lessonEndTimeLabel: UILabel!
     
-    
     @IBOutlet weak var lessonTitleLabel: UILabel!
     @IBOutlet weak var lessonTeacherNameLabel: UILabel!
     @IBOutlet weak var lessonTeacherNameHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var lessonTeacherNameBottomConstraint: NSLayoutConstraint!
     
-    
     @IBOutlet weak var lessonTypeLabel: UILabel!
     @IBOutlet weak var lessonTypeHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var lessonTypeBottomConstraint: NSLayoutConstraint!
-    
     
     @IBOutlet weak var lessonLocationLabel: UILabel!
     
@@ -35,6 +32,7 @@ class LessonCell: UITableViewCell {
     @IBOutlet weak var lessonNoteHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var lessonNoteBottomConstraint: NSLayoutConstraint!
     
+    //MARK: - Configure cell
     
     func configure(with lesson: Lesson) {
         let dateFormatter = DateFormatter()
@@ -43,6 +41,20 @@ class LessonCell: UITableViewCell {
         self.lessonStartTimeLabel.text = dateFormatter.string(from: lesson.startTime)
         self.lessonEndTimeLabel.text = dateFormatter.string(from: lesson.endTime)
         self.lessonTitleLabel.text = lesson.title
+        
+        //MARK: - Teacher name
+        
+        if lesson.teacherName != nil {
+            self.lessonTeacherNameBottomConstraint.constant = 8
+            self.lessonTeacherNameHeightConstraint.constant = 18
+        } else {
+            self.lessonTeacherNameBottomConstraint.constant = 0
+            self.lessonTeacherNameHeightConstraint.constant = 0
+        }
+        
+        self.lessonTeacherNameLabel.text = lesson.teacherName
+        
+        //MARK: - Type
         
         var lessonType: String
         
@@ -59,55 +71,45 @@ class LessonCell: UITableViewCell {
         default: lessonType += ""
         }
         
-        if lesson.note != nil {
-            self.lessonNoteBottomConstraint.constant = 8
-            self.lessonNoteHeightConstraint.constant = 16
-            self.lessonNoteLabel.text = lesson.note!
-        }
-        else {
-            self.lessonNoteBottomConstraint.constant = 0
-            self.lessonNoteHeightConstraint.constant = 0
-            
-            self.lessonNoteLabel.text = nil
-        }
-        
         if lessonType != "" {
             self.lessonTypeBottomConstraint.constant = 8
             self.lessonTypeHeightConstraint.constant = 16
             
             self.lessonTypeLabel.text = lessonType
-        }
-        else {
+        } else {
             self.lessonTypeBottomConstraint.constant = 0
             self.lessonTypeHeightConstraint.constant = 0
             
             self.lessonTypeLabel.text = nil
         }
         
+        //MARK: - Note
+        
+        if lesson.note != nil {
+            self.lessonNoteBottomConstraint.constant = 8
+            self.lessonNoteHeightConstraint.constant = 16
+        } else {
+            self.lessonNoteBottomConstraint.constant = 0
+            self.lessonNoteHeightConstraint.constant = 0
+        }
+        
+        self.lessonNoteLabel.text = lesson.note
+        
+        //MARK: - Locations
+        
         if lesson.locations != nil {
             var locations = ""
             for (index, location) in lesson.locations!.enumerated() {
                 let location = location as! Location
                 locations += "\(location.cabinet!)\n\(location.campus!)"
-                if index != lesson.locations!.count - 1 {
+                if index != lesson.locations!.count - 1 { //отделяем кабинеты пустой строкой
                     locations += "\n\n"
                 }
             }
             self.lessonLocationLabel.text = locations
         }
-        
-        if lesson.teacherName != nil {
-            self.lessonTeacherNameBottomConstraint.constant = 8
-            self.lessonTeacherNameHeightConstraint.constant = 18
-            
-            self.lessonTeacherNameLabel.text = lesson.teacherName
-        } else {
-            self.lessonTeacherNameBottomConstraint.constant = 0
-            self.lessonTeacherNameHeightConstraint.constant = 0
-            
-            self.lessonTeacherNameLabel.text = nil
-        }
 
+        //MARK: - Colors
         
         self.otherLocationView.backgroundColor = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
         

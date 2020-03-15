@@ -26,8 +26,10 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         return refreshControl
     }()
     
-    let coreDataStorage = CoreDataStorage()
+    private let coreDataStorage = CoreDataStorage()
     
+    
+    //MARK: - View lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -38,10 +40,8 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         groupSchedule = coreDataStorage.loadGroupScheldule(profile: groupProfile, curse: groupCurse, in: context)
         
         if groupSchedule != nil {
-            self.coreDataStorage.getTimeTable(for: self.groupSchedule!, in: self.context){ (complite) in
-                if complite {
-                    self.updateDayTitleAndReloadView()
-                }
+            self.coreDataStorage.getTimeTable(for: self.groupSchedule!, in: self.context) {
+                self.updateDayTitleAndReloadView()
             }
         } else {
             performSegue(withIdentifier: "setupGroupSeque", sender: self)
@@ -64,22 +64,23 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+ 
+    //MARK: - TabBar
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let tabBarIndex = tabBarController.selectedIndex
         if tabBarIndex == 0 {
-            groupSchedule?.indexOfSelectedDay = groupSchedule?.getIndexForToday() ?? groupSchedule!.indexOfSelectedDay
-            groupSchedule?.dayTitle = (groupSchedule?.getDayName(currentDayIndex: groupSchedule!.indexOfSelectedDay))!
+            groupSchedule?.setValuesForToday()
             updateDayTitleAndReloadView()
         }
     }
 }
 
+    //MARK: - TableView
 
 extension TimeTableViewController: UITableViewDelegate {}
 
 extension TimeTableViewController: UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -88,7 +89,6 @@ extension TimeTableViewController: UITableViewDataSource {
             if groupSchedule?.lastUpdate != nil {
                 cell.configure(with: groupSchedule!)
             }
-            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LessonCell
@@ -98,7 +98,6 @@ extension TimeTableViewController: UITableViewDataSource {
                 let lesson = day.lessons![indexPath.row - 1] as! Lesson
                 cell.configure(with: lesson)
             }
-            
             return cell
         }
     }
@@ -114,18 +113,18 @@ extension TimeTableViewController: UITableViewDataSource {
     }
 }
 
+    //MARK: - User interface
+
 extension TimeTableViewController {
     
-    func updateDayTitleAndReloadView() {
+    private func updateDayTitleAndReloadView() {
         self.dayTitle.text = self.groupSchedule?.dayTitle ?? "Расписание"
         self.timeTableView.reloadData()
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
-        self.coreDataStorage.getTimeTable(for: self.groupSchedule!, in: self.context){ (complite) in
-            if complite {
-                self.updateDayTitleAndReloadView()
-            }
+        self.coreDataStorage.getTimeTable(for: self.groupSchedule!, in: self.context) {
+            self.updateDayTitleAndReloadView()
         }
         
         sender.endRefreshing()
@@ -162,6 +161,8 @@ extension TimeTableViewController {
         
         updateDayTitleAndReloadView()
     }
+    
+    //MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "setupGroupSeque" {

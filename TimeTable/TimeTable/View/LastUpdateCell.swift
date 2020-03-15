@@ -13,6 +13,7 @@ class LastUpdateCell: UITableViewCell {
     
     @IBOutlet weak var lastUpdateLabel: UILabel!
     
+    //MARK: - Configure cell
     
     func configure(with groupSchedule: GroupSchedule) {
         let dateFormatter = DateFormatter()
@@ -43,8 +44,7 @@ class LastUpdateCell: UITableViewCell {
                 dateFormatter.dateFormat = "HH:mm"
                 lastUpdate = "сегодня в \(dateFormatter.string(from: groupSchedule.lastUpdate!))"
             }
-        }
-        else if Calendar.current.isDateInYesterday(groupSchedule.lastUpdate!) {
+        } else if Calendar.current.isDateInYesterday(groupSchedule.lastUpdate!) {
             dateFormatter.dateFormat = "HH:mm"
             lastUpdate = "вчера в \(dateFormatter.string(from: groupSchedule.lastUpdate!))"
         } else {

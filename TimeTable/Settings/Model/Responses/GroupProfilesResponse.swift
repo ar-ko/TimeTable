@@ -6,9 +6,6 @@
 //  Copyright © 2020 ar_ko. All rights reserved.
 //
 
-import Foundation
-
-
 struct GetGroupProfilesResponse{
     let groupProfiles: [String]
     

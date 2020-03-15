@@ -6,9 +6,6 @@
 //  Copyright © 2020 ar_ko. All rights reserved.
 //
 
-import Foundation
-
-
 struct TimeTableJSON: Decodable {
     var sheets: [Data]
     
@@ -20,7 +17,7 @@ struct TimeTableJSON: Decodable {
             var rowData: [Values]
             
             struct Values: Decodable {
-                var values: [CellData]//?
+                var values: [CellData]
                 
                 struct CellData: Decodable {
                     var formattedValue: String?

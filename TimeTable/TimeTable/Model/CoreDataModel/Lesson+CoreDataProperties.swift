@@ -7,7 +7,6 @@
 //
 //
 
-import Foundation
 import CoreData
 
 
@@ -15,7 +14,10 @@ extension Lesson {
     
     @NSManaged public var startTime: Date
     var endTime: Date {
-        get { return startTime.addingTimeInterval(90.0 * 60.0) }
+        get {
+            let lessonDuration: Double = 5400 // в секундах
+            return startTime.addingTimeInterval(lessonDuration)
+        }
     }
     
     @NSManaged public var title: String?
@@ -43,7 +45,7 @@ extension Lesson {
     @NSManaged public var locations: NSOrderedSet?
     @NSManaged public var otherCabinet: Bool
     @NSManaged public var otherCampus: Bool
-
+    
     @NSManaged public var day: Day?
     
     
@@ -51,7 +53,7 @@ extension Lesson {
         return NSFetchRequest<Lesson>(entityName: "Lesson")
     }
 }
-    
+
 enum LessonForm: Int {case none, standart, online, canceled}
 enum Subgroup: Int {case none, first, second, general}
 enum LessonType: Int {case none, lecture, practice, laboratory}
@@ -59,36 +61,36 @@ enum LessonType: Int {case none, lecture, practice, laboratory}
 
 // MARK: Generated accessors for locations
 extension Lesson {
-
+    
     
     @objc(insertObject:inLocationsAtIndex:)
     @NSManaged public func insertIntoLocations(_ value: Location, at idx: Int)
-
+    
     @objc(removeObjectFromLocationsAtIndex:)
     @NSManaged public func removeFromLocations(at idx: Int)
-
+    
     @objc(insertLocations:atIndexes:)
     @NSManaged public func insertIntoLocations(_ values: [Location], at indexes: NSIndexSet)
-
+    
     @objc(removeLocationsAtIndexes:)
     @NSManaged public func removeFromLocations(at indexes: NSIndexSet)
-
+    
     @objc(replaceObjectInLocationsAtIndex:withObject:)
     @NSManaged public func replaceLocations(at idx: Int, with value: Location)
-
+    
     @objc(replaceLocationsAtIndexes:withLocations:)
     @NSManaged public func replaceLocations(at indexes: NSIndexSet, with values: [Location])
-
+    
     @objc(addLocationsObject:)
     @NSManaged public func addToLocations(_ value: Location)
-
+    
     @objc(removeLocationsObject:)
     @NSManaged public func removeFromLocations(_ value: Location)
-
+    
     @objc(addLocations:)
     @NSManaged public func addToLocations(_ values: NSOrderedSet)
-
+    
     @objc(removeLocations:)
     @NSManaged public func removeFromLocations(_ values: NSOrderedSet)
-
+    
 }
