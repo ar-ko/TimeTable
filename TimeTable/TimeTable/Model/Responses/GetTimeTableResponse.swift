@@ -20,7 +20,6 @@ struct GetTimeTableResponse {
         let daysSeparator = getDaysSeparator(json: json, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
         
         let timeTable = JSONParser(json: json, daysSeparator: daysSeparator, context: context, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
-        
         self.timeTable = timeTable
     }
 }

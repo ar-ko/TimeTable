@@ -280,6 +280,9 @@ extension GetTimeTableResponse {
                 }
                 whiteWeekTimetable.append(createDay(lessons: whiteWeekDayLessons, context: context))
                 blueWeekTimetable.append(createDay(lessons: blueWeekDayLessons, context: context))
+                
+                whiteWeekTimetable.append(createDay(lessons: [Lesson](), context: context))
+                blueWeekTimetable.append(createDay(lessons: [Lesson](), context: context))
             }
         }
         return whiteWeekTimetable + blueWeekTimetable

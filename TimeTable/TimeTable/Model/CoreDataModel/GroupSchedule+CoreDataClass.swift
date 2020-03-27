@@ -21,6 +21,11 @@ public class GroupSchedule: NSManagedObject {
         self.dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
     }
     
+    func pressedDay(_ dayIndex: Int) {
+        indexOfSelectedDay = dayIndex
+        dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
+    }
+    
     func nextDayPressed() {
         indexOfSelectedDay += 1
         if indexOfSelectedDay == timeTable.count {
@@ -80,17 +85,21 @@ public class GroupSchedule: NSManagedObject {
         case 5:
             return "Суббота, белая"
         case 6:
-            return "Понедельник, синяя"
+            return "Воскресение, белая"
         case 7:
-            return "Вторник, синяя"
+            return "Понедельник, синяя"
         case 8:
-            return "Среда, синяя"
+            return "Вторник, синяя"
         case 9:
-            return "Четверг, синяя"
+            return "Среда, синяя"
         case 10:
-            return "Пятница, синяя"
+            return "Четверг, синяя"
         case 11:
+            return "Пятница, синяя"
+        case 12:
             return "Суббота, синяя"
+        case 13:
+            return "Воскресение, синяя"
         default:
             return "Расписание"
         }

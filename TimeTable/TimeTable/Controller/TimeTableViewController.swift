@@ -17,8 +17,9 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     private var groupProfile: String!
     private var groupCurse: String!
     
-    @IBOutlet weak var dayTitle: UILabel!
     @IBOutlet weak var timeTableView: UITableView!
+    private var navigationBar: UINavigationBar!
+    private var weekSkrollView = WeekScrollView()
     
     private let timeTableRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -32,7 +33,11 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
     //MARK: - View lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
+        weekSkrollView.removeFromSuperview()
+        weekSkrollView = WeekScrollView(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.bounds.size.height ?? 0), width: self.view.bounds.width, height: 60))
+        view.addSubview(weekSkrollView)
         
         groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
         groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
@@ -46,6 +51,8 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         } else {
             performSegue(withIdentifier: "setupGroupSeque", sender: self)
         }
+        weekSkrollView.delegate = self
+        weekSkrollView.selectedDay = groupSchedule?.indexOfSelectedDay
     }
     
     override func viewDidLoad() {
@@ -61,10 +68,6 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         timeTableView.refreshControl = timeTableRefreshControl
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
- 
     //MARK: - TabBar
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -72,6 +75,9 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
         if tabBarIndex == 0 {
             groupSchedule?.setValuesForToday()
             updateDayTitleAndReloadView()
+            if let dayIndex = groupSchedule?.indexOfSelectedDay {
+                weekSkrollView.selectDay(index: dayIndex)
+            }
         }
     }
 }
@@ -118,7 +124,7 @@ extension TimeTableViewController: UITableViewDataSource {
 extension TimeTableViewController {
     
     private func updateDayTitleAndReloadView() {
-        self.dayTitle.text = self.groupSchedule?.dayTitle ?? "Расписание"
+        navigationItem.title = self.groupSchedule?.dayTitle ?? "Расписание"
         self.timeTableView.reloadData()
     }
     
@@ -130,28 +136,15 @@ extension TimeTableViewController {
         sender.endRefreshing()
     }
     
-    @IBAction func previousDayPressed(_ sender: UIButton) {
-        groupSchedule!.previousDayPressed()
-        
-        UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
-        
-        updateDayTitleAndReloadView()
-    }
-    
     @IBAction func RightSwipe(_ sender: Any) {
         groupSchedule!.previousDayPressed()
         
         UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
         
         updateDayTitleAndReloadView()
-    }
-    
-    @IBAction func nextDayPressed(_ sender: UIButton) {
-        groupSchedule!.nextDayPressed()
-        
-        UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
-        
-        updateDayTitleAndReloadView()
+        if let dayIndex = groupSchedule?.indexOfSelectedDay {
+            weekSkrollView.selectDay(index: dayIndex)
+        }
     }
     
     @IBAction func LeftSwipe(_ sender: Any) {
@@ -160,6 +153,9 @@ extension TimeTableViewController {
         UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
         
         updateDayTitleAndReloadView()
+        if let dayIndex = groupSchedule?.indexOfSelectedDay {
+            weekSkrollView.selectDay(index: dayIndex)
+        }
     }
     
     //MARK: - Segues
@@ -174,5 +170,14 @@ extension TimeTableViewController {
     }
     
     @IBAction func cancelActionMain(_ seque: UIStoryboardSegue) {
+    }
+}
+
+    //MARK: - WeekSkrollViewDelegate
+
+extension TimeTableViewController: WeekSkrollViewDelegate {
+    func indexOfSelectedDay(_ dayIndex: Int) {
+        groupSchedule!.pressedDay(dayIndex)
+        updateDayTitleAndReloadView()
     }
 }
