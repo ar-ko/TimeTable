@@ -60,13 +60,9 @@ public class GroupSchedule: NSManagedObject {
         
         switch numberOfWeek.isMultiple(of: 2){
         case true:
-            if calendar.component(.weekday, from: currentDate) == 1 {
-                return 6
-            } else { return calendar.component(.weekday, from: currentDate) - 2 }
+            return calendar.component(.weekday, from: currentDate) - 1
         case false:
-            if calendar.component(.weekday, from: currentDate) == 1 {
-                return 0
-            } else { return 6 + calendar.component(.weekday, from: currentDate) - 2 }
+            return 6 + calendar.component(.weekday, from: currentDate) - 1
         }
     }
     
