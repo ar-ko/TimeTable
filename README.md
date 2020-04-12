@@ -4,7 +4,7 @@
 ![](demo.gif)
 
 ## О приложении
-Представляет [расписание вуза](https://github.com/[username]/[repo_name]/issues/new) в удобоваримой форме.
+Представляет [расписание вуза](https://docs.google.com/spreadsheets/d/1CrVXpFRuvS4iq8nvGpd27-CeUcnzsRmbNc9nh2CWcWw/edit#gid=1936799010) в удобоваримой форме.
 
 ## Использовалось:
 * Xcode 11.3.*
