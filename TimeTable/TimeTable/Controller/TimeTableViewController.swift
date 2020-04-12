@@ -52,7 +52,7 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
             performSegue(withIdentifier: "setupGroupSeque", sender: self)
         }
         weekSkrollView.delegate = self
-        weekSkrollView.selectedDay = groupSchedule?.indexOfSelectedDay
+        weekSkrollView.selectedDay = groupSchedule?.indexOfSelectedDay ?? 0
     }
     
     override func viewDidLoad() {
@@ -177,7 +177,7 @@ extension TimeTableViewController {
 
 extension TimeTableViewController: WeekSkrollViewDelegate {
     func indexOfSelectedDay(_ dayIndex: Int) {
-        groupSchedule!.pressedDay(dayIndex)
+        groupSchedule?.pressedDay(dayIndex)
         updateDayTitleAndReloadView()
     }
 }

@@ -67,6 +67,7 @@ public class GroupSchedule: NSManagedObject {
     }
     
     private func getDayName(currentDayIndex: Int) -> String {
+        print(currentDayIndex)
         switch currentDayIndex {
         case 0:
             return "Понедельник, белая"
