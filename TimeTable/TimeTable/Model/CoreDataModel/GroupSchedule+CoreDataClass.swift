@@ -60,14 +60,19 @@ public class GroupSchedule: NSManagedObject {
         
         switch numberOfWeek.isMultiple(of: 2){
         case true:
-            return calendar.component(.weekday, from: currentDate) - 1
+            if calendar.component(.weekday, from: currentDate) == 1 {
+                return 6
+            }
+            return calendar.component(.weekday, from: currentDate) - 2
         case false:
+            if calendar.component(.weekday, from: currentDate) == 1 {
+                return 13
+            }
             return 6 + calendar.component(.weekday, from: currentDate) - 1
         }
     }
     
     private func getDayName(currentDayIndex: Int) -> String {
-        print(currentDayIndex)
         switch currentDayIndex {
         case 0:
             return "Понедельник, белая"
