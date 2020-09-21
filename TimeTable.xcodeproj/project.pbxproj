@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB05139D23E82CCE00048C8E /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05139C23E82CCE00048C8E /* ApiKey.swift */; };
 		BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */; };
 		BB1997BC23E85F8000B70D42 /* TimeTableJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */; };
 		BB36B29A23E1C97400659B50 /* GetTimeTableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */; };
@@ -21,6 +20,7 @@
 		BB62EB902410AC7C002906A8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */; };
 		BB62EB922410AD21002906A8 /* CurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB912410AD21002906A8 /* CurseViewController.swift */; };
 		BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */; };
+		BB700866251920F90006950D /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB700865251920F90006950D /* ApiKey.swift */; };
 		BB7255DF23E3295600911B70 /* TimeTableJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* TimeTableJSON.swift */; };
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
 		BB8A2F43241157D7009944D3 /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */; };
@@ -46,7 +46,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BB05139C23E82CCE00048C8E /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdateCell.swift; sourceTree = "<group>"; };
 		BB1997BB23E85F8000B70D42 /* TimeTableJSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSONParser.swift; sourceTree = "<group>"; };
 		BB36B29923E1C97400659B50 /* GetTimeTableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimeTableResponse.swift; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 		BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BB62EB912410AD21002906A8 /* CurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseViewController.swift; sourceTree = "<group>"; };
 		BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataGroupSchedule.xcdatamodel; sourceTree = "<group>"; };
+		BB700865251920F90006950D /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		BB7255DE23E3295600911B70 /* TimeTableJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableJSON.swift; sourceTree = "<group>"; };
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -295,8 +295,8 @@
 			children = (
 				BBE2AC8D23E19003008FF119 /* Assets.xcassets */,
 				BBE2AC9223E19003008FF119 /* Info.plist */,
-				BB05139C23E82CCE00048C8E /* ApiKey.swift */,
 				BBBAAED8241034B60034DA8F /* Groups.plist */,
+				BB700865251920F90006950D /* ApiKey.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -328,7 +328,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = ar_ko;
 				TargetAttributes = {
 					BBE2AC8023E19002008FF119 = {
@@ -383,6 +383,7 @@
 				BB43536224050DE100910D37 /* Location+CoreDataProperties.swift in Sources */,
 				BBC14372241BF9EB00BBEBAC /* CoreDataStorage.swift in Sources */,
 				BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */,
+				BB700866251920F90006950D /* ApiKey.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
 				BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */,
 				BBE2AC8923E19002008FF119 /* TimeTableViewController.swift in Sources */,
@@ -402,7 +403,6 @@
 				BBE2ACA323E1A8ED008FF119 /* LessonCell.swift in Sources */,
 				BB43536524050DE100910D37 /* Lesson+CoreDataClass.swift in Sources */,
 				BB43535E24050DE100910D37 /* Day+CoreDataProperties.swift in Sources */,
-				BB05139D23E82CCE00048C8E /* ApiKey.swift in Sources */,
 				BB43535D24050DE100910D37 /* Day+CoreDataClass.swift in Sources */,
 				BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */,
 			);
@@ -456,6 +456,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -480,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -516,6 +517,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -534,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -551,7 +553,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C97NTYG8P8;
 				INFOPLIST_FILE = TimeTable/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -570,7 +572,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C97NTYG8P8;
 				INFOPLIST_FILE = TimeTable/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
