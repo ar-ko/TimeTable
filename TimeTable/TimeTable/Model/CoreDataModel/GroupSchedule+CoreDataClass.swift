@@ -113,8 +113,8 @@ public class GroupSchedule: NSManagedObject {
         let userCalendar = Calendar.current
         var dateComponents = DateComponents()
         
-        dateComponents.day = 27
-        dateComponents.month = 01
+        dateComponents.day = 17
+        dateComponents.month = 09
         dateComponents.year = 2020
         
         return userCalendar.date(from: dateComponents)!
