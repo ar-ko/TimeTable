@@ -1,19 +1,32 @@
 //
-//  TimeTableJSONParser.swift
+//  GetTimeTableResponse.swift
 //  TimeTable
 //
-//  Created by ar_ko on 03/02/2020.
+//  Created by ar_ko on 29/01/2020.
 //  Copyright © 2020 ar_ko. All rights reserved.
 //
 
 import CoreData
 
 
-extension GetTimeTableResponse {
+struct GoogleSheetsParser {
+    let timetable: [Day]
+    
+    
+    init(of json: GoogleSheetsResponse, for group: Group, context: NSManagedObjectContext) {
+        let startColumnIndex = GoogleSheetsParser.letterToIndex(letter: group.startColumn)
+        let startRowIndex = Int(group.startRow - 1)
+        
+        let daysSeparator = GoogleSheetsParser.getDaysSeparator(json: json, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
+        
+        let timetable = GoogleSheetsParser.getTimetable(json: json, daysSeparator: daysSeparator, context: context, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
+        self.timetable = timetable
+    }
+    
     
     //MARK: - Preparation for parsing
     
-    func getDaysSeparator(json: TimeTableJSON, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Int] {
+    private static func getDaysSeparator(json: GoogleSheetsResponse, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Int] {
         var merges = json.sheets.last!.merges
         
         merges = merges.filter { $0.startColumnIndex == rangeIndexes.startColumnIndex && $0.endColumnIndex == rangeIndexes.startColumnIndex + 1}
@@ -39,7 +52,7 @@ extension GetTimeTableResponse {
     
     //MARK: - Parsing
     
-    func JSONParser(json: TimeTableJSON, daysSeparator: [Int], context: NSManagedObjectContext, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Day] {
+    private static func getTimetable(json: GoogleSheetsResponse, daysSeparator: [Int], context: NSManagedObjectContext, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Day] {
         var whiteWeekTimetable = [Day]()
         var blueWeekTimetable = [Day]()
         
@@ -290,14 +303,14 @@ extension GetTimeTableResponse {
     
     //MARK: - Support functions
     
-    private func createDay(lessons: [Lesson], context: NSManagedObjectContext) -> Day {
+    private static func createDay(lessons: [Lesson], context: NSManagedObjectContext) -> Day {
         let day = Day(context: context)
         day.lessons = NSOrderedSet(array: lessons)
         
         return day
     }
     
-    private func cellIsMerged(in json: TimeTableJSON, columnIndex:Int, rowIndex:Int ) -> Bool {
+    private static func cellIsMerged(in json: GoogleSheetsResponse, columnIndex:Int, rowIndex:Int ) -> Bool {
         for sheet in json.sheets {
             for merge in sheet.merges {
                 if merge.startColumnIndex == columnIndex && merge.startRowIndex == rowIndex {
@@ -308,7 +321,7 @@ extension GetTimeTableResponse {
         return false
     }
     
-    private func getLessonForm(effectiveFormat: EffectiveFormat) -> LessonForm {
+    private static func getLessonForm(effectiveFormat: EffectiveFormat) -> LessonForm {
         switch (effectiveFormat.textFormat.foregroundColor.red, effectiveFormat.textFormat.foregroundColor.green, effectiveFormat.textFormat.foregroundColor.blue) {
         case (0.6, nil, 1):
             return .online
@@ -319,7 +332,7 @@ extension GetTimeTableResponse {
         }
     }
     
-    private func getLessonType(lessonTitle: String) -> LessonType {
+    private static func getLessonType(lessonTitle: String) -> LessonType {
         let lessonTitle = lessonTitle.lowercased()
         if lessonTitle.contains("(лб)") {
             return .laboratory
@@ -333,7 +346,7 @@ extension GetTimeTableResponse {
         return LessonType.none
     }
     
-    private func textFormatting (text: String, lessonType: LessonType = LessonType.none) -> String {
+    private static func textFormatting (text: String, lessonType: LessonType = LessonType.none) -> String {
         var lessonTypeString: String?
         var text = text.lowercased()
         
@@ -363,7 +376,7 @@ extension GetTimeTableResponse {
         return result
     }
     
-    private func locationIsBroken(effectiveFormat: EffectiveFormat) -> Bool {
+    private static func locationIsBroken(effectiveFormat: EffectiveFormat) -> Bool {
         if effectiveFormat.backgroundColor.red == 1 &&
             effectiveFormat.backgroundColor.green == nil &&
             effectiveFormat.backgroundColor.blue == nil {
@@ -373,7 +386,7 @@ extension GetTimeTableResponse {
         }
     }
     
-    private func timeParser(dateString: String) -> Date? {
+    private static func timeParser(dateString: String) -> Date? {
         let userCalendar = Calendar.current
         
         let range = NSRange(location: 0, length: dateString.count)
@@ -396,7 +409,7 @@ extension GetTimeTableResponse {
         return nil
     }
     
-    func letterToIndex(letter: String) -> Int {
+    private static func letterToIndex(letter: String) -> Int {
         let letter = String(letter.reversed())
         var index = 0
         
@@ -406,7 +419,7 @@ extension GetTimeTableResponse {
         return (index - 1)
     }
     
-    private func getLocations(of cabinet: String?, and campus: String?, context: NSManagedObjectContext) -> [Location] {
+    private static func getLocations(of cabinet: String?, and campus: String?, context: NSManagedObjectContext) -> [Location] {
         var locations = [Location]()
         
         var campuses = [String]()
@@ -506,7 +519,7 @@ extension GetTimeTableResponse {
         return locations
     }
     
-    private func characterToNum(character: Character) -> Int {
+    private static func characterToNum(character: Character) -> Int {
         switch character {
         case "A": return 1
         case "B": return 2

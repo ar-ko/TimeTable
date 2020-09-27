@@ -14,12 +14,12 @@ class TimeTableNetworkService {
     private init() {}
     
     
-    static func getTimeTable(group: Group, context: NSManagedObjectContext, completion: @escaping(GetTimeTableResponse?) -> ()) {
+    static func getTimeTable(group: Group, context: NSManagedObjectContext, completion: @escaping(GoogleSheetsParser?) -> ()) {
         guard let url = URL(string: group.urlString) else { return }
         
         NetworkService.shared.getData(url: url) { (json) in
-            if let json = json as? TimeTableJSON {
-                let response = GetTimeTableResponse(of: json, for: group, context: context)
+            if let json = json as? GoogleSheetsResponse {
+                let response = GoogleSheetsParser(of: json, for: group, context: context)
                 
                 completion(response)
             }

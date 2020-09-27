@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
+class TimetableViewController: UIViewController, UITabBarControllerDelegate {
     
     private lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var groupSchedule: GroupSchedule?
@@ -84,9 +84,9 @@ class TimeTableViewController: UIViewController, UITabBarControllerDelegate {
 
     //MARK: - TableView
 
-extension TimeTableViewController: UITableViewDelegate {}
+extension TimetableViewController: UITableViewDelegate {}
 
-extension TimeTableViewController: UITableViewDataSource {
+extension TimetableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -102,7 +102,7 @@ extension TimeTableViewController: UITableViewDataSource {
             if self.groupSchedule!.timeTable.count > 0 {
                 let day = self.groupSchedule!.timeTable[groupSchedule!.indexOfSelectedDay] as! Day
                 let lesson = day.lessons![indexPath.row - 1] as! Lesson
-                cell.configure(with: lesson)
+                cell.configure(from: LessonCellViewModel(from: lesson))
             }
             return cell
         }
@@ -121,7 +121,7 @@ extension TimeTableViewController: UITableViewDataSource {
 
     //MARK: - User interface
 
-extension TimeTableViewController {
+extension TimetableViewController {
     
     private func updateDayTitleAndReloadView() {
         navigationItem.title = self.groupSchedule?.dayTitle ?? "Расписание"
@@ -175,7 +175,7 @@ extension TimeTableViewController {
 
     //MARK: - WeekSkrollViewDelegate
 
-extension TimeTableViewController: WeekSkrollViewDelegate {
+extension TimetableViewController: WeekSkrollViewDelegate {
     func indexOfSelectedDay(_ dayIndex: Int) {
         groupSchedule?.pressedDay(dayIndex)
         updateDayTitleAndReloadView()

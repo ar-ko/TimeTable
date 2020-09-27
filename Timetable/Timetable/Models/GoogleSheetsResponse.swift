@@ -6,23 +6,23 @@
 //  Copyright © 2020 ar_ko. All rights reserved.
 //
 
-struct TimeTableJSON: Decodable {
-    var sheets: [Data]
+struct GoogleSheetsResponse: Decodable {
+    let sheets: [Data]
     
     struct Data: Decodable {
-        var data: [RowData]
-        var merges: [GridRange]
+        let data: [RowData]
+        let merges: [GridRange]
                 
         struct RowData: Decodable {
-            var rowData: [Values]
+            let rowData: [Values]
             
             struct Values: Decodable {
-                var values: [CellData]
+                let values: [CellData]
                 
                 struct CellData: Decodable {
-                    var formattedValue: String?
-                    var note: String?
-                    var effectiveFormat: EffectiveFormat?
+                    let formattedValue: String?
+                    let note: String?
+                    let effectiveFormat: EffectiveFormat?
                 }
             }
         }
@@ -38,16 +38,16 @@ struct GridRange: Decodable {
  }
 
 struct EffectiveFormat: Decodable {
-    var backgroundColor: color
-    var textFormat: ForegroundColor
+    let backgroundColor: color
+    let textFormat: ForegroundColor
     
     struct ForegroundColor: Decodable {
-        var foregroundColor: color
+        let foregroundColor: color
     }
     
     struct color: Decodable {
-        var red: Double?
-        var green: Double?
-        var blue: Double?
+        let red: Double?
+        let green: Double?
+        let blue: Double?
     }
 }
