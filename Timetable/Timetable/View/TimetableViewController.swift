@@ -93,7 +93,7 @@ extension TimetableViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell", for: indexPath) as! LastUpdateCell
             
             if groupSchedule?.lastUpdate != nil {
-                cell.configure(with: groupSchedule!)
+                cell.lastUpdateCellViewModel = LastUpdateCellViewModel(from: groupSchedule?.lastUpdate ?? Date())
             }
             return cell
         } else {
