@@ -17,10 +17,10 @@ class LessonCellViewModel {
     let type: String?
     let location: String
     let canceled: UIColor
-    var wrongLocation: UIColor
+    let wrongLocation: UIColor
     let note: String?
     // TODO: переименовать
-    var locationColor: UIColor
+    let locationColor: UIColor
     let titleColor: UIColor
     let typeColor: UIColor
     
@@ -67,31 +67,35 @@ class LessonCellViewModel {
         }
         self.location = locations
         
-        self.wrongLocation = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
-        self.locationColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        var locationColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        var wrongLocation: UIColor  = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
         
-        if lesson.otherCampus || lesson.otherCabinet {
-            self.wrongLocation = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            self.locationColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            
-        }
         
         switch lesson.form {
         case .canceled:
             self.canceled = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            self.wrongLocation = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            wrongLocation = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             self.typeColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             self.titleColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         case .online:
             self.canceled = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
-            self.wrongLocation = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+            wrongLocation = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
             self.typeColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
             self.titleColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
         default:
             self.canceled = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
             self.typeColor = #colorLiteral(red: 0, green: 0.7389578223, blue: 0.9509587884, alpha: 1)
             self.titleColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            
         }
+        
+        if lesson.otherCampus || lesson.otherCabinet {
+            wrongLocation = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            locationColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        }
+        
+        self.wrongLocation = wrongLocation
+        self.locationColor = locationColor
         
     }
     
