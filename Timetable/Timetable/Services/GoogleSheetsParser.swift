@@ -13,7 +13,7 @@ struct GoogleSheetsParser {
     let timetable: [Day]
     
     
-    init(of json: GoogleSheetsResponse, for group: Group, context: NSManagedObjectContext) {
+    init(of json: GoogleSheetsResponse, for group: Group, in context: NSManagedObjectContext) {
         let startColumnIndex = GoogleSheetsParser.letterToIndex(letter: group.startColumn)
         let startRowIndex = Int(group.startRow - 1)
         

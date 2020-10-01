@@ -19,7 +19,7 @@ class TimeTableNetworkService {
         
         NetworkService.shared.getData(url: url) { (json) in
             if let json = json as? GoogleSheetsResponse {
-                let response = GoogleSheetsParser(of: json, for: group, context: context)
+                let response = GoogleSheetsParser(of: json, for: group, in: context)
                 
                 completion(response)
             }

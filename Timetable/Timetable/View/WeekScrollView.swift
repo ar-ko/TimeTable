@@ -152,7 +152,7 @@ extension WeekScrollView: UIScrollViewDelegate {
         
         let currentPage = Int(xCoordinate / scrollView.frame.size.width)
         
-        if currentPage == 0 || currentPage == 2 {
+        if currentPage % 2 == 0 {
             weekTitlelabel.text = "Синяя неделя"
         } else {
             weekTitlelabel.text = "Белая неделя"
