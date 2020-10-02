@@ -212,7 +212,7 @@
         <!--ProfileViewController-->
         <scene sceneID="xuO-LP-EFU">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="ProfileViewControllerReference" storyboardName="Main" referencedIdentifier="ProfileViewController" id="zY7-nP-CSp" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="ProfileReference" storyboardName="SettingsStoryboard" referencedIdentifier="ProfileViewController" id="zY7-nP-CSp" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FYM-VE-mdw"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNe-SM-6Iu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
