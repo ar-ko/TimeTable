@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G3020" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Day" representedClassName="Day" syncable="YES">
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Lesson" inverseName="day" inverseEntity="Lesson"/>
-        <relationship name="timeTable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupSchedule" inverseName="timeTable" inverseEntity="GroupSchedule"/>
+        <relationship name="timetable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupSchedule" inverseName="timetable" inverseEntity="GroupSchedule"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
         <attribute name="curse" attributeType="String"/>
@@ -25,7 +25,7 @@
     <entity name="GroupSchedule" representedClassName="GroupSchedule" syncable="YES">
         <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="groupSchedule" inverseEntity="Group"/>
-        <relationship name="timeTable" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Day" inverseName="timeTable" inverseEntity="Day"/>
+        <relationship name="timetable" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Day" inverseName="timetable" inverseEntity="Day"/>
     </entity>
     <entity name="Lesson" representedClassName="Lesson" syncable="YES">
         <attribute name="formRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

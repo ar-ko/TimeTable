@@ -22,10 +22,10 @@ class NetworkService {
             do {
                 guard let data = data else { throw NetworkError.noInternetConnection }
                 
-                let timeTableJSON = try JSONDecoder().decode(GoogleSheetsResponse.self, from: data)
+                let timetableJSON = try JSONDecoder().decode(GoogleSheetsResponse.self, from: data)
                 
                 DispatchQueue.main.async {
-                    completion(timeTableJSON)
+                    completion(timetableJSON)
                 }
             } catch {
                 print("ERROR: \(error)")

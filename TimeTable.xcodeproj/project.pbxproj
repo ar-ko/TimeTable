@@ -19,7 +19,8 @@
 		BB4E7F09251F951400427901 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E7F08251F951400427901 /* ApiKey.swift */; };
 		BB62EB902410AC7C002906A8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */; };
 		BB62EB922410AD21002906A8 /* CurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB912410AD21002906A8 /* CurseViewController.swift */; };
-		BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */; };
+		BB65242023F3064D00D200FB /* CoreDataTimetable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataTimetable.xcdatamodeld */; };
+		BB6B94572526E7ED000748D2 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6B94562526E7ED000748D2 /* SettingsStoryboard.storyboard */; };
 		BB7255DF23E3295600911B70 /* GoogleSheetsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* GoogleSheetsResponse.swift */; };
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
 		BB72BC4F2520FFD600CD0D69 /* LessonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72BC4E2520FFD600CD0D69 /* LessonCellViewModel.swift */; };
@@ -62,7 +63,8 @@
 		BB4E7F08251F951400427901 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BB62EB912410AD21002906A8 /* CurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseViewController.swift; sourceTree = "<group>"; };
-		BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataGroupSchedule.xcdatamodel; sourceTree = "<group>"; };
+		BB65241F23F3064D00D200FB /* CoreDataTimetable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTimetable.xcdatamodel; sourceTree = "<group>"; };
+		BB6B94562526E7ED000748D2 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 		BB7255DE23E3295600911B70 /* GoogleSheetsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSheetsResponse.swift; sourceTree = "<group>"; };
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BB72BC4E2520FFD600CD0D69 /* LessonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCellViewModel.swift; sourceTree = "<group>"; };
@@ -117,24 +119,25 @@
 			children = (
 				BB8C582D240AD18B00E12327 /* Model */,
 				BB8C582C240AD18600E12327 /* View */,
-				BB8C582B240AD17700E12327 /* Controller */,
+				BB8C582B240AD17700E12327 /* ViewModel */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		BB8C582B240AD17700E12327 /* Controller */ = {
+		BB8C582B240AD17700E12327 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				BBF95897240EC22000067579 /* SettingsViewController.swift */,
-				BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */,
-				BB62EB912410AD21002906A8 /* CurseViewController.swift */,
 			);
-			path = Controller;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BB8C582C240AD18600E12327 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BBF95897240EC22000067579 /* SettingsViewController.swift */,
+				BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */,
+				BB62EB912410AD21002906A8 /* CurseViewController.swift */,
+				BB6B94562526E7ED000748D2 /* SettingsStoryboard.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,7 +262,7 @@
 		BBE2ACA023E19190008FF119 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */,
+				BB65241E23F3064D00D200FB /* CoreDataTimetable.xcdatamodeld */,
 				BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */,
 				BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */,
 				BB43535324050DE100910D37 /* Day+CoreDataClass.swift */,
@@ -344,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB6B94572526E7ED000748D2 /* SettingsStoryboard.storyboard in Resources */,
 				BBE2AC9123E19003008FF119 /* LaunchScreen.storyboard in Resources */,
 				BBE2AC8E23E19003008FF119 /* Assets.xcassets in Resources */,
 				BBBAAED9241034B60034DA8F /* Groups.plist in Resources */,
@@ -372,7 +376,7 @@
 				BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */,
 				BB4E7F09251F951400427901 /* ApiKey.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
-				BB65242023F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld in Sources */,
+				BB65242023F3064D00D200FB /* CoreDataTimetable.xcdatamodeld in Sources */,
 				BBE2AC8923E19002008FF119 /* TimetableViewController.swift in Sources */,
 				BB8A2F4824116701009944D3 /* GroupsResponse.swift in Sources */,
 				BBF95898240EC22000067579 /* SettingsViewController.swift in Sources */,
@@ -596,13 +600,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		BB65241E23F3064D00D200FB /* CoreDataTimeTable.xcdatamodeld */ = {
+		BB65241E23F3064D00D200FB /* CoreDataTimetable.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */,
+				BB65241F23F3064D00D200FB /* CoreDataTimetable.xcdatamodel */,
 			);
-			currentVersion = BB65241F23F3064D00D200FB /* CoreDataGroupSchedule.xcdatamodel */;
-			path = CoreDataTimeTable.xcdatamodeld;
+			currentVersion = BB65241F23F3064D00D200FB /* CoreDataTimetable.xcdatamodel */;
+			path = CoreDataTimetable.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

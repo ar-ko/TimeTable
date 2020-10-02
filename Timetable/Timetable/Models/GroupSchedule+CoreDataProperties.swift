@@ -14,7 +14,7 @@ extension GroupSchedule {
     
     @NSManaged public var lastUpdate: Date?
     @NSManaged public var group: Group
-    @NSManaged public var timeTable: NSOrderedSet
+    @NSManaged public var timetable: NSOrderedSet
     
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<GroupSchedule> {
@@ -22,38 +22,38 @@ extension GroupSchedule {
     }
 }
 
-// MARK: Generated accessors for timeTable
+// MARK: Generated accessors for timetable
 extension GroupSchedule {
 
     
-    @objc(insertObject:inTimeTableAtIndex:)
-    @NSManaged public func insertIntoTimeTable(_ value: Day, at idx: Int)
+    @objc(insertObject:inTimetableAtIndex:)
+    @NSManaged public func insertIntoTimetable(_ value: Day, at idx: Int)
 
-    @objc(removeObjectFromTimeTableAtIndex:)
-    @NSManaged public func removeFromTimeTable(at idx: Int)
+    @objc(removeObjectFromTimetableAtIndex:)
+    @NSManaged public func removeFromTimetable(at idx: Int)
 
-    @objc(insertTimeTable:atIndexes:)
-    @NSManaged public func insertIntoTimeTable(_ values: [Day], at indexes: NSIndexSet)
+    @objc(insertTimetable:atIndexes:)
+    @NSManaged public func insertIntoTimetable(_ values: [Day], at indexes: NSIndexSet)
 
-    @objc(removeTimeTableAtIndexes:)
-    @NSManaged public func removeFromTimeTable(at indexes: NSIndexSet)
+    @objc(removeTimetableAtIndexes:)
+    @NSManaged public func removeFromTimetable(at indexes: NSIndexSet)
 
-    @objc(replaceObjectInTimeTableAtIndex:withObject:)
-    @NSManaged public func replaceTimeTable(at idx: Int, with value: Day)
+    @objc(replaceObjectInTimetableAtIndex:withObject:)
+    @NSManaged public func replaceTimetable(at idx: Int, with value: Day)
 
-    @objc(replaceTimeTableAtIndexes:withTimeTable:)
-    @NSManaged public func replaceTimeTable(at indexes: NSIndexSet, with values: [Day])
+    @objc(replaceTimetableAtIndexes:withTimetable:)
+    @NSManaged public func replaceTimetable(at indexes: NSIndexSet, with values: [Day])
 
-    @objc(addTimeTableObject:)
-    @NSManaged public func addToTimeTable(_ value: Day)
+    @objc(addTimetableObject:)
+    @NSManaged public func addToTimetable(_ value: Day)
 
-    @objc(removeTimeTableObject:)
-    @NSManaged public func removeFromTimeTable(_ value: Day)
+    @objc(removeTimetableObject:)
+    @NSManaged public func removeFromTimetable(_ value: Day)
 
-    @objc(addTimeTable:)
-    @NSManaged public func addToTimeTable(_ values: NSOrderedSet)
+    @objc(addTimetable:)
+    @NSManaged public func addToTimetable(_ values: NSOrderedSet)
 
-    @objc(removeTimeTable:)
-    @NSManaged public func removeFromTimeTable(_ values: NSOrderedSet)
+    @objc(removeTimetable:)
+    @NSManaged public func removeFromTimetable(_ values: NSOrderedSet)
 
 }

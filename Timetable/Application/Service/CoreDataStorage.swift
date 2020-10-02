@@ -12,22 +12,22 @@ import CoreData
 internal struct CoreDataStorage {
     
     
-    func getTimeTable(for groupSchedule: GroupSchedule, in context: NSManagedObjectContext, completion: @escaping() -> ()) {
-        TimeTableNetworkService.getTimeTable(group: groupSchedule.group, context: context) { (response) in
+    func getTimetable(for groupSchedule: GroupSchedule, in context: NSManagedObjectContext, completion: @escaping() -> ()) {
+        TimetableNetworkService.getTimetable(group: groupSchedule.group, context: context) { (response) in
             if let response = response {
-                groupSchedule.timeTable = NSOrderedSet(array: response.timetable)
+                groupSchedule.timetable = NSOrderedSet(array: response.timetable)
                 groupSchedule.lastUpdate = Date()
                 
                 do {
                     try context.save()
-                    print("TimeTable load and saved!")
+                    print("Timetable load and saved!")
                     completion()
                 } catch {
                     print(error)
                 }
             }
             else {
-                print("TimeTable load from cash")
+                print("Timetable load from cash")
                 completion()
             }
         }
@@ -81,7 +81,7 @@ internal struct CoreDataStorage {
             if result.count == 0 {
                 let groupSchedule = GroupSchedule(context: context)
                 groupSchedule.group = groups.filter {$0.name == groupProfile && $0.curse == groupCurse}.first!
-                groupSchedule.timeTable = NSOrderedSet(array: [Day]())
+                groupSchedule.timetable = NSOrderedSet(array: [Day]())
                 groupSchedule.lastUpdate = nil
                 try context.save()
                 print("New group create!")

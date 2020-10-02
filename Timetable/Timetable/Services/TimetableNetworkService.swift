@@ -9,12 +9,12 @@
 import CoreData
 
 
-class TimeTableNetworkService {
+class TimetableNetworkService {
     
     private init() {}
     
     
-    static func getTimeTable(group: Group, context: NSManagedObjectContext, completion: @escaping(GoogleSheetsParser?) -> ()) {
+    static func getTimetable(group: Group, context: NSManagedObjectContext, completion: @escaping(GoogleSheetsParser?) -> ()) {
         guard let url = URL(string: group.urlString) else { return }
         
         NetworkService.shared.getData(url: url) { (json) in

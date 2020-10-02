@@ -251,15 +251,15 @@
             </objects>
             <point key="canvasLocation" x="1013" y="560"/>
         </scene>
-        <!--TimeTableViewController-->
+        <!--TimetableViewController-->
         <scene sceneID="TEG-3r-4Es">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="TimeTableReference" storyboardName="TimetableStoryboard" referencedIdentifier="TimeTableViewController" id="Ylx-ga-Qxc" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="TimeTableReference" storyboardName="TimetableStoryboard" referencedIdentifier="TimetableViewController" id="Ylx-ga-Qxc" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="PIi-s4-PLi"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZM-jH-EaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="-617"/>
+            <point key="canvasLocation" x="1612" y="-155"/>
         </scene>
         <!--Сегодня-->
         <scene sceneID="YYy-Ou-krs">

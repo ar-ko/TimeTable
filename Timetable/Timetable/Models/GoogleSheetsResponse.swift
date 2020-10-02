@@ -1,5 +1,5 @@
 //
-//  TimeTableJSON.swift
+//  GoogleSheetsResponse.swift
 //  TimeTable
 //
 //  Created by ar_ko on 30/01/2020.

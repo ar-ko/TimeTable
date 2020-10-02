@@ -13,7 +13,7 @@ import CoreData
 extension Day {
 
     @NSManaged public var lessons: NSOrderedSet?
-    @NSManaged public var timeTable: GroupSchedule?
+    @NSManaged public var timetable: GroupSchedule?
     
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Day> {

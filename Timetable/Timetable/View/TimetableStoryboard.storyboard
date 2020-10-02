@@ -12,18 +12,7 @@
         <!--Timetable View Controller-->
         <scene sceneID="dH4-X9-Jkh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DEw-XW-qct" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="JJ7-GZ-CU5">
-                    <connections>
-                        <action selector="LeftSwipe:" destination="57H-Ax-Dw3" id="za4-Vo-Fgv"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="s2m-hb-sd4">
-                    <connections>
-                        <action selector="RightSwipe:" destination="57H-Ax-Dw3" id="yVI-Op-HeM"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <viewController storyboardIdentifier="TimeTableViewController" automaticallyAdjustsScrollViewInsets="NO" id="57H-Ax-Dw3" customClass="TimetableViewController" customModule="TimeTable" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimetableViewController" automaticallyAdjustsScrollViewInsets="NO" id="57H-Ax-Dw3" customClass="TimetableViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ung-FJ-vsq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,10 +191,21 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="1uf-qa-jXI"/>
                     <connections>
-                        <outlet property="timeTableView" destination="3TB-0J-Jkv" id="aRY-Mf-6xs"/>
+                        <outlet property="timetableView" destination="3TB-0J-Jkv" id="aRY-Mf-6xs"/>
                         <segue destination="zY7-nP-CSp" kind="show" identifier="setupGroupSeque" id="xMo-Hu-fFD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DEw-XW-qct" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="JJ7-GZ-CU5">
+                    <connections>
+                        <action selector="LeftSwipe:" destination="57H-Ax-Dw3" id="za4-Vo-Fgv"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="s2m-hb-sd4">
+                    <connections>
+                        <action selector="RightSwipe:" destination="57H-Ax-Dw3" id="yVI-Op-HeM"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1816.875" y="-154.22535211267606"/>
         </scene>

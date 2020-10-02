@@ -17,7 +17,7 @@ class TimetableViewController: UIViewController, UITabBarControllerDelegate {
     private var groupProfile: String!
     private var groupCurse: String!
     
-    @IBOutlet weak var timeTableView: UITableView!
+    @IBOutlet weak var timetableView: UITableView!
     private var navigationBar: UINavigationBar!
     private var weekSkrollView = WeekScrollView()
     
@@ -45,7 +45,7 @@ class TimetableViewController: UIViewController, UITabBarControllerDelegate {
         groupSchedule = coreDataStorage.loadGroupScheldule(profile: groupProfile, curse: groupCurse, in: context)
         
         if groupSchedule != nil {
-            self.coreDataStorage.getTimeTable(for: self.groupSchedule!, in: self.context) {
+            self.coreDataStorage.getTimetable(for: self.groupSchedule!, in: self.context) {
                 self.updateDayTitleAndReloadView()
             }
         } else {
@@ -65,7 +65,7 @@ class TimetableViewController: UIViewController, UITabBarControllerDelegate {
             tbc.context = context
         }
         
-        timeTableView.refreshControl = timeTableRefreshControl
+        timetableView.refreshControl = timeTableRefreshControl
     }
     
     //MARK: - TabBar
@@ -99,8 +99,8 @@ extension TimetableViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LessonCell
             
-            if self.groupSchedule!.timeTable.count > 0 {
-                let day = self.groupSchedule!.timeTable[groupSchedule!.indexOfSelectedDay] as! Day
+            if self.groupSchedule!.timetable.count > 0 {
+                let day = self.groupSchedule!.timetable[groupSchedule!.indexOfSelectedDay] as! Day
                 let lesson = day.lessons![indexPath.row - 1] as! Lesson
                 cell.configure(from: LessonCellViewModel(from: lesson))
             }
@@ -111,11 +111,11 @@ extension TimetableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var day: Day!
         guard groupSchedule != nil else { return 0 }
-        if groupSchedule!.timeTable.count > 0 {
-            day = groupSchedule!.timeTable[groupSchedule!.indexOfSelectedDay] as? Day
+        if groupSchedule!.timetable.count > 0 {
+            day = groupSchedule!.timetable[groupSchedule!.indexOfSelectedDay] as? Day
         }
         
-        return groupSchedule!.timeTable.count > 0 ? day.lessons!.count + 1 : 0
+        return groupSchedule!.timetable.count > 0 ? day.lessons!.count + 1 : 0
     }
 }
 
@@ -125,11 +125,11 @@ extension TimetableViewController {
     
     private func updateDayTitleAndReloadView() {
         navigationItem.title = self.groupSchedule?.dayTitle ?? "Расписание"
-        self.timeTableView.reloadData()
+        self.timetableView.reloadData()
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
-        self.coreDataStorage.getTimeTable(for: self.groupSchedule!, in: self.context) {
+        self.coreDataStorage.getTimetable(for: self.groupSchedule!, in: self.context) {
             self.updateDayTitleAndReloadView()
         }
         
@@ -139,7 +139,7 @@ extension TimetableViewController {
     @IBAction func RightSwipe(_ sender: Any) {
         groupSchedule!.previousDayPressed()
         
-        UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
+        UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
         
         updateDayTitleAndReloadView()
         if let dayIndex = groupSchedule?.indexOfSelectedDay {
@@ -150,7 +150,7 @@ extension TimetableViewController {
     @IBAction func LeftSwipe(_ sender: Any) {
         groupSchedule!.nextDayPressed()
         
-        UIView.transition(with: timeTableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
+        UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
         
         updateDayTitleAndReloadView()
         if let dayIndex = groupSchedule?.indexOfSelectedDay {

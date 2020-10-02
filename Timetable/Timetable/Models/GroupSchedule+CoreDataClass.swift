@@ -28,7 +28,7 @@ public class GroupSchedule: NSManagedObject {
     
     func nextDayPressed() {
         indexOfSelectedDay += 1
-        if indexOfSelectedDay == timeTable.count {
+        if indexOfSelectedDay == timetable.count {
             indexOfSelectedDay = 0
         }
         dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
@@ -37,7 +37,7 @@ public class GroupSchedule: NSManagedObject {
     func previousDayPressed() {
         indexOfSelectedDay -= 1
         if indexOfSelectedDay == -1 {
-            indexOfSelectedDay = timeTable.count - 1
+            indexOfSelectedDay = timetable.count - 1
         }
         dayTitle = getDayName(currentDayIndex: indexOfSelectedDay)
     }
