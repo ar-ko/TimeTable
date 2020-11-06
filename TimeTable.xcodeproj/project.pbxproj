@@ -25,6 +25,7 @@
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
 		BB72BC4F2520FFD600CD0D69 /* LessonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72BC4E2520FFD600CD0D69 /* LessonCellViewModel.swift */; };
 		BB734E702520CF7F0092D70E /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB734E6F2520CF7F0092D70E /* TimetableViewModel.swift */; };
+		BB7D4DB5252C2ED2007A499C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D4DB4252C2ED2007A499C /* CoreDataManager.swift */; };
 		BB8A2F43241157D7009944D3 /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */; };
 		BB8A2F44241157D7009944D3 /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */; };
 		BB8A2F45241157D7009944D3 /* GroupSchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535624050DE100910D37 /* GroupSchedule+CoreDataProperties.swift */; };
@@ -34,7 +35,6 @@
 		BBA6E785242C754200F770BB /* WeekScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6E784242C754200F770BB /* WeekScrollView.swift */; };
 		BBB09A952525A109000D90F7 /* TimetableStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBB09A942525A109000D90F7 /* TimetableStoryboard.storyboard */; };
 		BBBAAED9241034B60034DA8F /* Groups.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBBAAED8241034B60034DA8F /* Groups.plist */; };
-		BBC14372241BF9EB00BBEBAC /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */; };
 		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
 		BBC902F223E1BA640021CA1C /* TimetableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902F123E1BA640021CA1C /* TimetableNetworkService.swift */; };
 		BBDB8D7C240BBADD007DB747 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */; };
@@ -69,6 +69,7 @@
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BB72BC4E2520FFD600CD0D69 /* LessonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCellViewModel.swift; sourceTree = "<group>"; };
 		BB734E6F2520CF7F0092D70E /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
+		BB7D4DB4252C2ED2007A499C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BB8A2F4724116701009944D3 /* GroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsResponse.swift; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		BBA6E784242C754200F770BB /* WeekScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScrollView.swift; sourceTree = "<group>"; };
 		BBB09A942525A109000D90F7 /* TimetableStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimetableStoryboard.storyboard; sourceTree = "<group>"; };
 		BBBAAED8241034B60034DA8F /* Groups.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Groups.plist; sourceTree = "<group>"; };
-		BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BBC902F123E1BA640021CA1C /* TimetableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNetworkService.swift; sourceTree = "<group>"; };
 		BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -155,8 +155,8 @@
 		BBC902ED23E1B80B0021CA1C /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				BBC14371241BF9EB00BBEBAC /* CoreDataStorage.swift */,
 				BBC902EE23E1B81D0021CA1C /* NetworkService.swift */,
+				BB7D4DB4252C2ED2007A499C /* CoreDataManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -316,7 +316,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = ar_ko;
 				TargetAttributes = {
 					BBE2AC8023E19002008FF119 = {
@@ -372,7 +372,6 @@
 				BBA6E785242C754200F770BB /* WeekScrollView.swift in Sources */,
 				BB43536624050DE100910D37 /* Lesson+CoreDataProperties.swift in Sources */,
 				BB43536224050DE100910D37 /* Location+CoreDataProperties.swift in Sources */,
-				BBC14372241BF9EB00BBEBAC /* CoreDataStorage.swift in Sources */,
 				BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */,
 				BB4E7F09251F951400427901 /* ApiKey.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
@@ -396,6 +395,7 @@
 				BB43536524050DE100910D37 /* Lesson+CoreDataClass.swift in Sources */,
 				BB43535E24050DE100910D37 /* Day+CoreDataProperties.swift in Sources */,
 				BB43535D24050DE100910D37 /* Day+CoreDataClass.swift in Sources */,
+				BB7D4DB5252C2ED2007A499C /* CoreDataManager.swift in Sources */,
 				BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

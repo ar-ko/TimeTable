@@ -95,8 +95,8 @@ class LessonCellViewModel {
         }
         
         self.wrongLocation = wrongLocation
-        self.locationColor = locationColor
         
+        self.locationColor = locationColor
     }
     
 }

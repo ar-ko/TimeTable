@@ -7,15 +7,9 @@
 //
 
 import UIKit
-import CoreData
 
 
 class TimetableViewController: UIViewController, UITabBarControllerDelegate {
-    
-    private lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private var groupSchedule: GroupSchedule?
-    private var groupProfile: String!
-    private var groupCurse: String!
     
     @IBOutlet weak var timetableView: UITableView!
     private var navigationBar: UINavigationBar!
@@ -27,42 +21,52 @@ class TimetableViewController: UIViewController, UITabBarControllerDelegate {
         return refreshControl
     }()
     
-    private let coreDataStorage = CoreDataStorage()
+    private var core = CoreDataManager()
+    private var model: TimetableViewModel!
     
     
     //MARK: - View lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        setupSubview()
         
+        
+        /*groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
+         groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
+         
+         groupSchedule = CoreDataManager().loadGroupScheldule(profile: groupProfile, curse: groupCurse)
+         
+         if groupSchedule != nil {
+         CoreDataManager().getTimetable(for: self.groupSchedule!) {
+         self.updateDayTitleAndReloadView()
+         }
+         } else {
+         performSegue(withIdentifier: "setupGroupSeque", sender: self)
+         }
+         */
+        
+        model.getTimetable(){
+            self.timetableView.reloadData()
+        }
+    }
+    
+    private func setupSubview(){
         weekSkrollView.removeFromSuperview()
         weekSkrollView = WeekScrollView(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.bounds.size.height ?? 0), width: self.view.bounds.width, height: 60))
         view.addSubview(weekSkrollView)
         
-        groupProfile = UserDefaults.standard.string(forKey: "groupProfile") ?? ""
-        groupCurse = UserDefaults.standard.string(forKey: "groupCurse") ?? ""
-        
-        groupSchedule = coreDataStorage.loadGroupScheldule(profile: groupProfile, curse: groupCurse, in: context)
-        
-        if groupSchedule != nil {
-            self.coreDataStorage.getTimetable(for: self.groupSchedule!, in: self.context) {
-                self.updateDayTitleAndReloadView()
-            }
-        } else {
-            performSegue(withIdentifier: "setupGroupSeque", sender: self)
-        }
         weekSkrollView.delegate = self
-        weekSkrollView.selectedDay = groupSchedule?.indexOfSelectedDay ?? 0
+        weekSkrollView.selectedDay = model.indexOfSelectedDay
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        coreDataStorage.printGroupSchelduesCount(in: context)
-        
+        self.model = TimetableViewModel(core: self.core)
         self.tabBarController?.delegate = self
         if let tbc = self.tabBarController as? CustomTabBarController {
-            tbc.context = context
+            tbc.core = self.core
         }
         
         timetableView.refreshControl = timeTableRefreshControl
@@ -73,89 +77,76 @@ class TimetableViewController: UIViewController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let tabBarIndex = tabBarController.selectedIndex
         if tabBarIndex == 0 {
-            groupSchedule?.setValuesForToday()
+            model.selectDay(.today)
             updateDayTitleAndReloadView()
-            if let dayIndex = groupSchedule?.indexOfSelectedDay {
-                weekSkrollView.selectDay(index: dayIndex)
-            }
+            weekSkrollView.selectDay(index: model.indexOfSelectedDay)
         }
     }
 }
 
-    //MARK: - TableView
+//MARK: - TableView
 
 extension TimetableViewController: UITableViewDelegate {}
 
 extension TimetableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard  let lastUpdate = model.getLastUpdate(),
+               let lessons = model.getDay()?.lessons else { return UITableViewCell() }
+        
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell", for: indexPath) as! LastUpdateCell
+            cell.lastUpdateCellViewModel = LastUpdateCellViewModel(from: lastUpdate)
             
-            if groupSchedule?.lastUpdate != nil {
-                cell.lastUpdateCellViewModel = LastUpdateCellViewModel(from: groupSchedule?.lastUpdate ?? Date())
-            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LessonCell
+            cell.configure(from: LessonCellViewModel(from: lessons[indexPath.row - 1] as! Lesson))
             
-            if self.groupSchedule!.timetable.count > 0 {
-                let day = self.groupSchedule!.timetable[groupSchedule!.indexOfSelectedDay] as! Day
-                let lesson = day.lessons![indexPath.row - 1] as! Lesson
-                cell.configure(from: LessonCellViewModel(from: lesson))
-            }
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var day: Day!
-        guard groupSchedule != nil else { return 0 }
-        if groupSchedule!.timetable.count > 0 {
-            day = groupSchedule!.timetable[groupSchedule!.indexOfSelectedDay] as? Day
-        }
         
-        return groupSchedule!.timetable.count > 0 ? day.lessons!.count + 1 : 0
+        guard let lessonsCount = model.getDay()?.lessons?.count else { return 0 }
+        return lessonsCount + 1
+        
     }
 }
 
-    //MARK: - User interface
+//MARK: - User interface
 
 extension TimetableViewController {
     
     private func updateDayTitleAndReloadView() {
-        navigationItem.title = self.groupSchedule?.dayTitle ?? "Расписание"
+        navigationItem.title = self.model.dayTitle
         self.timetableView.reloadData()
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
-        self.coreDataStorage.getTimetable(for: self.groupSchedule!, in: self.context) {
+        model.getTimetable() {
             self.updateDayTitleAndReloadView()
         }
-        
         sender.endRefreshing()
     }
     
     @IBAction func RightSwipe(_ sender: Any) {
-        groupSchedule!.previousDayPressed()
+        model.selectDay(.previous)
         
         UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
         
         updateDayTitleAndReloadView()
-        if let dayIndex = groupSchedule?.indexOfSelectedDay {
-            weekSkrollView.selectDay(index: dayIndex)
-        }
+        weekSkrollView.selectDay(index: model.indexOfSelectedDay)
     }
     
     @IBAction func LeftSwipe(_ sender: Any) {
-        groupSchedule!.nextDayPressed()
+        model.selectDay(.next)
         
         UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
         
         updateDayTitleAndReloadView()
-        if let dayIndex = groupSchedule?.indexOfSelectedDay {
-            weekSkrollView.selectDay(index: dayIndex)
-        }
+        weekSkrollView.selectDay(index: model.indexOfSelectedDay)
     }
     
     //MARK: - Segues
@@ -164,7 +155,6 @@ extension TimetableViewController {
         if segue.identifier == "setupGroupSeque" {
             let destination = segue.destination as! ProfileViewController
             
-            destination.context = context
             destination.firstLaunch = true
         }
     }
@@ -173,11 +163,17 @@ extension TimetableViewController {
     }
 }
 
-    //MARK: - WeekSkrollViewDelegate
+//MARK: - WeekSkrollViewDelegate
 
 extension TimetableViewController: WeekSkrollViewDelegate {
     func indexOfSelectedDay(_ dayIndex: Int) {
-        groupSchedule?.pressedDay(dayIndex)
+        if dayIndex > model.indexOfSelectedDay {
+            UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
+        } else {
+            UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
+        }
+        
+        model.selectDay(.forIndex(dayIndex))
         updateDayTitleAndReloadView()
     }
 }

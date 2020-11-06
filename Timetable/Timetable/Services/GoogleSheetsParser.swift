@@ -336,11 +336,9 @@ struct GoogleSheetsParser {
         let lessonTitle = lessonTitle.lowercased()
         if lessonTitle.contains("(лб)") {
             return .laboratory
-        }
-        else if lessonTitle.contains("(лк)") {
+        } else if lessonTitle.contains("(лк)") {
             return .lecture
-        }
-        else if lessonTitle.contains("(пр)") || lessonTitle.contains("(ознакомительная)") {
+        } else if lessonTitle.contains("(пр)") || lessonTitle.contains("(ознакомительная)") || lessonTitle.contains("социальная") {
             return .practice
         }
         return LessonType.none
@@ -492,8 +490,7 @@ struct GoogleSheetsParser {
                     location.campus = cabinet
                     
                     locations.append(location)
-                }
-                else {
+                } else {
                     buf = cabinet
                 }
             }
@@ -506,8 +503,7 @@ struct GoogleSheetsParser {
                     location.campus = campus
                     
                     locations.append(location)
-                }
-                else {
+                } else {
                     buf = campus
                 }
             }
@@ -548,7 +544,7 @@ struct GoogleSheetsParser {
         case "Y": return 25
         case "Z": return 26
         default:
-            print ("ERROR")
+            print ("ERROR: characterToNum, incorrect index")
             return 0
         }
     }

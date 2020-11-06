@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import CoreData
 
 
 class ProfileViewController: UITableViewController {
     
     var firstLaunch = false
-    var context: NSManagedObjectContext!
+    var core: CoreDataManager!
     var groups: [Group] = []
     private lazy var groupProfiles = GetGroupProfilesResponse(groups: groups).groupProfiles
     private var filteredProfiles: [String] = []
@@ -32,7 +31,7 @@ class ProfileViewController: UITableViewController {
         super.viewDidLoad()
         
         if firstLaunch {
-            groups = GetGroupsResponse(context: context!).groups
+            groups = GetGroupsResponse(context: core.context).groups
         }
         
         configureSearchController()
@@ -66,7 +65,7 @@ class ProfileViewController: UITableViewController {
                 let destination = segue.destination as! CurseViewController
                 
                 destination.groups = groups
-                destination.context = context
+                destination.core = core
                 destination.firstLaunch = firstLaunch
             }
         }

@@ -19,14 +19,24 @@
 		<string>M</string>
 		<key>endRow</key>
 		<integer>179</integer>
-		<key>groupInfoStartColumn</key>
-		<string>K</string>
-		<key>groupInfoStartRow</key>
-		<integer>8</integer>
-		<key>groupInfoEndColumn</key>
-		<string>L</string>
-		<key>groupInfoEndRow</key>
-		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Экономика и управление</string>
+		<key>curse</key>
+		<string>1 курс</string>
+		<key>sheetId</key>
+		<string>%D0%9F%D0%A0%D0%9E%D0%A4%D0%AB</string>
+		<key>spreadsheetId</key>
+		<string>12RJCSj430oow-Q5GnEHr7Wbww5vztZYLdUJSg_khrKA</string>
+		<key>startColumn</key>
+		<string>B</string>
+		<key>startRow</key>
+		<integer>11</integer>
+		<key>endColumn</key>
+		<string>E</string>
+		<key>endRow</key>
+		<integer>179</integer>
 	</dict>
 </array>
 </plist>

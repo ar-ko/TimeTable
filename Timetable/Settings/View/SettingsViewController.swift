@@ -7,14 +7,18 @@
 //
 
 import UIKit
-import CoreData
+
 
 class SettingsViewController: UITableViewController {
     
-    var context: NSManagedObjectContext!
+    var core: CoreDataManager!
     private var groups: [Group] = []
-    private var groupProfile: String!
-    private var groupCurse: String!
+    private var groupProfile: String {
+        return UserDefaults.standard.string(forKey: "groupProfile") ?? ""
+    }
+    private var groupCurse: String {
+        return UserDefaults.standard.string(forKey: "groupCurse") ?? ""
+    }
     
     @IBOutlet weak var groupProfileLabel: UILabel!
     @IBOutlet weak var groupCurseLabel: UILabel!
@@ -25,16 +29,13 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         
         if let tbc = self.tabBarController as? CustomTabBarController {
-            context = tbc.context
+            core = tbc.core
         }
         
-        groups = GetGroupsResponse(context: context).groups
+        groups = GetGroupsResponse(context: core.context).groups
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        groupProfile = UserDefaults.standard.string(forKey: "groupProfile")
-        groupCurse = UserDefaults.standard.string(forKey: "groupCurse")
-        
         groupProfileLabel.text = groupProfile
         groupCurseLabel.text = groupCurse
         
@@ -48,23 +49,23 @@ class SettingsViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showProfileSegue",
-            let destination = segue.destination as? ProfileViewController {
+           let destination = segue.destination as? ProfileViewController {
             
             destination.groups = groups
-            destination.context = context
+            destination.core = core
         }
         if segue.identifier == "changeCurseSegue",
-            let destination = segue.destination as? CurseViewController {
+           groupProfile != "",
+           let destination = segue.destination as? CurseViewController {
             
             destination.groups = groups
-            destination.context = context
+            destination.core = core
         }
     }
     
     @IBAction func clearCacheButtonPressed(_ sender: Any) {
-        let coreDataStorage = CoreDataStorage()
-        coreDataStorage.clearCoreDataExcept(profile: groupProfile, curse: groupCurse, in: context)
-
+        CoreDataManager().clearCoreDataExcept(profile: groupProfile, curse: groupCurse)
+        
         clearCacheButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         clearCacheButton.isEnabled = false
     }

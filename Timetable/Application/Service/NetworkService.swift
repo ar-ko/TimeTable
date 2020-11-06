@@ -28,7 +28,7 @@ class NetworkService {
                     completion(timetableJSON)
                 }
             } catch {
-                print("ERROR: \(error)")
+                print(error.localizedDescription)
                 completion(nil)
             }
         }.resume()

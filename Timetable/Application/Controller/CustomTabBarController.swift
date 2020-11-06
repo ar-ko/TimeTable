@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import CoreData
 
 
 class CustomTabBarController: UITabBarController {
     
-    var context: NSManagedObjectContext?
+    var core: CoreDataManager?
     
     
     override func viewDidLoad() {

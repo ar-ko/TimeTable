@@ -11,7 +11,6 @@
         <!--Настройки-->
         <scene sceneID="0Ob-lh-48a">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rcm-aS-nlB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="SettingsViewController" id="Lqk-e6-Tys" customClass="SettingsViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9LN-qu-5Jt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -134,13 +133,13 @@
                         <outlet property="groupProfileLabel" destination="P1I-UJ-TVY" id="C6u-AY-lO7"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rcm-aS-nlB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1964" y="560"/>
         </scene>
         <!--Профиль-->
         <scene sceneID="scZ-uj-2gA">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wVS-AS-VgM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="ProfileViewController" id="zay-l8-9oK" customClass="ProfileViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EYV-Vj-CCN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -175,14 +174,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Профиль" id="hEs-fk-DTX"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wVS-AS-VgM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2828" y="194"/>
         </scene>
         <!--Курс-->
         <scene sceneID="C7E-Jb-9mb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qfw-j0-72G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="p8r-0c-89G" userLabel="Exit" sceneMemberID="exit"/>
                 <tableViewController id="7Ck-Au-BGd" customClass="CurseViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VAr-ll-e5i">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -209,12 +207,14 @@
                         <segue destination="p8r-0c-89G" kind="unwind" identifier="backToMainSegue" unwindAction="cancelActionMain:" id="xnI-1S-Duh"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qfw-j0-72G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="p8r-0c-89G" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2828" y="940"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="33G-xG-z0e"/>
+        <segue reference="F3c-lz-014"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="groupTableViewBackgroundColor">

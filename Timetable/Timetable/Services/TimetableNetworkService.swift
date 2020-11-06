@@ -22,8 +22,7 @@ class TimetableNetworkService {
                 let response = GoogleSheetsParser(of: json, for: group, in: context)
                 
                 completion(response)
-            }
-            else {
+            } else {
                 completion(nil)
             }
         }

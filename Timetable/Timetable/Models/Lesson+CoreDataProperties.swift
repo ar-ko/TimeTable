@@ -14,10 +14,9 @@ extension Lesson {
     
     @NSManaged public var startTime: Date
     var endTime: Date {
-        get {
             let lessonDuration: Double = 5400 // в секундах
             return startTime.addingTimeInterval(lessonDuration)
-        }
+        
     }
     
     @NSManaged public var title: String?
