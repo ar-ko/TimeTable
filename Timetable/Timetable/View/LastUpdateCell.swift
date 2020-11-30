@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 class LastUpdateCell: UITableViewCell {
-    
     @IBOutlet weak var lastUpdateLabel: UILabel!
     
     var lastUpdateCellViewModel: LastUpdateCellViewModel! {

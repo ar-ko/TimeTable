@@ -5,7 +5,7 @@
 	<dict>
 		<key>name</key>
 		<string>Экономика и управление</string>
-		<key>curse</key>
+		<key>course</key>
 		<string>2 курс</string>
 		<key>sheetId</key>
 		<string>%D0%9F%D0%A0%D0%9E%D0%A4%D0%AB</string>
@@ -18,12 +18,12 @@
 		<key>endColumn</key>
 		<string>M</string>
 		<key>endRow</key>
-		<integer>179</integer>
+		<integer>183</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Экономика и управление</string>
-		<key>curse</key>
+		<key>course</key>
 		<string>1 курс</string>
 		<key>sheetId</key>
 		<string>%D0%9F%D0%A0%D0%9E%D0%A4%D0%AB</string>
@@ -36,7 +36,7 @@
 		<key>endColumn</key>
 		<string>E</string>
 		<key>endRow</key>
-		<integer>179</integer>
+		<integer>183</integer>
 	</dict>
 </array>
 </plist>

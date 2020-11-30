@@ -55,12 +55,12 @@ class LessonCellViewModel {
         
         var locations = ""
         
-        if lesson.locations != nil {
+        if let lessonLocations = lesson.locations{
             
-            for (index, location) in lesson.locations!.enumerated() {
-                let location = location as! Location
-                locations += "\(location.cabinet!)\n\(location.campus!)"
-                if index != lesson.locations!.count - 1 { //отделяем кабинеты пустой строкой
+            for (index, location) in lessonLocations.enumerated() {
+                guard let location = location as? Location else { continue }
+                locations += "\(location.cabinet ?? "")\n\(location.campus ?? "")"
+                if index != lessonLocations.count - 1 { //отделяем кабинеты пустой строкой
                     locations += "\n\n"
                 }
             }

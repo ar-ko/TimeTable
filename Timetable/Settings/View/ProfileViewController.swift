@@ -10,29 +10,17 @@ import UIKit
 
 
 class ProfileViewController: UITableViewController {
-    
-    var firstLaunch = false
-    var core: CoreDataManager!
-    var groups: [Group] = []
-    private lazy var groupProfiles = GetGroupProfilesResponse(groups: groups).groupProfiles
-    private var filteredProfiles: [String] = []
+    var coreDataManager: CoreDataManager?
+    var profileViewModel: ProfileViewModel?
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var searchBarIsEmpty: Bool {
-        guard let text = searchController.searchBar.text else { return false }
-        return text.isEmpty
-    }
-    private var isFiltering: Bool {
-        return searchController.isActive && !searchBarIsEmpty
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if firstLaunch {
-            groups = GetGroupsResponse(context: core.context).groups
-        }
+        guard let coreDataManager = coreDataManager else { return }
+        self.profileViewModel = ProfileViewModel(coreDataManager: coreDataManager)
         
         configureSearchController()
     }
@@ -40,6 +28,7 @@ class ProfileViewController: UITableViewController {
     deinit {
         self.searchController.view.removeFromSuperview()
     }
+    
     
     private func configureSearchController() {
         searchController.searchResultsUpdater = self
@@ -50,63 +39,43 @@ class ProfileViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showCurseSegue" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let groupProfile: String
-                if isFiltering {
-                    groupProfile = filteredProfiles[indexPath.row]
-                } else {
-                    groupProfile = groupProfiles[indexPath.row]
-                }
-                
-                UserDefaults.standard.set(groupProfile, forKey: "groupProfile")
-                
-                let destination = segue.destination as! CurseViewController
-                
-                destination.groups = groups
-                destination.core = core
-                destination.firstLaunch = firstLaunch
-            }
-        }
-    }
-    
-    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var groupProfile: String
-        
-        if isFiltering {
-            groupProfile = filteredProfiles[indexPath.row]
-        } else {
-            groupProfile = groupProfiles[indexPath.row]
-        }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath)
-        cell.textLabel?.text = groupProfile
+        cell.textLabel?.text = profileViewModel?.profiles[indexPath.row]
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredProfiles.count
+        
+        return profileViewModel?.profiles.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let profileViewModel = profileViewModel else { return }
+                
+        profileViewModel.selectProfile(index: indexPath.row)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCourseSegue" {
+            
+            let destination = segue.destination as! CourseViewController
+            destination.coreDataManager = coreDataManager
         }
-        return groupProfiles.count
     }
 }
 
 extension ProfileViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    private func filterContentForSearchText(_ searchText: String) {
-        filteredProfiles = groupProfiles.filter({ (groupProfile) -> Bool in
-            return groupProfile.lowercased().contains(searchText.lowercased())
-        })
+        guard let profileViewModel = profileViewModel,
+              let searchText = searchController.searchBar.text else { return }
         
+        profileViewModel.filterProfilesBySearchText(searchText)
         tableView.reloadData()
     }
+    
 }

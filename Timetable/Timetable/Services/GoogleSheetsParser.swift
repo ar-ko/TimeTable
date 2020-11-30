@@ -8,26 +8,24 @@
 
 import CoreData
 
-
 struct GoogleSheetsParser {
     let timetable: [Day]
-    
     
     init(of json: GoogleSheetsResponse, for group: Group, in context: NSManagedObjectContext) {
         let startColumnIndex = GoogleSheetsParser.letterToIndex(letter: group.startColumn)
         let startRowIndex = Int(group.startRow - 1)
-        
+                
         let daysSeparator = GoogleSheetsParser.getDaysSeparator(json: json, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
         
-        let timetable = GoogleSheetsParser.getTimetable(json: json, daysSeparator: daysSeparator, context: context, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
+        let timetable = GoogleSheetsParser.getTimetable(json: json, daysSeparator: daysSeparator!, context: context, rangeIndexes: (startColumnIndex: startColumnIndex, startRowIndex: startRowIndex))
         self.timetable = timetable
     }
     
     
     //MARK: - Preparation for parsing
     
-    private static func getDaysSeparator(json: GoogleSheetsResponse, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Int] {
-        var merges = json.sheets.last!.merges
+    private static func getDaysSeparator(json: GoogleSheetsResponse, rangeIndexes: (startColumnIndex: Int, startRowIndex: Int)) -> [Int]? {
+        guard var merges = json.sheets.last?.merges else { return nil }
         
         merges = merges.filter { $0.startColumnIndex == rangeIndexes.startColumnIndex && $0.endColumnIndex == rangeIndexes.startColumnIndex + 1}
         merges.sort { $0.startRowIndex < $1.startRowIndex }
@@ -216,7 +214,14 @@ struct GoogleSheetsParser {
                         let whiteWeekLocation = getLocations(of: whiteWeekCabinet, and: whiteWeekCampus, context: context)
                         let blueWeekLocation = getLocations(of: blueWeekCabinet, and: blueWeekCampus, context: context)
                         
-                        let startTime = timeParser(dateString: lessonStartTime!)!
+                        let startTime: Date
+                        
+                        if let lessonStartTime = lessonStartTime {
+                            startTime = timeParser(dateString: lessonStartTime)!
+                        } else {
+                            startTime = Date()
+                        }
+                        
                         
                         if whiteWeekLessonTitle != nil {
                             let lesson = Lesson(context: context)
@@ -338,7 +343,7 @@ struct GoogleSheetsParser {
             return .laboratory
         } else if lessonTitle.contains("(лк)") {
             return .lecture
-        } else if lessonTitle.contains("(пр)") || lessonTitle.contains("(ознакомительная)") || lessonTitle.contains("социальная") {
+        } else if lessonTitle.contains("(пр)") || lessonTitle.contains("практика") {
             return .practice
         }
         return LessonType.none

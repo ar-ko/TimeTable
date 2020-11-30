@@ -9,25 +9,24 @@
 import Foundation
 
 class LastUpdateCellViewModel {
-    let lastUpdate: String
+    let lastUpdate: String?
     
-    init(from updateDate: Date) {
+    init?(from updateDate: Date) {
         let dateFormatter = DateFormatter()
         var lastUpdate = ""
         
-        let diffInDays = Calendar.current.dateComponents([.minute], from: updateDate, to: Date()).minute
-        
+        guard let diffInDays = Calendar.current.dateComponents([.minute], from: updateDate, to: Date()).minute else { return nil }
         
         if Calendar.current.isDateInToday(updateDate) {
-            switch diffInDays! {
+            switch diffInDays {
             case 0:
                 lastUpdate = "менее минуты назад"
             case 1, 21, 31, 41, 51:
-                lastUpdate = "\(diffInDays!) минуту назад"
+                lastUpdate = "\(diffInDays) минуту назад"
             case 2...4, 22...24, 32...34, 42...44, 52...54:
-                lastUpdate = "\(diffInDays!) минуты назад"
+                lastUpdate = "\(diffInDays) минуты назад"
             case 5...20, 25...30, 35...40, 45...50, 55...59:
-                lastUpdate = "\(diffInDays!) минут назад"
+                lastUpdate = "\(diffInDays) минут назад"
             case 60...119:
                 lastUpdate = "час назад"
             case 120...179:

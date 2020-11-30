@@ -9,12 +9,9 @@
 
 import CoreData
 
-
 extension Day {
-
     @NSManaged public var lessons: NSOrderedSet?
     @NSManaged public var timetable: GroupSchedule?
-    
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Day> {
         return NSFetchRequest<Day>(entityName: "Day")
@@ -23,8 +20,6 @@ extension Day {
 
 // MARK: Generated accessors for lessons
 extension Day {
-
-    
     @objc(insertObject:inLessonsAtIndex:)
     @NSManaged public func insertIntoLessons(_ value: Lesson, at idx: Int)
 
@@ -54,5 +49,4 @@ extension Day {
 
     @objc(removeLessons:)
     @NSManaged public func removeFromLessons(_ values: NSOrderedSet)
-
 }

@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,10 +50,10 @@
         <!--TimetableViewController-->
         <scene sceneID="TEG-3r-4Es">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XZM-jH-EaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardIdentifier="TimetableReference" storyboardName="TimetableStoryboard" referencedIdentifier="TimetableViewController" id="Ylx-ga-Qxc" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="PIi-s4-PLi"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XZM-jH-EaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1612" y="-155"/>
         </scene>

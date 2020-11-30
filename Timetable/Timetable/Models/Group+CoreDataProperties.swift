@@ -9,11 +9,9 @@
 
 import CoreData
 
-
 extension Group {
-    
     @NSManaged public var name: String
-    @NSManaged public var curse: String
+    @NSManaged public var course: String
     
     @NSManaged public var startColumn: String
     @NSManaged public var startRow: Int16
@@ -30,7 +28,6 @@ extension Group {
     }
     
     @NSManaged public var groupSchedule: GroupSchedule?
-    
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Group> {
         return NSFetchRequest<Group>(entityName: "Group")

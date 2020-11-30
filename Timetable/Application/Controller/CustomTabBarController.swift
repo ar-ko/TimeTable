@@ -8,14 +8,10 @@
 
 import UIKit
 
-
 class CustomTabBarController: UITabBarController {
-    
     var core: CoreDataManager?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
 }

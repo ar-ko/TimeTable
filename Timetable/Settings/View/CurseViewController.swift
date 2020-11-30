@@ -1,5 +1,5 @@
 //
-//  CurseViewController.swift
+//  CourseViewController.swift
 //  TimeTable
 //
 //  Created by ar_ko on 05/03/2020.
@@ -8,43 +8,35 @@
 
 import UIKit
 
-
-class CurseViewController: UITableViewController {
+class CourseViewController: UITableViewController {
+    var coreDataManager: CoreDataManager?
+    private var courseViewModel: CourseViewModel?
     
-    var firstLaunch: Bool?
-    var groups: [Group] = []
-    var core: CoreDataManager!
-    private lazy var groupCurses = GetGroupCurseResponse(groups: groups, groupProfile: groupProfile).groupCurses
-    private var groupProfile: String {
-        return UserDefaults.standard.string(forKey: "groupProfile") ?? ""
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let coreDataManager = coreDataManager else { return }
+        self.courseViewModel = CourseViewModel(coreDataManager: coreDataManager)
     }
     
-    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupCurses.count
+        return courseViewModel?.groupCourses.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CurseCell", for: indexPath)
-        cell.textLabel?.text = groupCurses[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath)
+        cell.textLabel?.text = courseViewModel?.groupCourses[indexPath.row]
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let groupCurse = groupCurses[indexPath.row]
-        UserDefaults.standard.set(groupCurse, forKey: "groupCurse")
+        guard let courseViewModel = courseViewModel else { return }
+                
+        courseViewModel.selectGroup(index: indexPath.row)
         
-        core.selectGroup(profile: groupProfile, curse: groupCurse, groupList: groups)
-        
-        if firstLaunch == true {
-            performSegue(withIdentifier: "backToMainSegue", sender: nil)
-        }
         performSegue(withIdentifier: "backToSettingsSegue", sender: nil)
     }
 }

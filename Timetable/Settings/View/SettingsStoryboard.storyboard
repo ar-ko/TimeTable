@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <!--Настройки-->
         <scene sceneID="0Ob-lh-48a">
             <objects>
-                <tableViewController storyboardIdentifier="SettingsViewController" id="Lqk-e6-Tys" customClass="SettingsViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lqk-e6-Tys" customClass="SettingsViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9LN-qu-5Jt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7Ck-Au-BGd" kind="show" identifier="changeCurseSegue" id="33G-xG-z0e"/>
+                                            <segue destination="7Ck-Au-BGd" kind="show" identifier="changeCourseSegue" id="33G-xG-z0e"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -129,7 +129,7 @@
                     <navigationItem key="navigationItem" title="Настройки" id="rVO-Ip-Rio"/>
                     <connections>
                         <outlet property="clearCacheButton" destination="gMc-rw-XZm" id="mA9-6X-8GI"/>
-                        <outlet property="groupCurseLabel" destination="KYF-JN-7uh" id="aaW-uz-C4m"/>
+                        <outlet property="groupCourseLabel" destination="KYF-JN-7uh" id="F33-0e-xEP"/>
                         <outlet property="groupProfileLabel" destination="P1I-UJ-TVY" id="C6u-AY-lO7"/>
                     </connections>
                 </tableViewController>
@@ -163,7 +163,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="7Ck-Au-BGd" kind="show" identifier="showCurseSegue" id="F3c-lz-014"/>
+                                    <segue destination="7Ck-Au-BGd" kind="show" identifier="showCourseSegue" id="F3c-lz-014"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -181,13 +181,13 @@
         <!--Курс-->
         <scene sceneID="C7E-Jb-9mb">
             <objects>
-                <tableViewController id="7Ck-Au-BGd" customClass="CurseViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7Ck-Au-BGd" customClass="CourseViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VAr-ll-e5i">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurseCell" id="eYG-Aq-EGk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" id="eYG-Aq-EGk">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eYG-Aq-EGk" id="joh-3J-qeH">

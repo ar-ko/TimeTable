@@ -8,11 +8,8 @@
 
 import CoreData
 
-
 class TimetableNetworkService {
-    
     private init() {}
-    
     
     static func getTimetable(group: Group, context: NSManagedObjectContext, completion: @escaping(GoogleSheetsParser?) -> ()) {
         guard let url = URL(string: group.urlString) else { return }

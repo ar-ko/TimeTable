@@ -9,13 +9,10 @@
 
 import CoreData
 
-
 extension GroupSchedule {
-    
     @NSManaged public var lastUpdate: Date?
     @NSManaged public var group: Group
     @NSManaged public var timetable: NSOrderedSet
-    
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<GroupSchedule> {
         return NSFetchRequest<GroupSchedule>(entityName: "GroupSchedule")
@@ -24,8 +21,6 @@ extension GroupSchedule {
 
 // MARK: Generated accessors for timetable
 extension GroupSchedule {
-
-    
     @objc(insertObject:inTimetableAtIndex:)
     @NSManaged public func insertIntoTimetable(_ value: Day, at idx: Int)
 
@@ -55,5 +50,4 @@ extension GroupSchedule {
 
     @objc(removeTimetable:)
     @NSManaged public func removeFromTimetable(_ values: NSOrderedSet)
-
 }

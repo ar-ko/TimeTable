@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 class LessonCell: UITableViewCell {
-    
     @IBOutlet weak var lessonStartTimeLabel: UILabel!
     @IBOutlet weak var lessonEndTimeLabel: UILabel!
     
@@ -35,7 +33,6 @@ class LessonCell: UITableViewCell {
     //MARK: - Configure cell
     
     func configure(from lesson: LessonCellViewModel) {
-              
         self.lessonStartTimeLabel.text = lesson.startTime
         self.lessonEndTimeLabel.text = lesson.endTime
         self.lessonTitleLabel.text = lesson.title

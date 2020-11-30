@@ -9,14 +9,15 @@
 
 import CoreData
 
+enum LessonForm: Int {case none, standart, online, canceled}
+enum Subgroup: Int {case none, first, second, general}
+enum LessonType: Int {case none, lecture, practice, laboratory}
 
 extension Lesson {
-    
     @NSManaged public var startTime: Date
     var endTime: Date {
             let lessonDuration: Double = 5400 // в секундах
             return startTime.addingTimeInterval(lessonDuration)
-        
     }
     
     @NSManaged public var title: String?
@@ -47,21 +48,13 @@ extension Lesson {
     
     @NSManaged public var day: Day?
     
-    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Lesson> {
         return NSFetchRequest<Lesson>(entityName: "Lesson")
     }
 }
 
-enum LessonForm: Int {case none, standart, online, canceled}
-enum Subgroup: Int {case none, first, second, general}
-enum LessonType: Int {case none, lecture, practice, laboratory}
-
-
 // MARK: Generated accessors for locations
 extension Lesson {
-    
-    
     @objc(insertObject:inLocationsAtIndex:)
     @NSManaged public func insertIntoLocations(_ value: Location, at idx: Int)
     
@@ -91,5 +84,4 @@ extension Lesson {
     
     @objc(removeLocations:)
     @NSManaged public func removeFromLocations(_ values: NSOrderedSet)
-    
 }

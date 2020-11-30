@@ -11,5 +11,4 @@ import CoreData
 
 @objc(Group)
 public class Group: NSManagedObject {
-
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2020 ar_ko. All rights reserved.
 //
 
-import Foundation
+
 import CoreData
 
 struct GetGroupsResponse {
@@ -22,14 +22,14 @@ struct GetGroupsResponse {
             
             
             let groupDictionary = dictionary as! NSDictionary
-            group.name = groupDictionary["name"] as! String
-            group.curse = groupDictionary["curse"] as! String
-            group.sheetId = groupDictionary["sheetId"] as! String
-            group.spreadsheetId = groupDictionary["spreadsheetId"] as! String
-            group.startColumn = groupDictionary["startColumn"] as! String
-            group.startRow = groupDictionary["startRow"] as! Int16
-            group.endColumn = groupDictionary["endColumn"] as! String
-            group.endRow = groupDictionary["endRow"] as! Int16
+            group.name = groupDictionary["name"] as? String ?? ""
+            group.course = groupDictionary["course"] as? String ?? ""
+            group.sheetId = groupDictionary["sheetId"] as? String ?? ""
+            group.spreadsheetId = groupDictionary["spreadsheetId"] as? String ?? ""
+            group.startColumn = groupDictionary["startColumn"] as? String ?? ""
+            group.startRow = groupDictionary["startRow"] as? Int16 ?? 0
+            group.endColumn = groupDictionary["endColumn"] as? String ?? ""
+            group.endRow = groupDictionary["endRow"] as? Int16 ?? 0
             
             groups.append(group)
         }

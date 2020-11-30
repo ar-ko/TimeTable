@@ -19,12 +19,15 @@
 		BB4E7F09251F951400427901 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E7F08251F951400427901 /* ApiKey.swift */; };
 		BB62EB902410AC7C002906A8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */; };
 		BB62EB922410AD21002906A8 /* CurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB912410AD21002906A8 /* CurseViewController.swift */; };
+		BB650A9C255EE07E00062866 /* CurseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB650A9B255EE07E00062866 /* CurseViewModel.swift */; };
+		BB650A9F255EEA7700062866 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB650A9E255EEA7700062866 /* ProfileViewModel.swift */; };
 		BB65242023F3064D00D200FB /* CoreDataTimetable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataTimetable.xcdatamodeld */; };
 		BB6B94572526E7ED000748D2 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6B94562526E7ED000748D2 /* SettingsStoryboard.storyboard */; };
 		BB7255DF23E3295600911B70 /* GoogleSheetsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* GoogleSheetsResponse.swift */; };
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
 		BB72BC4F2520FFD600CD0D69 /* LessonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72BC4E2520FFD600CD0D69 /* LessonCellViewModel.swift */; };
 		BB734E702520CF7F0092D70E /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB734E6F2520CF7F0092D70E /* TimetableViewModel.swift */; };
+		BB74CD072557119A00D7E076 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74CD062557119A00D7E076 /* Coordinator.swift */; };
 		BB7D4DB5252C2ED2007A499C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D4DB4252C2ED2007A499C /* CoreDataManager.swift */; };
 		BB8A2F43241157D7009944D3 /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */; };
 		BB8A2F44241157D7009944D3 /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */; };
@@ -63,12 +66,15 @@
 		BB4E7F08251F951400427901 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BB62EB912410AD21002906A8 /* CurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseViewController.swift; sourceTree = "<group>"; };
+		BB650A9B255EE07E00062866 /* CurseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseViewModel.swift; sourceTree = "<group>"; };
+		BB650A9E255EEA7700062866 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		BB65241F23F3064D00D200FB /* CoreDataTimetable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTimetable.xcdatamodel; sourceTree = "<group>"; };
 		BB6B94562526E7ED000748D2 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 		BB7255DE23E3295600911B70 /* GoogleSheetsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSheetsResponse.swift; sourceTree = "<group>"; };
 		BB7255E023E350CA00911B70 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BB72BC4E2520FFD600CD0D69 /* LessonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCellViewModel.swift; sourceTree = "<group>"; };
 		BB734E6F2520CF7F0092D70E /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
+		BB74CD062557119A00D7E076 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		BB7D4DB4252C2ED2007A499C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -114,12 +120,20 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		BB74CD052557117100D7E076 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		BB8C582A240AD12B00E12327 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				BB8C582D240AD18B00E12327 /* Model */,
 				BB8C582C240AD18600E12327 /* View */,
 				BB8C582B240AD17700E12327 /* ViewModel */,
+				BB74CD052557117100D7E076 /* Services */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -127,6 +141,8 @@
 		BB8C582B240AD17700E12327 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BB650A9B255EE07E00062866 /* CurseViewModel.swift */,
+				BB650A9E255EEA7700062866 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -157,6 +173,7 @@
 			children = (
 				BBC902EE23E1B81D0021CA1C /* NetworkService.swift */,
 				BB7D4DB4252C2ED2007A499C /* CoreDataManager.swift */,
+				BB74CD062557119A00D7E076 /* Coordinator.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -241,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				BB734E6F2520CF7F0092D70E /* TimetableViewModel.swift */,
+				BBB09A942525A109000D90F7 /* TimetableStoryboard.storyboard */,
 				BB72BC4E2520FFD600CD0D69 /* LessonCellViewModel.swift */,
 				BBFC3A422521A88500400645 /* LastUpdateCellViewModel.swift */,
 			);
@@ -254,7 +272,6 @@
 				BB1157C323F10DF80022BDF2 /* LastUpdateCell.swift */,
 				BBE2AC8823E19002008FF119 /* TimetableViewController.swift */,
 				BBA6E784242C754200F770BB /* WeekScrollView.swift */,
-				BBB09A942525A109000D90F7 /* TimetableStoryboard.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,6 +389,7 @@
 				BBA6E785242C754200F770BB /* WeekScrollView.swift in Sources */,
 				BB43536624050DE100910D37 /* Lesson+CoreDataProperties.swift in Sources */,
 				BB43536224050DE100910D37 /* Location+CoreDataProperties.swift in Sources */,
+				BB650A9C255EE07E00062866 /* CurseViewModel.swift in Sources */,
 				BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */,
 				BB4E7F09251F951400427901 /* ApiKey.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
@@ -388,8 +406,10 @@
 				BB734E702520CF7F0092D70E /* TimetableViewModel.swift in Sources */,
 				BB62EB922410AD21002906A8 /* CurseViewController.swift in Sources */,
 				BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */,
+				BB650A9F255EEA7700062866 /* ProfileViewModel.swift in Sources */,
 				BB989EA3241D0D1E00493890 /* GroupProfilesResponse.swift in Sources */,
 				BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */,
+				BB74CD072557119A00D7E076 /* Coordinator.swift in Sources */,
 				BBE2ACA323E1A8ED008FF119 /* LessonCell.swift in Sources */,
 				BBFC3A432521A88500400645 /* LastUpdateCellViewModel.swift in Sources */,
 				BB43536524050DE100910D37 /* Lesson+CoreDataClass.swift in Sources */,

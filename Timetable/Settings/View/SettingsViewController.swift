@@ -11,33 +11,36 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
-    var core: CoreDataManager!
-    private var groups: [Group] = []
+    var coreDataManager: CoreDataManager!
     private var groupProfile: String {
         return UserDefaults.standard.string(forKey: "groupProfile") ?? ""
     }
-    private var groupCurse: String {
-        return UserDefaults.standard.string(forKey: "groupCurse") ?? ""
+    private var groupCourse: String {
+        return UserDefaults.standard.string(forKey: "groupCourse") ?? ""
     }
     
     @IBOutlet weak var groupProfileLabel: UILabel!
-    @IBOutlet weak var groupCurseLabel: UILabel!
+    @IBOutlet weak var groupCourseLabel: UILabel!
     @IBOutlet weak var clearCacheButton: UIButton!
+    
+    static func instantiate() -> SettingsViewController {
+        let storyboadr = UIStoryboard(name: "SettingsStoryboard", bundle: .main)
+        let controller = storyboadr.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        return controller
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let tbc = self.tabBarController as? CustomTabBarController {
-            core = tbc.core
+            coreDataManager = tbc.core
         }
-        
-        groups = GetGroupsResponse(context: core.context).groups
     }
     
     override func viewWillAppear(_ animated: Bool) {
         groupProfileLabel.text = groupProfile
-        groupCurseLabel.text = groupCurse
+        groupCourseLabel.text = groupCourse
         
         if let selectedRow = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedRow, animated: true)
@@ -51,20 +54,18 @@ class SettingsViewController: UITableViewController {
         if segue.identifier == "showProfileSegue",
            let destination = segue.destination as? ProfileViewController {
             
-            destination.groups = groups
-            destination.core = core
+            destination.coreDataManager = coreDataManager
         }
-        if segue.identifier == "changeCurseSegue",
+        if segue.identifier == "changeCourseSegue",
            groupProfile != "",
-           let destination = segue.destination as? CurseViewController {
+           let destination = segue.destination as? CourseViewController {
             
-            destination.groups = groups
-            destination.core = core
+            destination.coreDataManager = coreDataManager
         }
     }
     
     @IBAction func clearCacheButtonPressed(_ sender: Any) {
-        CoreDataManager().clearCoreDataExcept(profile: groupProfile, curse: groupCurse)
+        coreDataManager.clearCoreDataExcept(profile: groupProfile, course: groupCourse)
         
         clearCacheButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         clearCacheButton.isEnabled = false

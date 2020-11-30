@@ -1,24 +1,24 @@
 //
-//  GroupCurseResponse.swift
+//  GroupCourseResponse.swift
 //  TimeTable
 //
 //  Created by ar_ko on 14/03/2020.
 //  Copyright © 2020 ar_ko. All rights reserved.
 //
 
-struct GetGroupCurseResponse {
-    var groupCurses: [String]
+struct GetGroupCourseResponse {
+    var groupCourses: [String]
     
     
     init(groups: [Group], groupProfile: String) {
-        var groupCurses: [String] = []
+        var groupCourses: [String] = []
         for group in groups {
             if group.name == groupProfile {
-                groupCurses.append(group.curse)
+                groupCourses.append(group.course)
             }
         }
-        groupCurses.sort()
+        groupCourses.sort()
         
-        self.groupCurses = groupCurses
+        self.groupCourses = groupCourses
     }
 }

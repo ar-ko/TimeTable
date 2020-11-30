@@ -13,12 +13,12 @@ protocol WeekSkrollViewDelegate {
 }
 
 class WeekScrollView: UIView {
-    
     private var daysButtons = [UIButton]()
     private let weeks = 2
     
-    var selectedDay: Int! {
+    var selectedDay: Int? {
         didSet {
+            guard let selectedDay = selectedDay else { return }
             selectDay(index: selectedDay)
             self.delegate?.indexOfSelectedDay(selectedDay)
         }
@@ -35,7 +35,6 @@ class WeekScrollView: UIView {
     }()
     
     var weekTitlelabel = UILabel()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
