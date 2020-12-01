@@ -27,7 +27,7 @@ class CourseViewModel {
     
     func selectGroup(index: Int) {
         guard index <= groupCourses.count else { return }
-            UserDefaults.standard.set(groupCourses[index], forKey: "groupCourse")
-            coreDataManager.selectGroup(profile: groupProfile, course: groupCourses[index], groupList: groups)
+        UserDefaults.standard.set(groupCourses[index], forKey: "groupCourse")
+        coreDataManager.selectGroup(profile: groupProfile, course: groupCourses[index], groupList: groups)
     }
 }

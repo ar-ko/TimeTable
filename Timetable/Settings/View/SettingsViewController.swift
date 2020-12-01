@@ -8,39 +8,28 @@
 
 import UIKit
 
-
 class SettingsViewController: UITableViewController {
+    var settingsViewModel: SettingsViewModel?
     
-    var coreDataManager: CoreDataManager!
-    private var groupProfile: String {
-        return UserDefaults.standard.string(forKey: "groupProfile") ?? ""
-    }
-    private var groupCourse: String {
-        return UserDefaults.standard.string(forKey: "groupCourse") ?? ""
-    }
     
     @IBOutlet weak var groupProfileLabel: UILabel!
     @IBOutlet weak var groupCourseLabel: UILabel!
     @IBOutlet weak var clearCacheButton: UIButton!
     
-    static func instantiate() -> SettingsViewController {
-        let storyboadr = UIStoryboard(name: "SettingsStoryboard", bundle: .main)
-        let controller = storyboadr.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-        return controller
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let tbc = self.tabBarController as? CustomTabBarController {
-            coreDataManager = tbc.core
-        }
+        guard let tbc = self.tabBarController as? CustomTabBarController,
+              let coreDataManager = tbc.core else { return }
+        self.settingsViewModel = SettingsViewModel(coreDataManager: coreDataManager)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        groupProfileLabel.text = groupProfile
-        groupCourseLabel.text = groupCourse
+        guard let settingsViewModel = settingsViewModel else { return }
+        
+        groupProfileLabel.text = settingsViewModel.groupProfile
+        groupCourseLabel.text = settingsViewModel.groupCourse
         
         if let selectedRow = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedRow, animated: true)
@@ -50,22 +39,25 @@ class SettingsViewController: UITableViewController {
         clearCacheButton.isEnabled = true
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let settingsViewModel = settingsViewModel else { return }
+        
         if segue.identifier == "showProfileSegue",
            let destination = segue.destination as? ProfileViewController {
             
-            destination.coreDataManager = coreDataManager
-        }
-        if segue.identifier == "changeCourseSegue",
-           groupProfile != "",
-           let destination = segue.destination as? CourseViewController {
+            destination.coreDataManager = settingsViewModel.coreDataManager
+        } else if segue.identifier == "changeCourseSegue",
+                  let destination = segue.destination as? CourseViewController {
             
-            destination.coreDataManager = coreDataManager
+            destination.coreDataManager = settingsViewModel.coreDataManager
         }
     }
     
     @IBAction func clearCacheButtonPressed(_ sender: Any) {
-        coreDataManager.clearCoreDataExcept(profile: groupProfile, course: groupCourse)
+        guard let settingsViewModel = settingsViewModel else { return }
+        
+        settingsViewModel.clearCoreDataCache()
         
         clearCacheButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         clearCacheButton.isEnabled = false
