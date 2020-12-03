@@ -31,6 +31,8 @@ struct GetGroupsResponse {
             group.endColumn = groupDictionary["endColumn"] as? String ?? ""
             group.endRow = groupDictionary["endRow"] as? Int16 ?? 0
             
+            
+            
             groups.append(group)
         }
     }

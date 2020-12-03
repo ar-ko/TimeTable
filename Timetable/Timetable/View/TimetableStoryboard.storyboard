@@ -12,17 +12,6 @@
         <!--Timetable View Controller-->
         <scene sceneID="6D9-OL-mB2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lmU-bL-itY" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="gz6-1R-rMp">
-                    <connections>
-                        <action selector="LeftSwipe:" destination="hZw-Km-XIz" id="x6O-vC-kq3"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="a7r-e6-qZZ">
-                    <connections>
-                        <action selector="RightSwipe:" destination="hZw-Km-XIz" id="juP-a9-0LL"/>
-                    </connections>
-                </swipeGestureRecognizer>
                 <viewController storyboardIdentifier="TimetableViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hZw-Km-XIz" customClass="TimetableViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6MU-sI-6bx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -205,6 +194,17 @@
                         <outlet property="timetableView" destination="DtQ-mW-fLu" id="ANt-bp-m5r"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lmU-bL-itY" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="gz6-1R-rMp">
+                    <connections>
+                        <action selector="LeftSwipe:" destination="hZw-Km-XIz" id="x6O-vC-kq3"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="a7r-e6-qZZ">
+                    <connections>
+                        <action selector="RightSwipe:" destination="hZw-Km-XIz" id="juP-a9-0LL"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2345" y="-13"/>
         </scene>
