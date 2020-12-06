@@ -24,6 +24,11 @@ final class AppCoordinator: Coordinator {
         
         timetableCoordinator.start()
         
+        /*let settingsCoordinator = SettingsCoordinator(navigationController: navigationController)
+        childCoordinators.append(settingsCoordinator)
+        
+        settingsCoordinator.start()*/
+        
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }

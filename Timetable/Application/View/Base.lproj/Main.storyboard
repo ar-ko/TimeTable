@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Custom Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="k33-GB-U5c">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8hY-NI-Xbh" customClass="CustomTabBarController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8hY-NI-Xbh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="aiL-cJ-KV3">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -50,10 +50,10 @@
         <!--TimetableViewController-->
         <scene sceneID="TEG-3r-4Es">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XZM-jH-EaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardIdentifier="TimetableReference" storyboardName="TimetableStoryboard" referencedIdentifier="TimetableViewController" id="Ylx-ga-Qxc" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="PIi-s4-PLi"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XZM-jH-EaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1612" y="-155"/>
         </scene>

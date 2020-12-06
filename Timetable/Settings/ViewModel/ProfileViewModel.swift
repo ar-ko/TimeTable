@@ -9,7 +9,9 @@
 import Foundation
 
 class ProfileViewModel {
-    private let coreDataManager: CoreDataManager
+    let coreDataManager: CoreDataManager
+    var coordinator: ProfileCoordinator?
+    
     private var originalProfiles: [String]
     private var filteredProfiles: [String] = []
     private var isFiltering: Bool = false
@@ -36,6 +38,14 @@ class ProfileViewModel {
     
     func selectProfile(index: Int) {
         UserDefaults.standard.set(profiles[index], forKey: "groupProfile")
+    }
+    
+    func viewDidDisappear() {
+        coordinator?.didFinishProfile()
+    }
+    
+    deinit {
+        print("ProfileViewModel deinit")
     }
     
 }

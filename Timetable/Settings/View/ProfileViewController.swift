@@ -8,25 +8,33 @@
 
 import UIKit
 
-
 class ProfileViewController: UITableViewController {
-    var coreDataManager: CoreDataManager?
-    var profileViewModel: ProfileViewModel?
+    var viewModel: ProfileViewModel!
     
     private let searchController = UISearchController(searchResultsController: nil)
     
     
+    static func instantiate() -> ProfileViewController {
+        let storyboadr = UIStoryboard(name: "SettingsStoryboard", bundle: .main)
+        let controller = storyboadr.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        return controller
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let coreDataManager = coreDataManager else { return }
-        self.profileViewModel = ProfileViewModel(coreDataManager: coreDataManager)
-        
         configureSearchController()
     }
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         self.searchController.view.removeFromSuperview()
+        viewModel.viewDidDisappear()
+    }
+    
+    deinit {
+        print("ProfileViewController deinit")
     }
     
     
@@ -42,39 +50,25 @@ class ProfileViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath)
-        cell.textLabel?.text = profileViewModel?.profiles[indexPath.row]
+        cell.textLabel?.text = viewModel.profiles[indexPath.row]
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return profileViewModel?.profiles.count ?? 0
+        return viewModel.profiles.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let profileViewModel = profileViewModel else { return }
-                
-        profileViewModel.selectProfile(index: indexPath.row)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showCourseSegue" {
-            
-            let destination = segue.destination as! CourseViewController
-            destination.coreDataManager = coreDataManager
-        }
+        viewModel.selectProfile(index: indexPath.row)
     }
 }
 
 extension ProfileViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
-        guard let profileViewModel = profileViewModel,
-              let searchText = searchController.searchBar.text else { return }
+        guard let searchText = searchController.searchBar.text else { return }
         
-        profileViewModel.filterProfilesBySearchText(searchText)
+        viewModel.filterProfilesBySearchText(searchText)
         tableView.reloadData()
     }
     

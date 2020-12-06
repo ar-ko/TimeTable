@@ -18,15 +18,15 @@
 		BB43536624050DE100910D37 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535C24050DE100910D37 /* Lesson+CoreDataProperties.swift */; };
 		BB4E7F09251F951400427901 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E7F08251F951400427901 /* ApiKey.swift */; };
 		BB62EB902410AC7C002906A8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */; };
-		BB62EB922410AD21002906A8 /* CurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB912410AD21002906A8 /* CurseViewController.swift */; };
-		BB650A9C255EE07E00062866 /* CurseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB650A9B255EE07E00062866 /* CurseViewModel.swift */; };
+		BB62EB922410AD21002906A8 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62EB912410AD21002906A8 /* CourseViewController.swift */; };
+		BB650A9C255EE07E00062866 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB650A9B255EE07E00062866 /* CourseViewModel.swift */; };
 		BB650A9F255EEA7700062866 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB650A9E255EEA7700062866 /* ProfileViewModel.swift */; };
 		BB65242023F3064D00D200FB /* CoreDataTimetable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB65241E23F3064D00D200FB /* CoreDataTimetable.xcdatamodeld */; };
 		BB6B94572526E7ED000748D2 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6B94562526E7ED000748D2 /* SettingsStoryboard.storyboard */; };
 		BB7255DF23E3295600911B70 /* GoogleSheetsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255DE23E3295600911B70 /* GoogleSheetsResponse.swift */; };
 		BB7255E123E350CA00911B70 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7255E023E350CA00911B70 /* NetworkError.swift */; };
 		BB729A182576B65F00C0E124 /* GroupProfilesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB989EA2241D0D1E00493890 /* GroupProfilesResponse.swift */; };
-		BB729A192576B65F00C0E124 /* GroupCurseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB989EA5241D1A6D00493890 /* GroupCurseResponse.swift */; };
+		BB729A192576B65F00C0E124 /* GroupCourseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB989EA5241D1A6D00493890 /* GroupCourseResponse.swift */; };
 		BB729A1A2576B65F00C0E124 /* GroupsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F4724116701009944D3 /* GroupsResponse.swift */; };
 		BB72BC4F2520FFD600CD0D69 /* LessonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72BC4E2520FFD600CD0D69 /* LessonCellViewModel.swift */; };
 		BB734E702520CF7F0092D70E /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB734E6F2520CF7F0092D70E /* TimetableViewModel.swift */; };
@@ -34,6 +34,8 @@
 		BB7D4DB5252C2ED2007A499C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D4DB4252C2ED2007A499C /* CoreDataManager.swift */; };
 		BB7FB18A25794D7A006D1B76 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7FB18925794D7A006D1B76 /* Coordinator.swift */; };
 		BB7FB18D25794D9C006D1B76 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7FB18C25794D9C006D1B76 /* AppCoordinator.swift */; };
+		BB80B408257B782800AD1909 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80B407257B782800AD1909 /* SettingsCoordinator.swift */; };
+		BB80B40C257B806800AD1909 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80B40B257B806800AD1909 /* ProfileCoordinator.swift */; };
 		BB8A2F43241157D7009944D3 /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */; };
 		BB8A2F44241157D7009944D3 /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */; };
 		BB8A2F45241157D7009944D3 /* GroupSchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB43535624050DE100910D37 /* GroupSchedule+CoreDataProperties.swift */; };
@@ -43,7 +45,6 @@
 		BBBAAED9241034B60034DA8F /* Groups.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBBAAED8241034B60034DA8F /* Groups.plist */; };
 		BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902EE23E1B81D0021CA1C /* NetworkService.swift */; };
 		BBC902F223E1BA640021CA1C /* TimetableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC902F123E1BA640021CA1C /* TimetableNetworkService.swift */; };
-		BBDB8D7C240BBADD007DB747 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */; };
 		BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8423E19002008FF119 /* AppDelegate.swift */; };
 		BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8623E19002008FF119 /* SceneDelegate.swift */; };
 		BBE2AC8923E19002008FF119 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2AC8823E19002008FF119 /* TimetableViewController.swift */; };
@@ -68,8 +69,8 @@
 		BB43535C24050DE100910D37 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BB4E7F08251F951400427901 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		BB62EB912410AD21002906A8 /* CurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseViewController.swift; sourceTree = "<group>"; };
-		BB650A9B255EE07E00062866 /* CurseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseViewModel.swift; sourceTree = "<group>"; };
+		BB62EB912410AD21002906A8 /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
+		BB650A9B255EE07E00062866 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		BB650A9E255EEA7700062866 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		BB65241F23F3064D00D200FB /* CoreDataTimetable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTimetable.xcdatamodel; sourceTree = "<group>"; };
 		BB6B94562526E7ED000748D2 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
@@ -81,18 +82,19 @@
 		BB7D4DB4252C2ED2007A499C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BB7FB18925794D7A006D1B76 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		BB7FB18C25794D9C006D1B76 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		BB80B407257B782800AD1909 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		BB80B40B257B806800AD1909 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		BB8A2F3F24115648009944D3 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BB8A2F4024115648009944D3 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BB8A2F4724116701009944D3 /* GroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsResponse.swift; sourceTree = "<group>"; };
 		BB989EA2241D0D1E00493890 /* GroupProfilesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProfilesResponse.swift; sourceTree = "<group>"; };
-		BB989EA5241D1A6D00493890 /* GroupCurseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCurseResponse.swift; sourceTree = "<group>"; };
+		BB989EA5241D1A6D00493890 /* GroupCourseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCourseResponse.swift; sourceTree = "<group>"; };
 		BB993FFF2579571E00CB8B8D /* TimetableCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCoordinator.swift; sourceTree = "<group>"; };
 		BBA6E784242C754200F770BB /* WeekScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScrollView.swift; sourceTree = "<group>"; };
 		BBB09A942525A109000D90F7 /* TimetableStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimetableStoryboard.storyboard; sourceTree = "<group>"; };
 		BBBAAED8241034B60034DA8F /* Groups.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Groups.plist; sourceTree = "<group>"; };
 		BBC902EE23E1B81D0021CA1C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BBC902F123E1BA640021CA1C /* TimetableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNetworkService.swift; sourceTree = "<group>"; };
-		BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		BBE2AC8123E19002008FF119 /* TimeTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBE2AC8423E19002008FF119 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBE2AC8623E19002008FF119 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				BB989EA2241D0D1E00493890 /* GroupProfilesResponse.swift */,
-				BB989EA5241D1A6D00493890 /* GroupCurseResponse.swift */,
+				BB989EA5241D1A6D00493890 /* GroupCourseResponse.swift */,
 				BB8A2F4724116701009944D3 /* GroupsResponse.swift */,
 			);
 			path = Services;
@@ -145,6 +147,15 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		BB80B406257B781300AD1909 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				BB80B407257B782800AD1909 /* SettingsCoordinator.swift */,
+				BB80B40B257B806800AD1909 /* ProfileCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		BB8C582A240AD12B00E12327 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +163,7 @@
 				BB8C582C240AD18600E12327 /* View */,
 				BB8C582B240AD17700E12327 /* ViewModel */,
 				BB74CD052557117100D7E076 /* Services */,
+				BB80B406257B781300AD1909 /* Coordinator */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -159,7 +171,7 @@
 		BB8C582B240AD17700E12327 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				BB650A9B255EE07E00062866 /* CurseViewModel.swift */,
+				BB650A9B255EE07E00062866 /* CourseViewModel.swift */,
 				BB650A9E255EEA7700062866 /* ProfileViewModel.swift */,
 				BB75C5F225760E55009FE1D5 /* SettingsViewModel.swift */,
 			);
@@ -171,7 +183,7 @@
 			children = (
 				BBF95897240EC22000067579 /* SettingsViewController.swift */,
 				BB62EB8F2410AC7C002906A8 /* ProfileViewController.swift */,
-				BB62EB912410AD21002906A8 /* CurseViewController.swift */,
+				BB62EB912410AD21002906A8 /* CourseViewController.swift */,
 				BB6B94562526E7ED000748D2 /* SettingsStoryboard.storyboard */,
 			);
 			path = View;
@@ -245,7 +257,6 @@
 			children = (
 				BBE2AC8623E19002008FF119 /* SceneDelegate.swift */,
 				BBE2AC8423E19002008FF119 /* AppDelegate.swift */,
-				BBDB8D7B240BBADC007DB747 /* CustomTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -406,7 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB729A182576B65F00C0E124 /* GroupProfilesResponse.swift in Sources */,
-				BB729A192576B65F00C0E124 /* GroupCurseResponse.swift in Sources */,
+				BB729A192576B65F00C0E124 /* GroupCourseResponse.swift in Sources */,
 				BB729A1A2576B65F00C0E124 /* GroupsResponse.swift in Sources */,
 				BB72BC4F2520FFD600CD0D69 /* LessonCellViewModel.swift in Sources */,
 				BB8A2F43241157D7009944D3 /* Group+CoreDataClass.swift in Sources */,
@@ -418,22 +429,23 @@
 				BBA6E785242C754200F770BB /* WeekScrollView.swift in Sources */,
 				BB43536624050DE100910D37 /* Lesson+CoreDataProperties.swift in Sources */,
 				BB43536224050DE100910D37 /* Location+CoreDataProperties.swift in Sources */,
-				BB650A9C255EE07E00062866 /* CurseViewModel.swift in Sources */,
+				BB650A9C255EE07E00062866 /* CourseViewModel.swift in Sources */,
 				BB43535F24050DE100910D37 /* GroupSchedule+CoreDataClass.swift in Sources */,
 				BB7FB18D25794D9C006D1B76 /* AppCoordinator.swift in Sources */,
+				BB80B408257B782800AD1909 /* SettingsCoordinator.swift in Sources */,
 				BB4E7F09251F951400427901 /* ApiKey.swift in Sources */,
 				BB1157C423F10DF80022BDF2 /* LastUpdateCell.swift in Sources */,
 				BB65242023F3064D00D200FB /* CoreDataTimetable.xcdatamodeld in Sources */,
 				BBE2AC8923E19002008FF119 /* TimetableViewController.swift in Sources */,
 				BBF95898240EC22000067579 /* SettingsViewController.swift in Sources */,
+				BB80B40C257B806800AD1909 /* ProfileCoordinator.swift in Sources */,
 				BB7255DF23E3295600911B70 /* GoogleSheetsResponse.swift in Sources */,
 				BB62EB902410AC7C002906A8 /* ProfileViewController.swift in Sources */,
 				BBE2AC8523E19002008FF119 /* AppDelegate.swift in Sources */,
-				BBDB8D7C240BBADD007DB747 /* CustomTabBarController.swift in Sources */,
 				BB36B29A23E1C97400659B50 /* GoogleSheetsParser.swift in Sources */,
 				BBC902F223E1BA640021CA1C /* TimetableNetworkService.swift in Sources */,
 				BB734E702520CF7F0092D70E /* TimetableViewModel.swift in Sources */,
-				BB62EB922410AD21002906A8 /* CurseViewController.swift in Sources */,
+				BB62EB922410AD21002906A8 /* CourseViewController.swift in Sources */,
 				BBE2AC8723E19002008FF119 /* SceneDelegate.swift in Sources */,
 				BB650A9F255EEA7700062866 /* ProfileViewModel.swift in Sources */,
 				BBC902EF23E1B81D0021CA1C /* NetworkService.swift in Sources */,

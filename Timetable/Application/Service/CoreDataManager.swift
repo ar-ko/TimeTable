@@ -14,9 +14,7 @@ final class CoreDataManager {
     lazy var persistenrContainer: NSPersistentContainer = {
         let persistentContainer = NSPersistentContainer(name: "CoreDataTimetable")
         persistentContainer.loadPersistentStores { (_, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
+                print(error?.localizedDescription ?? "[INFO] PersistentContainer is loaded")
         }
         return persistentContainer
     }()

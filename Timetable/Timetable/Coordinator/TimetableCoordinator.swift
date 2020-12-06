@@ -18,6 +18,8 @@ final class TimetableCoordinator: Coordinator {
     
     func start() {
         let timetableViewController = TimetableViewController.instantiate()
+        timetableViewController.viewModel = TimetableViewModel(coreDataManager: CoreDataManager())
+        
         navigationController.setViewControllers([timetableViewController], animated: false)
     }
     

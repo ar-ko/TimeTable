@@ -10,11 +10,9 @@ import UIKit
 
 class TimetableViewController: UIViewController, UITabBarControllerDelegate {
     @IBOutlet weak var timetableView: UITableView!
-    
     private var weekSkrollView = WeekScrollView()
     
-    private var coreDataManager = CoreDataManager()
-    private var timetableViewModel: TimetableViewModel!
+    var viewModel: TimetableViewModel!
     
     private let timeTableRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -22,25 +20,23 @@ class TimetableViewController: UIViewController, UITabBarControllerDelegate {
         return refreshControl
     }()
     
+    
     static func instantiate() -> TimetableViewController {
         let storyboadr = UIStoryboard(name: "TimetableStoryboard", bundle: .main)
         let controller = storyboadr.instantiateViewController(withIdentifier: "TimetableViewController") as! TimetableViewController
         return controller
     }
     
-    //MARK: - View lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         setupWeekScrollView()
         
-        timetableViewModel.getTimetable(){
+        viewModel.updateTimetable(){
             DispatchQueue.main.async {
                 self.timetableView.reloadData()
             }
-            
         }
-        
     }
     
     private func setupWeekScrollView(){
@@ -49,109 +45,96 @@ class TimetableViewController: UIViewController, UITabBarControllerDelegate {
         view.addSubview(weekSkrollView)
         
         weekSkrollView.delegate = self
-        weekSkrollView.selectedDay = timetableViewModel.indexOfSelectedDay
+        weekSkrollView.selectedDay = viewModel.indexOfSelectedDay
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.timetableViewModel = TimetableViewModel(coreDataManager: self.coreDataManager)
-        self.tabBarController?.delegate = self
-        if let tbc = self.tabBarController as? CustomTabBarController {
-            tbc.core = self.coreDataManager
-        }
-        
         timetableView.refreshControl = timeTableRefreshControl
     }
     
-    //MARK: - TabBar
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let tabBarIndex = tabBarController.selectedIndex
         if tabBarIndex == 0 {
-            timetableViewModel.selectDay(.today)
-            updateDayTitleAndReloadView()
-            weekSkrollView.selectDay(index: timetableViewModel.indexOfSelectedDay)
+            selectDay(.today)
         }
+    }
+    
+    
+    private func updateDayTitleAndReloadView() {
+        DispatchQueue.main.async {
+            self.navigationItem.title = self.viewModel.dayTitle
+            self.timetableView.reloadData()
+        }
+    }
+    
+    @objc private func refresh(sender: UIRefreshControl) {
+        viewModel.updateTimetable() {
+            //проверить обновит ли
+            self.updateDayTitleAndReloadView()
+        }
+        sender.endRefreshing()
+    }
+    
+    
+    @IBAction func RightSwipe(_ sender: Any) {
+        selectDay(.previous)
+    }
+    
+    @IBAction func LeftSwipe(_ sender: Any) {
+        selectDay(.next)
+    }
+    
+    func selectDay(_ dayType: DayType) {
+        switch dayType {
+        case .next:
+            UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
+        case .previous:
+            UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
+        case .forIndex(let index):
+            if index > viewModel.indexOfSelectedDay {
+                UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
+            } else if index < viewModel.indexOfSelectedDay {
+                UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
+            }
+        case .today:
+           break
+        }
+        
+        viewModel.selectDay(dayType)
+        weekSkrollView.selectDay(index: viewModel.indexOfSelectedDay)
+        updateDayTitleAndReloadView()
     }
 }
 
-//MARK: - TableView
 
 extension TimetableViewController: UITableViewDelegate {}
 
 extension TimetableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard  let lastUpdate = timetableViewModel.getLastUpdate(),
-               let lessons = timetableViewModel.getDay()?.lessons else { return UITableViewCell() }
+        let cellViewModel = viewModel.cell(for: indexPath)
         
-        if indexPath.row == 0 {
+        switch cellViewModel {
+        case .lastUpdate(let lastUpdateCellViewModel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell", for: indexPath) as! LastUpdateCell
-            cell.lastUpdateCellViewModel = LastUpdateCellViewModel(from: lastUpdate)
-            
+            cell.configure(from: lastUpdateCellViewModel)
             return cell
-        } else {
+        case .lesson(let lessonCellViewModel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LessonCell
-            cell.configure(from: LessonCellViewModel(from: lessons[indexPath.row - 1] as! Lesson))
-            
+            cell.configure(from: lessonCellViewModel)
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let lessonsCount = timetableViewModel.getDay()?.lessons?.count else { return 0 }
-        return lessonsCount + 1
+        return viewModel.numberOfRows()
     }
 }
-
-//MARK: - User interface
-
-extension TimetableViewController {
-    private func updateDayTitleAndReloadView() {
-        DispatchQueue.main.async {
-            self.navigationItem.title = self.timetableViewModel.dayTitle
-            self.timetableView.reloadData()
-        }
-    }
-    
-    @objc private func refresh(sender: UIRefreshControl) {
-        timetableViewModel.getTimetable() {
-            self.updateDayTitleAndReloadView()
-        }
-        sender.endRefreshing()
-    }
-    
-    @IBAction func RightSwipe(_ sender: Any) {
-        timetableViewModel.selectDay(.previous)
-        
-        UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
-        
-        updateDayTitleAndReloadView()
-        weekSkrollView.selectDay(index: timetableViewModel.indexOfSelectedDay)
-    }
-    
-    @IBAction func LeftSwipe(_ sender: Any) {
-        timetableViewModel.selectDay(.next)
-        
-        UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
-        
-        updateDayTitleAndReloadView()
-        weekSkrollView.selectDay(index: timetableViewModel.indexOfSelectedDay)
-    }
-}
-
-//MARK: - WeekSkrollViewDelegate
 
 extension TimetableViewController: WeekSkrollViewDelegate {
     func indexOfSelectedDay(_ dayIndex: Int) {
-        if dayIndex > timetableViewModel.indexOfSelectedDay {
-            UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlUp, .allowUserInteraction], animations: nil)
-        } else {
-            UIView.transition(with: timetableView, duration: 0.5, options: [.curveEaseOut, .transitionCurlDown, .allowUserInteraction], animations: nil)
-        }
-        
-        timetableViewModel.selectDay(.forIndex(dayIndex))
-        updateDayTitleAndReloadView()
+        selectDay(.forIndex(dayIndex))
     }
 }

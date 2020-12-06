@@ -10,8 +10,8 @@ import UIKit.UIColor
 
 
 class LessonCellViewModel {
-    let startTime: String
-    let endTime: String
+    let startTime: String?
+    let endTime: String?
     let title: String?
     let teacher: String?
     let type: String?
@@ -19,7 +19,7 @@ class LessonCellViewModel {
     let canceled: UIColor
     let wrongLocation: UIColor
     let note: String?
-    // TODO: переименовать
+    
     let locationColor: UIColor
     let titleColor: UIColor
     let typeColor: UIColor

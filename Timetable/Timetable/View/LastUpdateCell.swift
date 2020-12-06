@@ -11,9 +11,7 @@ import UIKit
 class LastUpdateCell: UITableViewCell {
     @IBOutlet weak var lastUpdateLabel: UILabel!
     
-    var lastUpdateCellViewModel: LastUpdateCellViewModel! {
-        didSet {
-            self.lastUpdateLabel.text = lastUpdateCellViewModel.lastUpdate
-        }
+    func configure(from viewModel: LastUpdateCellViewModel) {
+        self.lastUpdateLabel.text = viewModel.lastUpdate
     }
 }
